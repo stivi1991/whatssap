@@ -40,6 +40,12 @@ class PagesController extends AppController
      */
     public function display(...$path)
     {
+
+      $this->loadModel('jobOffer');
+      $offer = $this->jobOffer->find('all');
+      $query = $this->jobOffer->find('all');
+      $this->set('offer', $offer);
+      
         $count = count($path);
         if (!$count) {
             return $this->redirect('/');
@@ -92,7 +98,5 @@ class PagesController extends AppController
             }
         }
     /// end of login action
-
-
 
 }

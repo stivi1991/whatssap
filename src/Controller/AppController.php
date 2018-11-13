@@ -73,6 +73,7 @@ class AppController extends Controller
             $this->Auth->allow('display');
             $this->Auth->allow('register');
             $this->Auth->allow('postjob');
+            $this->Auth->allow('jobsearch');
             $this->Auth->deny('admin');
           }
       }

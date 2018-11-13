@@ -21,8 +21,15 @@ class EmployerController extends AppController
      */
     public function postjob()
     {
-
-
+      $this->loadModel('jobOffer');
+      $offer = $this->jobOffer->newEntity();
+    if ($this->request->is('post')) {
+      $offer = $this->jobOffer->patchEntity($offer, $this->request->getData());
+      var_dump($this->request->getData());
+        if ($this->jobOffer->save($offer)) {
+          $this->Flash->success(__('Job offer has been saved.'));
+        }
+    }
     }
 
 //// loginAction

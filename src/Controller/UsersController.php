@@ -193,5 +193,15 @@ public function register() {
   }
 ///end of signup action
 
+
+///job search action
+public function jobsearch() {
+  $this->loadModel('jobOffer');
+  $offer = $this->jobOffer->find('all');
+  $query = $this->jobOffer->find('all');
+  $this->set('offer', $offer);
+}
+///end of job search
+
 //end of controller
 }

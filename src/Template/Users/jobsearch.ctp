@@ -1,55 +1,31 @@
-<?php
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
- */
-use Cake\Cache\Cache;
-use Cake\Core\Configure;
-use Cake\Core\Plugin;
-use Cake\Datasource\ConnectionManager;
-use Cake\Error\Debugger;
-use Cake\Network\Exception\NotFoundException;
-
-?>
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>What's SAP</title>
+    <title>Bootstrap Jobs - Bootstrap 4 template</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
-
-    <!--preloader-->
-    <link href="css/preloader.css" rel="stylesheet">
-    <script src="js/preloader.js"></script>
     <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../vendor/font-awesome/css/font-awesome.min.css">
     <!-- Google fonts - Roboto for copy, Montserrat for headings-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <!-- owl carousel-->
-    <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.carousel.css">
-    <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.theme.default.css">
+    <link rel="stylesheet" href="../vendor/owl.carousel/assets/owl.carousel.css">
+    <link rel="stylesheet" href="../vendor/owl.carousel/assets/owl.theme.default.css">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="../css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../css/custom.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="favicon.png">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
   <body>
     <!-- Preloader Start -->
@@ -154,21 +130,16 @@ use Cake\Network\Exception\NotFoundException;
 
 
 
-
-
-    <section class="job-form-section job-form-section--image">
-      <div class="container">
-        <div class="row">
+  <div class="row">
+<div class="col-md-6 col-lg-6">
           <div class="col-lg-12 mx-auto">
-            <div class="job-form-box">
-              <h2 class="heading"><span class="center-heading">FIND YOUR NEXT </span><span class="accent">PROJECT</span><span class="accent"></span></h2>
+              <h3 class="heading">FIND YOUR NEXT <span class="accent">PROJECT</span>.</h3>
               <form id="job-main-form" method="get" action="#" class="job-main-form">
-                <div class="controls">
                   <div class="row align-items-center">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <div class="form-group">
                         <div class="row">
-                        <label for="profession" class='main-center-text'><b>Location:</b></label>
+                        <label for="profession"><b>Location:</b></label>
                       </div>
                         <button type="button" class="btn btn-info btn-sm btn-space">Poznań</button>
                         <button type="button" class="btn btn-info btn-sm btn-space">Warszawa</button>
@@ -185,10 +156,10 @@ use Cake\Network\Exception\NotFoundException;
                         <button type="button" class="btn btn-info btn-sm btn-space">Inne</button>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <div class="form-group">
                         <div class="row">
-                        <label for="location" class='main-center-text'><b>Module:</b></label>
+                        <label for="location"><b>Module:</b></label>
                       </div>
                         <button type="button" class="btn btn-info btn-sm btn-space">ABAP</button>
                         <button type="button" class="btn btn-info btn-sm btn-space">SRM</button>
@@ -206,15 +177,11 @@ use Cake\Network\Exception\NotFoundException;
                       </div>
                     </div>
                   </div>
-                </div>
               </form>
-            </div>
           </div>
-        </div>
-      </div>
-    </section>
-    <section>
-      <div class="container">
+</div>
+
+<div class="col-md-6 col-lg-6">
         <h3 class="heading">We have <span class="accent"><?= $offer->count(); ?> </span> active jobs</h3>
 
 
@@ -248,6 +215,7 @@ use Cake\Network\Exception\NotFoundException;
 
 
         <div class="pages">
+          <p class="load-more"><a href="#" class="mb-4 btn btn-outline-white-primary"><i class="fa fa-chevron-down"> </i>Load more</a></p>
           <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4 mb-4">
             <ul class="pagination">
               <li class="page-item"><a href="#" aria-label="Previous" class="page-link"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
@@ -259,89 +227,8 @@ use Cake\Network\Exception\NotFoundException;
             </ul>
           </nav>
         </div>
-      </div>
-    </section>
-
-    <section id ="pricing">
-      <div class="container">
-        <h3 class="heading">Our Offer</h3>
-        <p class="lead text-center mb-5">
-        </p>
-
-        <div class="row packages">
-          <!--single -->
-          <div class="col-md-4">
-            <div class="package ">
-              <div class="package-header">
-                <h5>Single Post</h5>
-                  <div class="meta-text"></div>
-              </div>
-              <div class="price">
-                <div class="price-container">
-                  <h4><span class="currency">$</span>5</h4>
-                </div>
-              </div>
-              <ul>
-                <li><i class="fa fa-check"></i>Post single job offer</li>
-                <li>&nbsp;</li>
-              </ul><a href="#" class="btn btn-outline-white-primary">Post</a>
-            </div>
-          </div>
-          <!--standard package -->
-          <div class="col-md-4">
-            <div class="package ">
-              <div class="package-header-middle">
-                <h5>Standard</h5>
-                  <div class="meta-text"></div>
-              </div>
-              <div class="price">
-                <div class="price-container">
-                  <h4><span class="currency">$</span>49</h4><span class="period">/ month</span>
-                </div>
-              </div>
-              <ul>
-                <li><i class="fa fa-check"></i>Access to candidate database</li>
-                <li><i class="fa fa-check"></i>Post 10 job offers a month</li>
-              </ul><a href="#" class="btn btn-outline-white-primary">Buy</a>
-            </div>
-          </div>
-
-          <!-- premium package -->
-          <div class="col-lg-4">
-            <div class="package best-value">
-              <div class="package-header">
-                <h5>Premium</h5>
-              </div>
-              <div class="price">
-                <div class="price-container">
-                  <h4><span class="currency">$</span>199</h4><span class="period">/ month</span>
-                </div>
-              </div>
-              <ul>
-                <li><i class="fa fa-check"></i>Access to candidate database</li>
-                <li><i class="fa fa-check"></i>Post 100 job offers a month</li>
-              </ul><a href="#" class="btn btn-primary">Buy</a>
-            </div>
-          </div>
-          <!-- end col-->
-        </div>
-      </div>
-    </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
+</div>
 
 
 
@@ -361,12 +248,12 @@ use Cake\Network\Exception\NotFoundException;
       </div>
     </footer>
     <!-- JavaScript files-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper.js/umd/popper.min.js"> </script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
-    <script src="vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
-    <script src="js/front.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="../vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="../vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
+    <script src="../js/front.js"></script>
   </body>
 </html>
