@@ -172,30 +172,28 @@ use Cake\Network\Exception\NotFoundException;
             <form method="post" action="/employer/postjob" class="job-add-form">
               <div class="row">
                 <div class="col-lg-12 form-group">
-                  <label for="title">Job Title</label>
-                  <input id="job_title" type="text" name="job_title" class="form-control">
-                  <p class="help-block text-small">Example block-level help text here. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
+                  <label for="title">Job Title:</label>
+                  <input id="job_title" type="text" name="job_title" class="form-control" required />
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-12 form-group">
-                  <label for="text">Job Description</label>
-                  <textarea id="description" name="description" rows="5" class="form-control"></textarea>
-                  <p class="help-block text-small">Example block-level help text here. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
+                  <label for="text">Job Description:</label>
+                  <textarea id="description" name="description" rows="5" class="form-control" required /></textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-4 form-group">
-                  <label for="country">Country</label>
-                  <input id="country" type="text" name="country" placeholder="Country" class="form-control">
+                  <label for="country">Country:</label>
+                  <input id="country" type="text" name="country" placeholder="Country" class="form-control" required />
                 </div>
                 <div class="col-lg-4 form-group">
-                  <label for="city">City</label>
-                  <input id="city" type="text" name="city" placeholder="City" class="form-control">
+                  <label for="city">City:</label>
+                  <input id="city" type="text" name="city" placeholder="City" class="form-control" required />
                 </div>
                 <div class="col-lg-4 form-group">
-                  <label for="job_type">Type</label>
-                  <select id="job_type" placeholder="Choose job type" name="job_type" class="form-control">
+                  <label for="job_type">Type:</label>
+                  <select id="job_type" placeholder="Choose job type" name="job_type" class="form-control" required />
                     <option>Pernament</option>
                     <option>Freelance</option>
                   </select>
@@ -204,9 +202,9 @@ use Cake\Network\Exception\NotFoundException;
               </div>
               </div>
               <div class="row">
-                <div class="col-lg-6 form-group">
-                  <label for="category">Module</label>
-                  <select id="category" multiple="multiple" name="category" placeholder="Choose main SAP module" class="form-control">
+                <div class="col-lg-12 form-group">
+                  <label for="category">Modules:</label>
+                  <select id="category" multiple="multiple" name="category" placeholder="Choose main SAP module" class="form-control" required />
                     <option>ABAP</option>
                     <option>HANA</option>
                     <option>CRM</option>
@@ -215,26 +213,15 @@ use Cake\Network\Exception\NotFoundException;
                     <option>ERP-SD</option>
                   </select>
                 </div>
-                <div class="col-lg-6 form-group">
-                  <label for="tag">Skills</label>
-                  <select id="tag" multiple placeholder="Choose tags" class="form-control">
-                    <option>ABAP OO</option>
-                    <option>HANA Modelling</option>
-                    <option>oData</option>
-                    <option>BAPI</option>
-                    <option>Java</option>
-                    <option>Oracle</option>
-                  </select>
-                </div>
               </div>
               <div class="row">
                 <div class="col-xl-2 form-group">
-                  <label for="salary">Salary</label>
-                  <input id="salary" type="text" name="salary" placeholder="Salary" class="form-control">
+                  <label for="salary">Salary:</label>
+                  <input id="salary" type="text" name="salary" placeholder="Salary" class="form-control" required />
                 </div>
                 <div class="col-xl-2 form-group">
                   <label for="salary_type">Salary per:</label>
-                  <select id="salary_type" placeholder="Salary per:" name="salary_type" class="form-control">
+                  <select id="salary_type" placeholder="Salary per:" name="salary_type" class="form-control" required />
                     <option>Hour</option>
                     <option>Day</option>
                     <option>Month</option>
@@ -242,7 +229,7 @@ use Cake\Network\Exception\NotFoundException;
                 </div>
                 <div class="col-xl-2 form-group">
                   <label for="currency">Currency:</label>
-                  <select id="currency" placeholder="Currency:" name="currency" class="form-control">
+                  <select id="currency" placeholder="Currency:" name="currency" class="form-control" required />
                     <option>EUR</option>
                     <option>PLN</option>
                     <option>GBP</option>
@@ -250,43 +237,52 @@ use Cake\Network\Exception\NotFoundException;
                 </div>
                 <div class="col-xl-3 form-group">
                   <label for="project_start">Start date:</label>
-                  <input id="project_start" name="project_start" type="date" class="form-control">
+                  <input id="project_start" name="project_start" type="date" class="form-control" required />
                 </div>
                 <div class="col-xl-3 form-group">
                   <label for="project_end">End date:</label>
                   <input id="project_end" name="project_end" type="date" class="form-control">
                 </div>
               </div>
+
               <div class="row">
-                <div class="col-lg-12">
-                  <hr class="margin-bottom--big">
+                <div class="col-xl-4 form-group">
+                  <label for="contract type">Contract type:</label>
+                  <select id="contract type" placeholder="Contract type" name="contract type" class="form-control" required />
+                    <option>B2B</option>
+                    <option>Employment</option>
+                    <option>Contract</option>
+                  </select>
+                </div>
+                <div class="col-xl-4 form-group">
+                  <label for="function">Function:</label>
+                  <select id="function" placeholder="Function" name="function" class="form-control" required/ >
+                    <option>Team Lead</option>
+                    <option>Developer</option>
+                    <option>Consultant</option>
+                    <option>Project Manager</option>
+                  </select>
+                </div>
+                <div class="col-xl-4 form-group">
+                  <label for="exp_type">Expertise level:</label>
+                  <select id="exp_type" placeholder="Expertise level" name="exp_type" class="form-control" required />
+                    <option>Junior</option>
+                    <option>Regular</option>
+                    <option>Senior</option>
+                    <option>Expert</option>
+                  </select>
                 </div>
               </div>
+
+
               <div class="row">
-                <div class="col-lg-12">
-                  <h4>Company details</h4>
-                  <p class="text-muted text-small">Some additional info for this screen about validity of the ads, etc. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.     </p>
-                  <hr>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-12 form-group">
+                <div class="col-lg-6 form-group">
                   <label for="company_name">Company name</label>
-                  <input id="company_name" name="company_name" type="text" class="form-control">
-                  <p class="help-block text-small">Example block-level help text here. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
+                  <input id="company_name" name="company_name" type="text" class="form-control" required />
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-12 form-group">
-                  <label for="company_description">Company Description</label>
-                  <textarea id="company_description" rows="3" class="form-control"></textarea>
-                  <p class="help-block text-small">Example block-level help text here. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-4 form-group">
-                  <label for="company_url">Website</label>
-                  <input id="company_url" name="company_url" type="text" class="form-control">
+                <div class="col-lg-6 form-group">
+                  <label for="company_url">Company website</label>
+                  <input id="company_url" name="company_url" type="text" class="form-control" required />
                 </div>
               </div>
               <div class="row">
@@ -294,7 +290,7 @@ use Cake\Network\Exception\NotFoundException;
                   <hr>
                   <div class="checkbox text-center">
                     <label>
-                      <input type="checkbox" reqired=""> I agree with the <a href="#">Terms and conditions</a>.
+                      <input type="checkbox" required /> I agree with the <a href="#">Terms and conditions</a>.
                     </label>
                   </div>
                 </div>

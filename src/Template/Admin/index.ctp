@@ -38,25 +38,18 @@
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple">
-
-    <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
+    <div class="sidebar" data-color="azure">
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="/" class="simple-text">
-                    <h7>plik</h7><h8>.me ADMIN</h8>
+                <a href="/admin/" class="simple-text">
+                    <h7><img src="/img/logo.png" alt="logo" class="d-none d-lg-block"></h7><h8>ADMIN PANEL</h8>
                 </a>
             </div>
 
             <ul class="nav">
                 <li class="active">
-                    <a href="#">
+                    <a href="/admin/">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
@@ -64,13 +57,19 @@
                 <li>
                     <a href="/admin/userlist">
                         <i class="pe-7s-user"></i>
-                        <p>Użytkownicy</p>
+                        <p>Users</p>
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/transactions">
+                    <a href="/admin/offers">
+                        <i class="pe-7s-user"></i>
+                        <p>Job offers</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/maintain">
                         <i class="pe-7s-note2"></i>
-                        <p>Transakcje</p>
+                        <p>Maintain dropdown data</p>
                     </a>
                 </li>
             </ul>
@@ -81,7 +80,7 @@
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand">Panel administratora</a>
+                    <a class="navbar-brand">Admin panel</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
@@ -94,7 +93,7 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                              <?= $this->Html->link(__('Wyloguj'), ['action' => 'logout']) ?>
+                              <?= $this->Html->link(__('Logout'), ['action' => 'logout']) ?>
                         </li>
 						<li class="separator hidden-lg"></li>
                     </ul>
@@ -106,59 +105,49 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="card">
 
                             <div class="header">
-                                <h4 class="title">Zarejestrowanych użytkowników</h4>
+                                <h4 class="title">Users</h4>
                             </div>
                             <div class="content">
 
-                            <p class="category">Łącznie</p>
+                            <p class="category">Total</p>
                             <h5><?= $users->count(); ?></h5>
 
-                            <p class="category">Zweryfikowanych</p>
-                            <p class="text-success"><?= $verified->count(); ?></pl>
+                            <p class="category">Candidates</p>
+                            <p class="text-success"><?= $candidates->count(); ?></pl>
 
-                            <p class="category">Niezweryfikowanych</p>
-                            <p class="text-danger"><?= $nverified->count(); ?></pl>
+                            <p class="category">Standard Employers</p>
+                            <p class="text-danger"><?= $employers_standard->count(); ?></pl>
+
+                            <p class="category">Premium Employers</p>
+                            <p class="text-danger"><?= $employers_premium->count(); ?></pl>
 
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Wykonanych transakcji</h4>
+                                <h4 class="title">Job offers</h4>
                             </div>
                             <div class="content">
 
-                              <p class="category">Łącznie</p>
+                              <p class="category">Total</p>
                               <h5>???</h5>
 
-                              <p class="category">Wpłat</p>
+                              <p class="category">Active</p>
                               <p class="text-success">???</pl>
 
-                              <p class="category">Wypłat</p>
+                              <p class="category">Expired</p>
                               <p class="text-danger">???</pl>
 
-                            </div>
-                        </div>
-                    </div>
+                              <p class="category">&nbsp;</p>
+                              <p class="text-danger">&nbsp;</pl>
 
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Zastawionych bitcoinów</h4>
-                            </div>
-                            <div class="content">
-                              <p class="text-success">
-                              <h2>????.????</h2>
-                            </p>
-                            <p class="text-success">
-                            <h2>BTC</h2>
-                          </p>
                             </div>
                         </div>
                     </div>
@@ -167,8 +156,8 @@
                     <div class="col-md-12">
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">Niezweryfikowani</h4>
-                                <p class="category">Najstarszych 10</p>
+                                <h4 class="title">Candidates</h4>
+                                <p class="category">Last 10 registered</p>
                             </div>
                             <div class="content">
                               <div class="content table-responsive table-full-width">
@@ -176,16 +165,16 @@
                                       <thead>
                                         <th>ID</th>
                                         <th>Email</th>
-                                        <th>Imię</th>
-                                        <th>Nazwisko</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
                                         <th>Miasto</th>
                                         <th>Adres</th>
                                       </thead>
                                       <tbody>
-                                        <?php foreach ($nverified10 as $nuser): ?>
+                                        <?php foreach ($candidates10 as $user): ?>
                                          <tr>
-                                           <td><?= h($nuser->id) ?></td>
-                                           <td><?= h($nuser->email) ?></td>
+                                           <td><?= h($user->id) ?></td>
+                                           <td><?= h($user->email) ?></td>
                                            <td><?= h($info->get($nuser->id)->name_first) ?></td>
                                            <td><?= h($info->get($nuser->id)->name_last) ?></td>
                                            <td><?= h($info->get($nuser->id)->city) ?></td>
@@ -201,24 +190,67 @@
                     </div>
 
                 </div>
+
+                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card ">
+                                            <div class="header">
+                                                <h4 class="title">Job offers</h4>
+                                                <p class="category">Last 10 posted</p>
+                                            </div>
+                                            <div class="content">
+                                              <div class="content table-responsive table-full-width">
+                                                  <table class="table table-hover table-striped">
+                                                      <thead>
+                                                        <th>ID</th>
+                                                        <th>Email</th>
+                                                        <th>Imię</th>
+                                                        <th>Nazwisko</th>
+                                                        <th>Miasto</th>
+                                                        <th>Adres</th>
+                                                      </thead>
+                                                      <tbody>
+                                                        <?php foreach ($nverified10 as $nuser): ?>
+                                                         <tr>
+                                                           <td><?= h($nuser->id) ?></td>
+                                                           <td><?= h($nuser->email) ?></td>
+                                                           <td><?= h($info->get($nuser->id)->name_first) ?></td>
+                                                           <td><?= h($info->get($nuser->id)->name_last) ?></td>
+                                                           <td><?= h($info->get($nuser->id)->city) ?></td>
+                                                           <td><?= h($info->get($nuser->id)->address) ?></td>
+                                                         </tr>
+                                                       <?php endforeach;?>
+                                                      </tbody>
+                                                  </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
             </div>
         </div>
     </div>
   </div>
 </div>
 
-<!-- ***** Footer Area Start ***** -->
-<footer class="footer-social-icon text-center section_padding_70 clearfix">
-    <!-- footer logo -->
-    <div class="footer-text" "center">
-        <h2>plik.me</h2>
-    <!-- Foooter Text-->
-    <div class="copyright-text">
-        <!-- ***** Removing this text is now allowed! This template is licensed under CC BY 3.0 ***** -->
-        <p>Copyright ©2018 <a href="/" target="_blank">plik.me</a></p>
+<footer class="footer">
+  <div class="footer__copyright">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-md-left text-center">
+          <p>&copy;2018 What's SAP</p>
+        </div>
+        <div class="col-md-6 text-md-right text-center">
+          <p class="credit">Amity Consulting</a></p>
+        </div>
+      </div>
     </div>
+  </div>
 </footer>
-<!-- ***** Footer Area Start ***** -->
 
 
 </body>

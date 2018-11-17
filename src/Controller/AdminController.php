@@ -31,12 +31,10 @@ public function initialize() {
 public function beforeFilter(Event $event)
 {
     parent::beforeFilter($event);
-
     $this->loadModel('Users');
-    $this->loadModel('PersonalInfo');
 
     $user = $this->Auth->user();
-    if (isset($user['_matchingData']['Users']['role']) && $user['_matchingData']['Users']['role'] === 'ADMIN') {
+    if (isset($user['role']) && $user['role'] === 'ADMIN') {
         $this->Auth->allow('admin');
     } else {
       var_dump($user);
@@ -55,24 +53,28 @@ public function index()
 {
     $users = $this->Users->find('all');
     $this->set(compact('users'));
-    $verified = $this->Users->find('all', [
-      'conditions' => ['Users.role LIKE' => '%CUST_VERIFIED%']
+  $candidates = $this->Users->find('all', [
+      'conditions' => ['Users.role LIKE' => '%']
   ]);
-    $nverified = $this->Users->find('all', [
-    'conditions' => ['Users.role LIKE' => '%CUST_NOT_VERIFIED%']
+  $employers_standard = $this->Users->find('all', [
+    'conditions' => ['Users.role LIKE' => '%']
   ]);
-  $nverified10 = $this->Users->find('all',array(
+  $employers_premium = $this->Users->find('all', [
+  'conditions' => ['Users.role LIKE' => '%']
+  ]);
+  $candidates10 = $this->Users->find('all',array(
     'limit'=>10,
-    'conditions'=>array('Users.role LIKE' => '%CUST_NOT_VERIFIED%'),
+    'conditions'=>array('Users.role LIKE' => '%'),
     'order' => 'Users.created ASC', // <-- THIS
     'recursive' => -1,
 ));
   $info = TableRegistry::get('PersonalInfo');
-  $this->set('verified', $verified);
+  $this->set('candidates', $candidates);
+  $this->set('employers_standard', $employers_standard);
+  $this->set('employers_premium', $employers_premium);
   $this->set('users', $users);
   $this->set('info', $info);
-  $this->set('nverified', $nverified);
-  $this->set('nverified10', $nverified10);
+  $this->set('candidates10', $candidates10);
 
 }
 

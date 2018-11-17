@@ -91,7 +91,7 @@ use Cake\Network\Exception\NotFoundException;
                 <?= $this->Form->control('email' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Email','value'=>'')) ?>
               </div>
               <div class="form-group">
-                <?= $this->Form->control('password', array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Password','value'=>'')) ?>
+                <?= $this->Form->control('password', array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'password','placeholder'=>'Password','value'=>'')) ?>
               </div>
               <p class="text-center">
                 <center>
@@ -100,7 +100,7 @@ use Cake\Network\Exception\NotFoundException;
               </center>
               </p>
             <p class="text-center text-muted">Not registered yet?</p>
-            <p class="text-center text-muted"><a href="client-register.html"><strong>Register now</strong></a>! It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
+            <p class="text-center text-muted"><a href="/users/register"><strong>Register now</strong></a>! It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@ use Cake\Network\Exception\NotFoundException;
                 <?= $this->Form->control('email' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Email','value'=>'')) ?>
               </div>
               <div class="form-group">
-                <?= $this->Form->control('password', array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Password','value'=>'')) ?>
+                <?= $this->Form->control('password', array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'password','placeholder'=>'Password','value'=>'')) ?>
               </div>
               <p class="text-center">
                 <center>
@@ -132,7 +132,7 @@ use Cake\Network\Exception\NotFoundException;
               </center>
               </p>
             <p class="text-center text-muted">Not registered yet?</p>
-            <p class="text-center text-muted"><a href="#"><strong>Register now</strong></a>! It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
+            <p class="text-center text-muted"><a href="/employer/register"><strong>Register now</strong></a>! It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
           </div>
         </div>
       </div>
@@ -237,7 +237,7 @@ use Cake\Network\Exception\NotFoundException;
               <?= $job->city ?>
             </div>
             <div class="col-10 col-md-3 col-lg-3 ml-auto">
-              <p>Project starts: <?= $job->project_start ?></p>
+              <p>Project starts: <?= date_format($job->project_start, "Y/m/d") ?></p>
             </div>
             <div class="col-sm-12 col-md-2 col-lg-1">
               <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
