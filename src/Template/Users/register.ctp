@@ -7,6 +7,10 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
+
+
+    <!--preloader-->
+    <link href="../css/preloader.css" rel="stylesheet">
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
@@ -21,6 +25,14 @@
     <link rel="stylesheet" href="../css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="../css/custom.css">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="../css/rating.css">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="../css/dynamictable.css">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="../css/bootstrap-tagsinput.css">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="../css/profilepicture.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="favicon.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
@@ -28,209 +40,24 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 
-
-
-
-        <style type="text/css">
-            body {
-                color: #404E67;
-                background: #F5F7FA;
-        		font-family: 'Open Sans', sans-serif;
-        	}
-        	.table-wrapper {
-        		width: 700px;
-        		margin: 30px auto;
-                background: #fff;
-                padding: 20px;
-                box-shadow: 0 1px 1px rgba(0,0,0,.05);
-            }
-            .table-title {
-                padding-bottom: 10px;
-                margin: 0 0 10px;
-            }
-            .table-title h2 {
-                margin: 6px 0 0;
-                font-size: 22px;
-            }
-            .table-title .add-new {
-                float: right;
-        		height: 30px;
-        		font-weight: bold;
-        		font-size: 12px;
-        		text-shadow: none;
-        		min-width: 100px;
-        		border-radius: 50px;
-        		line-height: 13px;
-            }
-        	.table-title .add-new i {
-        		margin-right: 4px;
-        	}
-            table.table {
-                table-layout: fixed;
-            }
-            table.table tr th, table.table tr td {
-                border-color: #e9e9e9;
-            }
-            table.table th i {
-                font-size: 13px;
-                margin: 0 5px;
-                cursor: pointer;
-            }
-            table.table th:last-child {
-                width: 100px;
-            }
-            table.table td a {
-        		cursor: pointer;
-                display: inline-block;
-                margin: 0 5px;
-        		min-width: 24px;
-            }
-        	table.table td a.add {
-                color: #27C46B;
-            }
-            table.table td a.edit {
-                color: #FFC107;
-            }
-            table.table td a.delete {
-                color: #E34724;
-            }
-            table.table td i {
-                font-size: 19px;
-            }
-        	table.table td a.add i {
-                font-size: 24px;
-            	margin-right: -1px;
-                position: relative;
-                top: 3px;
-            }
-            table.table .form-control {
-                height: 32px;
-                line-height: 32px;
-                box-shadow: none;
-                border-radius: 2px;
-            }
-        	table.table .form-control.error {
-        		border-color: #f50000;
-        	}
-        	table.table td .add {
-        		display: none;
-        	}
-        </style>
-
-        <style type='text/css'>
-
-        @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-
-        fieldset, label { margin: 0; padding: 0; }
-        body{ margin: 20px; }
-        h1 { font-size: 1.5em; margin: 10px; }
-
-        /****** Style Star Rating Widget *****/
-
-        .rating {
-          border: none;
-          float: left;
-        }
-
-        .rating > input { display: none; }
-        .rating > label:before {
-          margin: 5px;
-          font-size: 1.25em;
-          font-family: FontAwesome;
-          display: inline-block;
-          content: "\f005";
-        }
-
-        .rating > .half:before {
-          content: "\f089";
-          position: absolute;
-        }
-
-        .rating > label {
-          color: #ddd;
-         float: right;
-        }
-
-        /***** CSS Magic to Highlight Stars on Hover *****/
-
-        .rating > input:checked ~ label, /* show gold star when clicked */
-        .rating:not(:checked) > label:hover, /* hover current star */
-        .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
-
-        .rating > input:checked + label:hover, /* hover current star when changing rating */
-        .rating > input:checked ~ label:hover,
-        .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-        .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
-
-        </style>
-        <script type="text/javascript">
-        $(document).ready(function(){
-          var skillnum = 1;
-        	$('[data-toggle="tooltip"]').tooltip();
-        	var actions = '<a class="add" title="Add"><i class="material-icons">&#xE03B;</i></a>' +
-                        '<a class="delete"><i class="material-icons">&#xE872;</i></a>';
-        	// Append table with add row form on add new button click
-            $(".add-new").click(function(){
-        		$(this).attr("disabled", "disabled");
-        		var index = $("table tbody tr:last-child").index();
-                skillnum += 1;
-                var row = '<tr>' +
-                    '<td><input type="text" class="form-control" name="skill_name" id="skill_name" required></td>' +
-                    '<td>' +
-                    '<fieldset class="rating">' +
-              '<input type="radio" id="' + skillnum + '_' + 'star5" name="' + skillnum + '_' + 'rating" value="5" /><label class = "full" for="' + skillnum + '_' + 'star5" title="Expert"></label>' +
-              '<input type="radio" id="' + skillnum + '_' + 'star4half" name="' + skillnum + '_' + 'rating" value="4 and a half" /><label class="half" for="' + skillnum + '_' + 'star4half" title="Expert"></label>' +
-              '<input type="radio" id="' + skillnum + '_' + 'star4" name="' + skillnum + '_' + 'rating" value="4" /><label class = "full" for="' + skillnum + '_' + 'star4" title="Senior"></label>' +
-              '<input type="radio" id="' + skillnum + '_' + 'star3half" name="' + skillnum + '_' + 'rating" value="3 and a half" /><label class="half" for="' + skillnum + '_' + 'star3half" title="Senior"></label>' +
-              '<input type="radio" id="' + skillnum + '_' + 'star3" name="' + skillnum + '_' + 'rating" value="3" /><label class = "full" for="' + skillnum + '_' + 'star3" title="Regular"></label>' +
-              '<input type="radio" id="' + skillnum + '_' + 'star2half" name="' + skillnum + '_' + 'rating" value="2 and a half" /><label class="half" for="' + skillnum + '_' + 'star2half" title="Regular"></label>' +
-              '<input type="radio" id="' + skillnum + '_' + 'star2" name="' + skillnum + '_' + 'rating" value="2" /><label class = "full" for="' + skillnum + '_' + 'star2" title="Junior"></label>' +
-              '<input type="radio" id="' + skillnum + '_' + 'star1half" name="' + skillnum + '_' + 'rating" value="1 and a half" /><label class="half" for="' + skillnum + '_' + 'star1half" title="Junior"></label>' +
-              '<input type="radio" id="' + skillnum + '_' + 'star1" name="' + skillnum + '_' + 'rating" value="1" /><label class = "full" for="' + skillnum + '_' + 'star1" title="Juniorr"></label>' +
-              '<input type="radio" id="' + skillnum + '_' + 'starhalf" name="' + skillnum + '_' + 'rating" value="half" /><label class="half" for="' + skillnum + '_' + 'starhalf" title="Junior"></label>' +
-              '</fieldset>' +
-                    '</td>' +
-        			'<td>' + actions + '</td>' +
-                '</tr>';
-            	$("table").append(row);
-        		$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-        	// Add row on add button click
-        	$(document).on("click", ".add", function(){
-        		var empty = false;
-        		var input = $(this).parents("tr").find('input[type="text"]');
-                input.each(function(){
-        			if(!$(this).val()){
-        				$(this).addClass("error");
-        				empty = true;
-        			} else{
-                        $(this).removeClass("error");
-                    }
-        		});
-        		$(this).parents("tr").find(".error").first().focus();
-        		if(!empty){
-        			input.each(function(){
-        				$(this).parent("td").html($(this).val());
-        			});
-        			$(this).parents("tr").find(".add, .edit").toggle();
-        			$(".add-new").removeAttr("disabled");
-        		}
-            });
-        	// Delete row on delete button click
-        	$(document).on("click", ".delete", function(){
-                $(this).parents("tr").remove();
-        		$(".add-new").removeAttr("disabled");
-            });
+    <script>
+    $(document).ready(function() {
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+      }
+    });
+  });
+    $('#tags').tagsinput({
+            confirmKeys: [44, 32, 13]
         });
-        </script>
 
-
+    </script>
 
   </head>
   <body>
@@ -268,16 +95,37 @@
           </div>
           <div class="modal-body">
             <?= $this->Flash->render('auth'); ?>
-            <?= $this->Form->create('User', array('url'=>array('controller'=>'users', 'action'=>'login'))); ?>
+            <?= $this->Form->create('User', array(
+    'url' => array(
+        'controller' => 'users',
+        'action' => 'login'
+    )
+)); ?>
               <div class="form-group">
-                <?= $this->Form->control('email' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Email','value'=>'')) ?>
+                <?= $this->Form->control('email', array(
+    'div' => false,
+    'label' => false,
+    'class' => 'form-control',
+    'type' => 'text',
+    'placeholder' => 'Email',
+    'value' => ''
+)) ?>
               </div>
               <div class="form-group">
-                <?= $this->Form->control('password', array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'password','placeholder'=>'Password','value'=>'')) ?>
+                <?= $this->Form->control('password', array(
+    'div' => false,
+    'label' => false,
+    'class' => 'form-control',
+    'type' => 'password',
+    'placeholder' => 'Password',
+    'value' => ''
+)) ?>
               </div>
               <p class="text-center">
                 <center>
-                <?= $this->Form->submit(__('Login'), array('class' => 'btn btn-outline-white-primary')); ?>
+                <?= $this->Form->submit(__('Login'), array(
+    'class' => 'btn btn-outline-white-primary'
+)); ?>
                 <?= $this->Form->end() ?>
               </center>
               </p>
@@ -300,16 +148,37 @@
           </div>
           <div class="modal-body">
             <?= $this->Flash->render('auth'); ?>
-            <?= $this->Form->create('Employer', array('url'=>array('controller'=>'employer', 'action'=>'login'))); ?>
+            <?= $this->Form->create('Employer', array(
+    'url' => array(
+        'controller' => 'employer',
+        'action' => 'login'
+    )
+)); ?>
               <div class="form-group">
-                <?= $this->Form->control('email' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Email','value'=>'')) ?>
+                <?= $this->Form->control('email', array(
+    'div' => false,
+    'label' => false,
+    'class' => 'form-control',
+    'type' => 'text',
+    'placeholder' => 'Email',
+    'value' => ''
+)) ?>
               </div>
               <div class="form-group">
-                <?= $this->Form->control('password', array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'password','placeholder'=>'Password','value'=>'')) ?>
+                <?= $this->Form->control('password', array(
+    'div' => false,
+    'label' => false,
+    'class' => 'form-control',
+    'type' => 'password',
+    'placeholder' => 'Password',
+    'value' => ''
+)) ?>
               </div>
               <p class="text-center">
                 <center>
-                <?= $this->Form->submit(__('Login'), array('class' => 'btn btn-outline-white-primary')); ?>
+                <?= $this->Form->submit(__('Login'), array(
+    'class' => 'btn btn-outline-white-primary'
+)); ?>
                 <?= $this->Form->end() ?>
               </center>
               </p>
@@ -335,6 +204,8 @@
               <h3 class="heading">New candidate account</h3>
               <hr>
               <form action="/users/register" method="post">
+                <div class="row">
+                <div class="col-md-8">
                 <div class="form-group">
                   <label for="name_first">First Name</label>
                   <input id="name_first" name="name_first" type="text" class="form-control" required />
@@ -355,12 +226,52 @@
                   <label for="password_confirm">Confirm password</label>
                   <input id="password_confirm" type="password" name="password_confirm" class="form-control" required />
                 </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="profile">
+        <div class="photo">
+            <input type="file" accept="image/*">
+            <div class="photo__helper">
+                <div class="photo__frame photo__frame--circle">
+                    <canvas class="photo__canvas"></canvas>
+                    <div class="picture is-empty">
+                        <p class="picture--desktop">Drop your photo here or browse your computer.</p>
+                        <p class="picture--mobile">Tap here to select your picture.</p>
+                    </div>
+                    <div class="picture is-loading">
+                        <i class="fa fa-2x fa-spin fa-spinner"></i>
+                    </div>
+                    <div class="picture is-dragover">
+                        <i class="fa fa-2x fa-cloud-upload"></i>
+                        <p>Drop your photo</p>
+                    </div>
+                    <div class="picture is-wrong-file-type">
+                        <p>Only images allowed.</p>
+                        <p class="picture--desktop"><span>Drop your photo here or browse your computer.</span></p>
+                        <p class="picture--mobile">Tap here to select your picture.</p>
+                    </div>
+                    <div class="picture is-wrong-image-size">
+                        <p>Your photo must be larger than 350px.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="photo__options hide">
+                <div class="photo__zoom">
+                    <input type="range" class="zoom-handler">
+                </div><a href="javascript:;" class="remove"><i class="fa fa-trash"></i></a>
+            </div>
+        </div>
+        </div>
+                </div>
+              </div>
+              <div class="row">
                 <div class="form-group">
                         <div class="table-title">
                             <div class="row">
                                 <div class="col-sm-8"><h5>Skills</h5></div>
                                 <div class="col-sm-4">
-                                    <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                                    <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New Skill</button>
                                 </div>
                             </div>
                         </div>
@@ -377,6 +288,16 @@
                             </tbody>
                         </table>
                 </div>
+                <div class="row">
+                  <div class="form-group">
+                    <div class="col-lg-12"><h5>Preffered Work Locations</h5></div>
+                    <div class="col-lg-12">
+                    <input id='preffered_location' type="text" value="" data-role="tagsinput" name="preffered_location" class="form-control" required />
+                  </div>
+                  </div>
+               </div>
+              </div>
+
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Register</button>
                 </div>
@@ -427,12 +348,16 @@
       </div>
     </footer>
     <!-- JavaScript files-->
+    <script src="../js/preloader.js"></script>
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/popper.js/umd/popper.min.js"> </script>
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="../vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="../vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="../vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
+    <script src="../js/bootstrap-tagsinput.js">   </script>
+    <script src="../js/profilepicture.js">   </script>
     <script src="../js/front.js"></script>
+    <script src="../js/dynamictable.js"></script>
   </body>
 </html>

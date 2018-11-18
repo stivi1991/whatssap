@@ -25,6 +25,8 @@
     <meta name="author" content="">
     <link rel="icon" href="img/core-img/favicon.ico">
 
+    <!--preloader-->
+    <?= $this->Html->css('/css/preloader.css"') ?>
     <?= $this->Html->css('/admin/assets/css/bootstrap.min.css') ?>
     <?= $this->Html->css('/admin/assets/css/animate.min.css') ?>
     <?= $this->Html->css('/admin/assets/css/light-bootstrap-dashboard.css?v=1.4.0') ?>
@@ -36,6 +38,11 @@
 </head>
 
 <body>
+
+  <!-- Preloader Start -->
+  <div id="preloader">
+      <div class="colorlib-load"></div>
+  </div>
 
 <div class="wrapper">
     <div class="sidebar" data-color="azure">
@@ -175,10 +182,10 @@
                                          <tr>
                                            <td><?= h($user->id) ?></td>
                                            <td><?= h($user->email) ?></td>
-                                           <td><?= h($info->get($nuser->id)->name_first) ?></td>
-                                           <td><?= h($info->get($nuser->id)->name_last) ?></td>
-                                           <td><?= h($info->get($nuser->id)->city) ?></td>
-                                           <td><?= h($info->get($nuser->id)->address) ?></td>
+                                           <td><?= h($info->get($user->id)->name_first) ?></td>
+                                           <td><?= h($info->get($user->id)->name_last) ?></td>
+                                           <td><?= h($info->get($user->id)->city) ?></td>
+                                           <td><?= h($info->get($user->id)->address) ?></td>
                                          </tr>
                                        <?php endforeach;?>
                                       </tbody>
@@ -210,16 +217,7 @@
                                                         <th>Adres</th>
                                                       </thead>
                                                       <tbody>
-                                                        <?php foreach ($nverified10 as $nuser): ?>
-                                                         <tr>
-                                                           <td><?= h($nuser->id) ?></td>
-                                                           <td><?= h($nuser->email) ?></td>
-                                                           <td><?= h($info->get($nuser->id)->name_first) ?></td>
-                                                           <td><?= h($info->get($nuser->id)->name_last) ?></td>
-                                                           <td><?= h($info->get($nuser->id)->city) ?></td>
-                                                           <td><?= h($info->get($nuser->id)->address) ?></td>
-                                                         </tr>
-                                                       <?php endforeach;?>
+
                                                       </tbody>
                                                   </table>
 
@@ -254,12 +252,11 @@
 
 
 </body>
-
 <?= $this->Html->script('/admin/assets/js/jquery.3.2.1.min.js') ?>
+<?= $this->Html->script('/js/preloader.js') ?>
 <?= $this->Html->script('/admin/assets/js/bootstrap.min.js') ?>
 <?= $this->Html->script('/admin/assets/js/chartist.min.js') ?>
 <?= $this->Html->script('/admin/assets/js/bootstrap-notify.js') ?>
 <?= $this->Html->script('/admin/assets/js/light-bootstrap-dashboard.js?v=1.4.0') ?>
-<?= $this->Html->script('/admin/assets/js/demo.js') ?>
 
 </html>

@@ -126,9 +126,10 @@ public function login()
             if ($user) {
                 $this->Auth->setUser($user);
                 if( $user['role'] === 'ADMIN') {
-                   //return $this->redirect($this->Auth->redirectUrl('/admin'));
+                   return $this->redirect($this->Auth->redirectUrl('/admin/'));
                 } else {
-                   return $this->redirect(['controller' => 'users', 'action' => 'index']);
+                  $this->Flash->succes(__('You are logged in.'));
+                   return $this->redirect($this->Auth->redirectUrl('/'));
                 }
             }
             $this->Flash->error(__('Invalid credentials. Please try again.'));
@@ -171,7 +172,11 @@ public function register() {
 
 
       //check if save operations success
-      if($this->Users->save($entity)){
+      if(true){
+
+        var_dump($this->request->getData());
+        //$this->Users->save($entity)
+
 
       $this->Flash->success(__('Registration complete. Please validate your account by opening a link in the email sent to provided address.'));
       //return $this->redirect($this->Auth->redirectUrl('/users/login'));

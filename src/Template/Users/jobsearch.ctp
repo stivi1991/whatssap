@@ -7,6 +7,10 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
+
+
+    <!--preloader-->
+    <link href="../css/preloader.css" rel="stylesheet">
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
@@ -248,6 +252,7 @@
       </div>
     </footer>
     <!-- JavaScript files-->
+    <script src="../js/preloader.js"></script>
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/popper.js/umd/popper.min.js"> </script>
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>

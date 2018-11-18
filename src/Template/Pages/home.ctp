@@ -12,12 +12,6 @@
  * @since         0.10.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-use Cake\Cache\Cache;
-use Cake\Core\Configure;
-use Cake\Core\Plugin;
-use Cake\Datasource\ConnectionManager;
-use Cake\Error\Debugger;
-use Cake\Network\Exception\NotFoundException;
 
 ?>
 
@@ -33,7 +27,6 @@ use Cake\Network\Exception\NotFoundException;
 
     <!--preloader-->
     <link href="css/preloader.css" rel="stylesheet">
-    <script src="js/preloader.js"></script>
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
@@ -48,6 +41,8 @@ use Cake\Network\Exception\NotFoundException;
     <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/custom.css">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/tablefilters.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="favicon.ico">
   </head>
@@ -170,19 +165,19 @@ use Cake\Network\Exception\NotFoundException;
                         <div class="row">
                         <label for="profession" class='main-center-text'><b>Location:</b></label>
                       </div>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Poznań</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Warszawa</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Łódź</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Wrocław</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Gdańsk</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Katowice</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Kraków</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Gdynia</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Białystok</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Szczecin</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Zielona Góra</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Koło</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Inne</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location" data-target-location="poznan">Poznań</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location" data-target-location="warszawa">Warszawa</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Łódź</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Wrocław</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Gdańsk</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Katowice</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Kraków</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Gdynia</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Białystok</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Szczecin</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Zielona Góra</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Koło</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Inne</button>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -190,19 +185,19 @@ use Cake\Network\Exception\NotFoundException;
                         <div class="row">
                         <label for="location" class='main-center-text'><b>Module:</b></label>
                       </div>
-                        <button type="button" class="btn btn-info btn-sm btn-space">ABAP</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">SRM</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">ERP-FI</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">ERP-SD</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">ERP-CO</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">S4/HANA</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">C4C</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Marketing</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Commerce</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">ERP-MM</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Ariba</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">HANA</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">CRM</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module" data-target-module="abap">ABAP</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">SRM</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">ERP-FI</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">ERP-SD</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">ERP-CO</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">S4/HANA</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">C4C</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">Marketing</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">Commerce</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">ERP-MM</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">Ariba</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module" data-target-module="hana">HANA</button>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">CRM</button>
                       </div>
                     </div>
                   </div>
@@ -217,48 +212,53 @@ use Cake\Network\Exception\NotFoundException;
       <div class="container">
         <h3 class="heading">We have <span class="accent"><?= $offer->count(); ?> </span> active jobs</h3>
 
+  				<div class="panel panel-default">
+  					<div class="panel-body">
+  						<div class="table-container">
+  							<table class="table table-filter">
+  								<tbody>
+  									<tr data-location="poznan" data-module="abap">
+  										<td>
+  													<h4 class="title">
+  														ABAP
+  														<span class="pull-right pagado">(Poznań)</span>
+  													</h4>
+  													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+  												</div>
+  											</div>
+  										</td>
+  									</tr>
+                    <tr data-location="warszawa" data-module="abap">
+                      <td>
+                            <h4 class="title">
+                              ABAP
+                              <span class="pull-right pagado">(Warszawa)</span>
+                            </h4>
+                            <p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-location="poznan" data-module="hana">
+                      <td>
+                            <h4 class="title">
+                              HANA
+                              <span class="pull-right pagado">(Poznań)</span>
+                            </h4>
+                            <p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+  								</tbody>
+  							</table>
+  						</div>
+  					</div>
+  				</div>
 
-        <?php foreach ($offer as $job): ?>
-        <div class="job-listing job-listing--featured ">
-          <div class="row">
-            <div class="col-md-6 col-lg-6">
-              <div class="row">
-                <div class="col-10">
-                  <h4 class="job__title"><a href="detail.html">
-                    <?= $job->job_title ?></a>
-                  </h4>
-                  <p class="job__company">
-                    <?= $job->company_name ?>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>
-              <?= $job->city ?>
-            </div>
-            <div class="col-10 col-md-3 col-lg-3 ml-auto">
-              <p>Project starts: <?= date_format($job->project_start, "Y/m/d") ?></p>
-            </div>
-            <div class="col-sm-12 col-md-2 col-lg-1">
-              <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
-            </div>
-          </div>
-        </div>
-        <?php endforeach;?>
 
 
-        <div class="pages">
-          <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4 mb-4">
-            <ul class="pagination">
-              <li class="page-item"><a href="#" aria-label="Previous" class="page-link"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-              <li class="page-item active"><a href="#" class="page-link">1</a></li>
-              <li class="page-item"><a href="#" class="page-link">2</a></li>
-              <li class="page-item"><a href="#" class="page-link">3</a></li>
-              <li class="page-item"><a href="#" class="page-link">4</a></li>
-              <li class="page-item"><a href="#" aria-label="Next" class="page-link"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-            </ul>
-          </nav>
-        </div>
+
       </div>
     </section>
 
@@ -361,12 +361,14 @@ use Cake\Network\Exception\NotFoundException;
       </div>
     </footer>
     <!-- JavaScript files-->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/preloader.js"></script>
+    <script src="vendor/jquery/jquery.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js"> </script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
+    <script src="js/tablefilters.js"></script>
     <script src="js/front.js"></script>
   </body>
 </html>

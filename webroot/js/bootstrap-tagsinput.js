@@ -1,9 +1,11 @@
+// bootstrap-tagsinput.js file - add in local
+
 (function ($) {
   "use strict";
 
   var defaultOptions = {
     tagClass: function(item) {
-      return 'label label-info';
+      return 'btn btn-info btn-sm btn-tag';
     },
     itemValue: function(item) {
       return item ? item.toString() : item;

@@ -33,7 +33,6 @@ use Cake\Network\Exception\NotFoundException;
 
     <!--preloader-->
     <link href="../css/preloader.css" rel="stylesheet">
-    <script src="../js/preloader.js"></script>
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
@@ -42,7 +41,7 @@ use Cake\Network\Exception\NotFoundException;
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <!-- Bootstrap Select-->
-    <link rel="stylesheet" href="../vendor/bootstrap-select/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../vendor/bootstrap/bootstrap-select/css/bootstrap-select.css">
     <!-- owl carousel-->
     <link rel="stylesheet" href="../vendor/owl.carousel/assets/owl.carousel.css">
     <link rel="stylesheet" href="../vendor/owl.carousel/assets/owl.theme.default.css">
@@ -53,7 +52,17 @@ use Cake\Network\Exception\NotFoundException;
     <!-- Favicon-->
     <link rel="shortcut icon" href="../img/favicon.ico">
 
+<script>
 
+$(function() {
+
+$('#selectpicker-container').on('hide.bs.dropdown', function () {
+    alert('hide.bs.dropdown');
+})
+
+});
+
+</script>
 
 
   </head>
@@ -152,7 +161,6 @@ use Cake\Network\Exception\NotFoundException;
 
 
 
-
     <section class="job-form-section job-form-section--image">
       <div class="container">
         <div class="row">
@@ -203,8 +211,8 @@ use Cake\Network\Exception\NotFoundException;
               </div>
               <div class="row">
                 <div class="col-lg-12 form-group">
-                  <label for="category">Modules:</label>
-                  <select id="category" multiple="multiple" name="category" placeholder="Choose main SAP module" class="form-control" required />
+                  <label for="modules">Modules:</label>
+                  <select id="modules" multiple="multiple" name="modules" data-live-search="true" data-done-button="true" placeholder="Choose main SAP module" class="form-control selectpicker" required />
                     <option>ABAP</option>
                     <option>HANA</option>
                     <option>CRM</option>
@@ -251,7 +259,6 @@ use Cake\Network\Exception\NotFoundException;
                   <select id="contract type" placeholder="Contract type" name="contract type" class="form-control" required />
                     <option>B2B</option>
                     <option>Employment</option>
-                    <option>Contract</option>
                   </select>
                 </div>
                 <div class="col-xl-4 form-group">
@@ -336,12 +343,13 @@ use Cake\Network\Exception\NotFoundException;
       </div>
     </footer>
     <!-- JavaScript files-->
+    <script src="../js/preloader.js"></script>
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/popper/js/umd/popper.min.js"> </script>
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="../vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="../vendor/owl.carousel/owl.carousel.min.js"></script>
-    <script src="../vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
+    <script src="../vendor/bootstrap/bootstrap-select/js/bootstrap-select.js"> </script>
     <script src="../js/front.js"></script>
 
   </body>
