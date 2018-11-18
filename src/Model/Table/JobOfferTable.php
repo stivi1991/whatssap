@@ -34,9 +34,6 @@ class JobOfferTable extends Table
         $this->setTable('job_offer');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
-        $this->HasOne('Modules')
-            ->setForeignKey('module_desc')
-            ->setJoinType('INNER');
     }
 
     /**

@@ -34,9 +34,6 @@ class ModulesTable extends Table
         $this->setTable('modules');
         $this->setDisplayField('module_id');
         $this->setPrimaryKey('module_id');
-        $this->HasMany('JobOffer')
-            ->setForeignKey('module')
-            ->setJoinType('INNER');
     }
 
     /**
