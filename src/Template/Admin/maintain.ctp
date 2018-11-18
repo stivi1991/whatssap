@@ -65,7 +65,7 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="/admin/userlist">
                         <i class="pe-7s-user"></i>
                         <p>Users</p>
@@ -77,7 +77,7 @@
                         <p>Job offers</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="/admin/maintain">
                         <i class="pe-7s-note2"></i>
                         <p>Selection data</p>
@@ -115,6 +115,13 @@
 
         <div class="content">
             <div class="container-fluid">
+              <ul class="nav">
+              <li>
+                  <a href="/admin/modulelist">
+                      <p>SAP modules</p>
+                  </a>
+              </li>
+          </ul>
     </div>
   </div>
 </div>

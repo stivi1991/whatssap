@@ -65,7 +65,7 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="/admin/userlist">
                         <i class="pe-7s-user"></i>
                         <p>Users</p>
@@ -77,7 +77,7 @@
                         <p>Job offers</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="/admin/maintain">
                         <i class="pe-7s-note2"></i>
                         <p>Selection data</p>
@@ -115,6 +115,33 @@
 
         <div class="content">
             <div class="container-fluid">
+
+              <form method="post" action="/admin/maintainmodule" class="job-add-form">
+                <div class="row">
+                  <div class="col-lg-12 form-group">
+                    <label for="module_desc">Module Description:</label>
+                    <input id="module_desc" type="text" name="module_desc" class="form-control" required />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 form-group">
+                    <label for="module_data_name">Module Technical Name:</label>
+                    <input id="module_data_name" type="text" name="module_data_name" class="form-control" required />
+                  </div>
+                </div>
+                <div class="col-lg-12 text-center">
+                  <hr>
+                  <button type="submit" class="btn btn-outline-white-primary"></i>Add</button>
+                </div>
+              </form>
+
+              <ul class="nav">
+              <li class="active">
+                  <a href="/admin/maintain">
+                      <button class="btn btn-outline-white-primary"></i>Back</button>
+                  </a>
+              </li>
+            </ul>
     </div>
   </div>
 </div>

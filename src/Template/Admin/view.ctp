@@ -25,6 +25,8 @@
     <meta name="author" content="">
     <link rel="icon" href="img/core-img/favicon.ico">
 
+    <!--preloader-->
+    <?= $this->Html->css('/css/preloader.css"') ?>
     <?= $this->Html->css('/admin/assets/css/bootstrap.min.css') ?>
     <?= $this->Html->css('/admin/assets/css/animate.min.css') ?>
     <?= $this->Html->css('/admin/assets/css/light-bootstrap-dashboard.css?v=1.4.0') ?>
@@ -37,120 +39,108 @@
 
 <body>
 
-  <div class="wrapper">
-      <div class="sidebar" data-color="purple">
+  <!-- Preloader Start -->
+  <div id="preloader">
+      <div class="colorlib-load"></div>
+  </div>
 
-      <!--
+  <script src="../js/preloader.js"></script>
 
-          Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-          Tip 2: you can also add an image using data-image tag
+  <?= $this->Flash->render() ?>
 
-      -->
+<div class="wrapper">
+    <div class="sidebar" data-color="azure">
 
-      	<div class="sidebar-wrapper">
-              <div class="logo">
-                  <a href="/" class="simple-text">
-                      <h7>plik</h7><h8>.me ADMIN</h8>
-                  </a>
-              </div>
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="/admin/" class="simple-text">
+                    <h7><img src="/img/logo.png" alt="logo" class="d-none d-lg-block"></h7><h8>ADMIN PANEL</h8>
+                </a>
+            </div>
 
-              <ul class="nav">
-                  <li class="active">
-                      <a href="#">
-                          <i class="pe-7s-graph"></i>
-                          <p>Dashboard</p>
-                      </a>
-                  </li>
-                  <li>
-                      <a href="/admin/userlist">
-                          <i class="pe-7s-user"></i>
-                          <p>Użytkownicy</p>
-                      </a>
-                  </li>
-                  <li>
-                      <a href="/admin/transactions">
-                          <i class="pe-7s-note2"></i>
-                          <p>Transakcje</p>
-                      </a>
-                  </li>
-              </ul>
-      	</div>
-      </div>
-
-      <div class="main-panel">
-          <nav class="navbar navbar-default navbar-fixed">
-              <div class="container-fluid">
-                  <div class="navbar-header">
-                      <a class="navbar-brand">Panel administratora</a>
-                  </div>
-                  <div class="collapse navbar-collapse">
-                      <ul class="nav navbar-nav navbar-left">
-                          <li>
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-  								<p class="hidden-lg hidden-md">Dashboard</p>
-                              </a>
-                          </li>
-                      </ul>
-
-                      <ul class="nav navbar-nav navbar-right">
-                          <li>
-                                <?= $this->Html->link(__('Wyloguj'), ['action' => 'logout']) ?>
-                          </li>
-  						<li class="separator hidden-lg"></li>
-                      </ul>
-                  </div>
-              </div>
-          </nav>
-
-<div class="content">
-              <div class="container-fluid">
-                  <div class="row">
-
-<p>
-  <a href ="/admin/userlist"> << Powrót </a>
-</p>
-
-<div class="col-md-12">
-
-  <p><?= h($user->id) ?></p>
-  <p><?= h($user->email) ?></p>
-  <p><?= h($info->get($user->id)->name_first) ?><p>
-  <p><?= h($info->get($user->id)->name_last) ?></p>
-  <p><?= h($info->get($user->id)->city) ?></p>
-  <p><?= h($info->get($user->id)->address) ?></p>
-  <p><?php if($user->role == 'CUST_VERIFIED'){
-    echo 'Zweryfikowany';
-  } else {
-    echo 'Niezweryfikowany';
-  } ?></p>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<!-- ***** Footer Area Start ***** -->
-<footer class="footer-social-icon text-center section_padding_70 clearfix">
-    <!-- footer logo -->
-    <div class="footer-text" "center">
-        <h2>plik.me</h2>
-    <!-- Foooter Text-->
-    <div class="copyright-text">
-        <!-- ***** Removing this text is now allowed! This template is licensed under CC BY 3.0 ***** -->
-        <p>Copyright ©2018 <a href="/" target="_blank">plik.me</a></p>
+            <ul class="nav">
+                <li class="active">
+                    <a href="/admin/">
+                        <i class="pe-7s-graph"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/userlist">
+                        <i class="pe-7s-user"></i>
+                        <p>Users</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/offers">
+                        <i class="pe-7s-user"></i>
+                        <p>Job offers</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/maintain">
+                        <i class="pe-7s-note2"></i>
+                        <p>Selection data</p>
+                    </a>
+                </li>
+            </ul>
+    	</div>
     </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand">Admin panel</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<p class="hidden-lg hidden-md">Dashboard</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                              <?= $this->Html->link(__('Logout'), ['action' => 'logout']) ?>
+                        </li>
+						<li class="separator hidden-lg"></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="content">
+            <div class="container-fluid">
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer__copyright">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-md-left text-center">
+          <p>&copy;2018 What's SAP</p>
+        </div>
+        <div class="col-md-6 text-md-right text-center">
+          <p class="credit">Amity Consulting</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>
-<!-- ***** Footer Area Start ***** -->
+
 
 </body>
-
 <?= $this->Html->script('/admin/assets/js/jquery.3.2.1.min.js') ?>
+<?= $this->Html->script('/js/preloader.js') ?>
 <?= $this->Html->script('/admin/assets/js/bootstrap.min.js') ?>
 <?= $this->Html->script('/admin/assets/js/chartist.min.js') ?>
 <?= $this->Html->script('/admin/assets/js/bootstrap-notify.js') ?>
 <?= $this->Html->script('/admin/assets/js/light-bootstrap-dashboard.js?v=1.4.0') ?>
-<?= $this->Html->script('/admin/assets/js/demo.js') ?>
 
 </html>

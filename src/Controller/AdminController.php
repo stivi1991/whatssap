@@ -37,9 +37,8 @@ public function beforeFilter(Event $event)
     if (isset($user['role']) && $user['role'] === 'ADMIN') {
         $this->Auth->allow('admin');
     } else {
-      var_dump($user);
-      return $this->redirect('/users/userpanel');
-      $this->Flash->error(__('Brak dostępu.'));
+      $this->Flash->error(__('Not authorized access.'));
+      return $this->redirect('/');
     }
 }
 
@@ -174,9 +173,37 @@ $this->set('info', $info);
 
 }
 
-  public function transactions(){
+  public function maintain(){
 
 }
+
+public function maintainmodule(){
+  $this->loadModel('Modules');
+  $module = $this->Modules->newEntity();
+    if ($this->request->is('post')) {
+        $module = $this->Modules->patchEntity($module, $this->request->getData());
+        if ($this->Modules->save($module)) {
+            $this->Flash->success(__('The module has been saved.'));
+          return $this->redirect($this->Auth->redirectUrl('/admin/modulelist'));
+        }
+        $this->Flash->error(__('The module could not be saved. Please, try again.'));
+    }
+}
+
+public function modulelist(){
+
+$this->loadModel('Modules');
+$module = $this->Modules->find('all');
+$this->set('module', $module);
+
+}
+
+
+public function offers(){
+
+
+}
+
 
 public function logout(){
     $this->Auth->logout();

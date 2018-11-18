@@ -49,6 +49,7 @@ class JobOffer extends Entity
         'occupancy' => true,
         'country' => true,
         'city' => true,
+        'location_data_name' => true,
         'capacity' => true,
         'salary' => true,
         'salary_type' => true,

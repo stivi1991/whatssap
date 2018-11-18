@@ -18,6 +18,7 @@ use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
+use Cake\ORM\TableRegistry;
 
 /**
  * Static content controller
@@ -43,9 +44,32 @@ class PagesController extends AppController
 
       $this->loadModel('jobOffer');
       $offer = $this->jobOffer->find('all');
-      $query = $this->jobOffer->find('all');
       $this->set('offer', $offer);
-      
+
+      $module = TableRegistry::get('Modules');
+      $this->set('module', $module);
+
+      $dist_locations = $this->jobOffer->find('all', array(
+        'fields'=>['city','location_data_name', 'module'],
+        'order'=>'city ASC',
+        'group' => ['city, location_data_name', 'module']));
+
+      $this->set('dist_locations', $dist_locations);
+
+      $this->loadModel('Modules');
+      $dist_modules = $this->Modules->find('all', [
+        'fields'=>['module_desc','module_data_name'],
+        'order'=>'module_desc ASC',
+        'group' => ['module_desc, module_data_name']])->join([
+            'offers' => [
+                'table' => 'job_offer',
+                'type' => 'INNER',
+                'conditions' => 'offers.module = Modules.module_desc'
+            ]
+        ]);
+
+      $this->set('dist_modules', $dist_modules);
+
         $count = count($path);
         if (!$count) {
             return $this->redirect('/');

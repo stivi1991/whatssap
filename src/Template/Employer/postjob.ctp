@@ -71,6 +71,10 @@ $('#selectpicker-container').on('hide.bs.dropdown', function () {
     <div id="preloader">
         <div class="colorlib-load"></div>
     </div>
+
+    <script src="../js/preloader.js"></script>
+
+    <?= $this->Flash->render() ?>
     <!-- navbar-->
     <header class="header">
       <nav class="navbar navbar-expand-lg">
@@ -166,7 +170,7 @@ $('#selectpicker-container').on('hide.bs.dropdown', function () {
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <div class="job-form-box">
-              <h2 class="heading"><span class="center-heading">ADD NEW </span><span class="accent">POSITION</span><span class="accent"></span></h2>
+              <h2 class="heading"><span class="center-heading">ADD NEW </span><span class="accent">JOB OFFER</span><span class="accent"></span></h2>
             </div>
           </div>
         </div>
@@ -182,6 +186,18 @@ $('#selectpicker-container').on('hide.bs.dropdown', function () {
                 <div class="col-lg-12 form-group">
                   <label for="title">Job Title:</label>
                   <input id="job_title" type="text" name="job_title" class="form-control" required />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 form-group">
+                  <label for="module">Module:</label>
+                  <select id="module" name="module" data-live-search="true" data-done-button="true" placeholder="Choose main SAP module" class="form-control selectpicker" required />
+                  <?php foreach ($module as $module): ?>
+                   <tr>
+                     <option><?= h($module->module_desc) ?></option>
+                   </tr>
+                 <?php endforeach;?>
+                  </select>
                 </div>
               </div>
               <div class="row">
@@ -208,19 +224,6 @@ $('#selectpicker-container').on('hide.bs.dropdown', function () {
                   </div>
                 </div>
               </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-12 form-group">
-                  <label for="modules">Modules:</label>
-                  <select id="modules" multiple="multiple" name="modules" data-live-search="true" data-done-button="true" placeholder="Choose main SAP module" class="form-control selectpicker" required />
-                    <option>ABAP</option>
-                    <option>HANA</option>
-                    <option>CRM</option>
-                    <option>SRM</option>
-                    <option>ERP-FI</option>
-                    <option>ERP-SD</option>
-                  </select>
-                </div>
               </div>
               <div class="row">
                 <div class="col-xl-2 form-group">
@@ -306,7 +309,6 @@ $('#selectpicker-container').on('hide.bs.dropdown', function () {
                 <div class="col-lg-12 text-center">
                   <hr>
                   <button type="submit" class="btn btn-outline-white-primary"> <i class="fa fa-magic"></i> Save and publish</button>
-                  <button type="submit" class="btn btn-outline-white-secondary"> <i class="fa fa-save"></i> Save draft</button>
                 </div>
               </div>
             </form>
@@ -343,7 +345,6 @@ $('#selectpicker-container').on('hide.bs.dropdown', function () {
       </div>
     </footer>
     <!-- JavaScript files-->
-    <script src="../js/preloader.js"></script>
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/popper/js/umd/popper.min.js"> </script>
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>

@@ -44,6 +44,10 @@
       <div class="colorlib-load"></div>
   </div>
 
+  <script src="../js/preloader.js"></script>
+
+  <?= $this->Flash->render() ?>
+
 <div class="wrapper">
     <div class="sidebar" data-color="azure">
 
@@ -76,7 +80,7 @@
                 <li>
                     <a href="/admin/maintain">
                         <i class="pe-7s-note2"></i>
-                        <p>Maintain dropdown data</p>
+                        <p>Selection data</p>
                     </a>
                 </li>
             </ul>

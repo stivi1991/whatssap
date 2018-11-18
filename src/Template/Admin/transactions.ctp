@@ -1,1 +1,0 @@
-TU KIEDYŚ COŚ BĘDZIE

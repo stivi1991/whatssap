@@ -36,6 +36,10 @@
     <div id="preloader">
         <div class="colorlib-load"></div>
     </div>
+
+    <script src="../js/preloader.js"></script>
+
+    <?= $this->Flash->render() ?>
     <!-- navbar-->
     <header class="header">
       <nav class="navbar navbar-expand-lg">
@@ -44,7 +48,7 @@
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item"><a href="/users/jobsearch" class="nav-link">Job offers<span class="sr-only">(current)</span></a></li>
-              <li class="nav-item"><a href="about.html" class="nav-link">Who are we?</a></li>
+              <li class="nav-item"><a href="#" class="nav-link">Who are we?</a></li>
               <li class="nav-item dropdown"><a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">For Employers</a>
                 <div aria-labelledby="pages" class="dropdown-menu"><a href="#" data-toggle="modal" data-target="#login-modal-employer" class="dropdown-item">Login or Register</a><a href="#pricing" class="dropdown-item">Pricing</a><a href="/employer/postjob" class="dropdown-item">Post a job</a></div>
               </li>

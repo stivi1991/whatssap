@@ -51,6 +51,10 @@
     <div id="preloader">
         <div class="colorlib-load"></div>
     </div>
+
+    <script src="../js/preloader.js"></script>
+
+    <?= $this->Flash->render() ?>
     <!-- navbar-->
     <header class="header">
       <nav class="navbar navbar-expand-lg">
@@ -59,7 +63,7 @@
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item"><a href="/users/jobsearch" class="nav-link">Job offers<span class="sr-only">(current)</span></a></li>
-              <li class="nav-item"><a href="about.html" class="nav-link">Who are we?</a></li>
+              <li class="nav-item"><a href="#" class="nav-link">Who are we?</a></li>
               <li class="nav-item dropdown"><a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">For Employers</a>
                 <div aria-labelledby="pages" class="dropdown-menu"><a href="#" data-toggle="modal" data-target="#login-modal-employer" class="dropdown-item">Login or Register</a><a href="#pricing" class="dropdown-item">Pricing</a><a href="/employer/postjob" class="dropdown-item">Post a job</a></div>
               </li>
@@ -165,19 +169,11 @@
                         <div class="row">
                         <label for="profession" class='main-center-text'><b>Location:</b></label>
                       </div>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location" data-target-location="poznan">Poznań</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location" data-target-location="warszawa">Warszawa</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Łódź</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Wrocław</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Gdańsk</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Katowice</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Kraków</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Gdynia</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Białystok</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Szczecin</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Zielona Góra</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Koło</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location">Inne</button>
+                        <?php foreach ($dist_locations as $offer_row): ?>
+                         <tr>
+                           <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location" data-target-location=<?= $offer_row->location_data_name ?>><?= $offer_row->city ?></button>
+                         </tr>
+                        <?php endforeach;?>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -185,19 +181,11 @@
                         <div class="row">
                         <label for="location" class='main-center-text'><b>Module:</b></label>
                       </div>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module" data-target-module="abap">ABAP</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">SRM</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">ERP-FI</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">ERP-SD</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">ERP-CO</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">S4/HANA</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">C4C</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">Marketing</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">Commerce</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">ERP-MM</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">Ariba</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module" data-target-module="hana">HANA</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module">CRM</button>
+                        <?php foreach ($dist_modules as $offer_row): ?>
+                         <tr>
+                           <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module" data-target-module=<?= $offer_row->module_data_name; ?>><?= $offer_row->module_desc ?></button>
+                         </tr>
+                        <?php endforeach;?>
                       </div>
                     </div>
                   </div>
@@ -217,39 +205,21 @@
   						<div class="table-container">
   							<table class="table table-filter">
   								<tbody>
-  									<tr data-location="poznan" data-module="abap">
-  										<td>
-  													<h4 class="title">
-  														ABAP
-  														<span class="pull-right pagado">(Poznań)</span>
-  													</h4>
-  													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-  												</div>
-  											</div>
-  										</td>
-  									</tr>
-                    <tr data-location="warszawa" data-module="abap">
-                      <td>
-                            <h4 class="title">
-                              ABAP
-                              <span class="pull-right pagado">(Warszawa)</span>
-                            </h4>
-                            <p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr data-location="poznan" data-module="hana">
-                      <td>
-                            <h4 class="title">
-                              HANA
-                              <span class="pull-right pagado">(Poznań)</span>
-                            </h4>
-                            <p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
+
+                    <?php foreach ($offer as $offer_row): ?>
+                     <tr data-location=<?= $offer_row->location_data_name ?> data-module=<?= $module->find()->where(['module_desc' => $offer_row->module])->first()->module_data_name; ?>>
+                       <td>
+                             <h4 class="title">
+                               <?= $offer_row->job_title ?>
+                               <span class="pull-right pagado"><?= $offer_row->city ?></span>
+                             </h4>
+                             <p class="summary"></p>
+                           </div>
+                         </div>
+                       </td>
+                     </tr>
+                    <?php endforeach;?>
+
   								</tbody>
   							</table>
   						</div>
@@ -361,7 +331,6 @@
       </div>
     </footer>
     <!-- JavaScript files-->
-    <script src="js/preloader.js"></script>
     <script src="vendor/jquery/jquery.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js"> </script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>

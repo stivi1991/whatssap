@@ -47,7 +47,7 @@
   <script src="../js/preloader.js"></script>
 
   <?= $this->Flash->render() ?>
-
+  
 <div class="wrapper">
     <div class="sidebar" data-color="azure">
 
@@ -65,13 +65,13 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="/admin/userlist">
                         <i class="pe-7s-user"></i>
                         <p>Users</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="/admin/offers">
                         <i class="pe-7s-user"></i>
                         <p>Job offers</p>

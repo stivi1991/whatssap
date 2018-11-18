@@ -34,6 +34,9 @@ class JobOfferTable extends Table
         $this->setTable('job_offer');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+        $this->HasOne('Modules')
+            ->setForeignKey('module_desc')
+            ->setJoinType('INNER');
     }
 
     /**
@@ -95,6 +98,11 @@ class JobOfferTable extends Table
             ->scalar('city')
             ->maxLength('city', 50)
             ->allowEmpty('city');
+
+            $validator
+                ->scalar('location_data_name')
+                ->maxLength('location_data_name', 10)
+                ->allowEmpty('location_data_name');
 
         $validator
             ->integer('capacity')

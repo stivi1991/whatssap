@@ -65,7 +65,7 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="/admin/userlist">
                         <i class="pe-7s-user"></i>
                         <p>Users</p>
@@ -77,7 +77,7 @@
                         <p>Job offers</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="/admin/maintain">
                         <i class="pe-7s-note2"></i>
                         <p>Selection data</p>
@@ -115,6 +115,54 @@
 
         <div class="content">
             <div class="container-fluid">
+              <ul class="nav">
+            <li class="active">
+                <a href="/admin/maintainmodule">
+                    <button class="btn btn-outline-white-primary"></i>Add module</button>
+                </a>
+            </li>
+          </ul>
+
+          <div class="row">
+                              <div class="col-md-12">
+                                  <div class="card ">
+                                      <div class="header">
+                                          <h4 class="title">SAP Modules</h4>
+                                      </div>
+                                      <div class="content">
+                                        <div class="content table-responsive table-full-width">
+                                            <table class="table table-hover table-striped">
+                                                <thead>
+                                                  <th>ID</th>
+                                                  <th>Module Description</th>
+                                                  <th>Module Technical Name</th>
+                                                </thead>
+                                                <tbody>
+                                                  <?php foreach ($module as $module): ?>
+                                                   <tr>
+                                                     <td><?= h($module->module_id) ?></td>
+                                                     <td><?= h($module->module_desc) ?></td>
+                                                     <td><?= h($module->module_data_name) ?></td>
+                                                   </tr>
+                                                 <?php endforeach;?>
+                                                </tbody>
+                                            </table>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                          </div>
+
+
+              <ul class="nav">
+            <li class="active">
+                <a href="/admin/maintain">
+                    <button class="btn btn-outline-white-primary"></i>Back</button>
+                </a>
+            </li>
+          </ul>
     </div>
   </div>
 </div>
