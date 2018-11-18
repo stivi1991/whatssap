@@ -172,10 +172,9 @@ public function register() {
 
 
       //check if save operations success
-      if(true){
+      if($this->Users->save($entity)){
 
         var_dump($this->request->getData());
-        //$this->Users->save($entity)
 
 
       $this->Flash->success(__('Registration complete. Please validate your account by opening a link in the email sent to provided address.'));
