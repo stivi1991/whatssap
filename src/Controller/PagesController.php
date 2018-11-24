@@ -43,16 +43,16 @@ class PagesController extends AppController
     {
 
       $this->loadModel('jobOffer');
-      $offer = $this->jobOffer->find('all');
+      $offer = $this->jobOffer->find('all', array('order'=>'job_title'));
       $this->set('offer', $offer);
 
       $module = TableRegistry::get('Modules');
       $this->set('module', $module);
 
       $dist_locations = $this->jobOffer->find('all', array(
-        'fields'=>['city','location_data_name', 'module'],
+        'fields'=>['city','location_data_name'],
         'order'=>'city ASC',
-        'group' => ['city, location_data_name', 'module']));
+        'group' => ['city, location_data_name']));
 
       $this->set('dist_locations', $dist_locations);
 

@@ -1,17 +1,4 @@
 <?php
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
- */
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
@@ -146,153 +133,97 @@ use Cake\Network\Exception\NotFoundException;
          </div>
       </div>
       <!-- *** LOGIN MODAL END ***-->
-      <section class="job-form-section job-form-section--image">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-12 mx-auto">
-                  <div class="job-form-box">
-                     <h2 class="heading"><span class="center-heading">ADD NEW </span><span class="accent">JOB OFFER</span><span class="accent"></span></h2>
-                  </div>
-               </div>
+
+
+
+
+
+
+
+          <section class="job-form-section job-form-section--image">
+      <div class="container">
+        <h2 class="heading"><span class="center-heading">Who are we?</span></h2>
+      </div>
+    </section>
+
+        <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <p class="lead text-center">This is the lead paragraph of the article. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget.</p>
+          </div>
+        </div>
+        <div class="row team">
+          <div class="col-lg-3 col-sm-6">
+            <div class="team-member">
+              <div class="image"><img src="/./img/person-1.jpg" alt="" class="img-fluid rounded-circle"></div>
+              <h3 class="h4"><a href="#">Han Solo</a></h3>
+              <p class="role">founder</p>
+              <div class="social"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></div>
+              <div class="text">
+                <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+              </div>
             </div>
-         </div>
-      </section>
-      <section>
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-12 mx-auto">
-                  <form method="post" action="/employer/postjob" class="job-add-form">
-                     <div class="row">
-                        <div class="col-lg-12 form-group">
-                           <label for="title">Job Title:</label>
-                           <input id="job_title" type="text" name="job_title" class="form-control" required />
-                        </div>
-                     </div>
-                     <div class="row">
-                        <div class="col-lg-12 form-group">
-                           <label for="module">Module:</label>
-                           <select id="module" name="module" class="form-control select2" required />
-                              <?php foreach ($module as $module): ?>
-                              <option><?= h($module->module_desc) ?></option>
-                              <?php endforeach;?>
-                           </select>
-                        </div>
-                     </div>
-                     <div class="row">
-                        <div class="col-lg-12 form-group">
-                           <label for="text">Job Description:</label>
-                           <textarea id="description" name="description" rows="5" class="form-control" required /></textarea>
-                        </div>
-                     </div>
-                     <div class="row">
-                        <div class="col-lg-4 form-group">
-                           <label for="country">Country:</label>
-                           <input id="country" type="text" name="country" placeholder="Country" class="form-control" required />
-                        </div>
-                        <div class="col-lg-4 form-group">
-                           <label for="city">City:</label>
-                           <input id="city" type="text" name="city" placeholder="City" class="form-control" required />
-                        </div>
-                        <div class="col-lg-4 form-group">
-                           <label for="job_type">Type:</label>
-                           <select id="job_type" placeholder="Choose job type" name="job_type" class="form-control select2" required />
-                              <option>Permanent</option>
-                              <option>Freelance</option>
-                           </select>
-                        </div>
-                     </div>
-               </div>
+            <!-- /.team-member-->
+            
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="team-member">
+              <div class="image"><img src="/./img/person-2.jpg" alt="" class="img-fluid rounded-circle"></div>
+              <h3 class="h4"><a href="#">Luke Skywalker</a></h3>
+              <p class="role">CTO</p>
+              <div class="social"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></div>
+              <div class="text">
+                <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+              </div>
             </div>
-            <div class="row">
-            <div class="col-xl-2 form-group">
-            <label for="salary">Salary:</label>
-            <input id="salary" type="text" name="salary" placeholder="Salary" class="form-control" required />
+            <!-- /.team-member-->
+            
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="team-member">
+              <div class="image"><img src="/./img/person-3.jpg" alt="" class="img-fluid rounded-circle"></div>
+              <h3 class="h4"><a href="#">Princess Leia</a></h3>
+              <p class="role">Team Leader</p>
+              <div class="social"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></div>
+              <div class="text">
+                <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+              </div>
             </div>
-            <div class="col-xl-2 form-group">
-            <label for="salary_type">Salary per:</label>
-            <select id="salary_type" placeholder="Salary per:" name="salary_type" class="form-control select2" required />
-            <option>Hour</option>
-            <option>Day</option>
-            <option>Month</option>
-            </select>
+            <!-- /.team-member-->
+            
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="team-member">
+              <div class="image"><img src="/./img/person-4.jpg" alt="" class="img-fluid rounded-circle"></div>
+              <h3 class="h4"><a href="#">Jabba Hut</a></h3>
+              <p class="role">Lead developer</p>
+              <div class="social"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></div>
+              <div class="text">
+                <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+              </div>
             </div>
-            <div class="col-xl-2 form-group">
-            <label for="currency">Currency:</label>
-            <select id="currency" placeholder="Currency:" name="currency" class="form-control select2" required />
-            <option>EUR</option>
-            <option>PLN</option>
-            <option>GBP</option>
-            </select>
-            </div>
-            <div class="col-xl-3 form-group">
-            <label for="project_start">Start date:</label>
-            <input id="project_start" name="project_start" type="date" class="form-control" required />
-            </div>
-            <div class="col-xl-3 form-group">
-            <label for="project_end">End date:</label>
-            <input id="project_end" name="project_end" type="date" class="form-control">
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-xl-4 form-group">
-            <label for="function">Function:</label>
-            <select id="function" data-placeholder="Function" name="function" class="form-control select2" required />
-            <option>Team Lead</option>
-            <option>Developer</option>
-            <option>Consultant</option>
-            <option>Project Manager</option>
-            </select>
-            </div>
-            <div class="col-xl-4 form-group">
-              <label for="exp_type">Level of expertise:</label>
-              <select id="exp_type" data-placeholder="Level of expertise" class="form-control select2" required />
-                <option>Junior</option>
-                <option>Regular</option>
-                <option>Senior</option>
-                <option>Expert</option>
-              </select>
-            </div>
-            <div class="col-xl-4 form-group">
-              <label for="occupancy">Mobility:</label>
-              <select id="occupancy" data-placeholder="Mobility" class="form-control select2" required />
-                <option>Onsite</option>
-                <option>Remote 20%</option>
-                <option>Remote 40%</option>
-                <option>Remote 60%</option>
-                <option>Remote 80%</option>
-                <option>Remote</option>
-              </select>
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-lg-6 form-group">
-            <label for="company_name">Company name</label>
-            <input id="company_name" name="company_name" type="text" class="form-control" required />
-            </div>
-            <div class="col-lg-6 form-group">
-            <label for="company_url">Company website</label>
-            <input id="company_url" name="company_url" type="text" class="form-control" required />
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-lg-12">
-            <hr>
-            <div class="checkbox text-center">
-            <label>
-            <input type="checkbox" required /> I agree with the <a href="#">Terms and conditions</a>.
-            </label>
-            </div>
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-lg-12 text-center">
-            <hr>
-            <button type="submit" class="btn btn-outline-white-primary"> <i class="fa fa-magic"></i> Save and publish</button>
-            </div>
-            </div>
-            </form>
-         </div>
-      </section>
+            <!-- /.team-member-->
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
       <footer class="footer">
          <div class="footer__copyright">
             <div class="container">

@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Users Controller
@@ -201,11 +202,61 @@ public function register() {
 ///job search action
 public function jobsearch() {
   $this->loadModel('jobOffer');
-  $offer = $this->jobOffer->find('all');
-  $query = $this->jobOffer->find('all');
+  $offer = $this->jobOffer->find('all', array('order'=>'job_title'));
   $this->set('offer', $offer);
+
+  $module = TableRegistry::get('Modules');
+  $this->set('module', $module);
+
+  $dist_locations = $this->jobOffer->find('all', array(
+    'fields'=>['city','location_data_name', 'module'],
+    'order'=>'city ASC',
+    'group' => ['city, location_data_name', 'module']));
+
+  $this->set('dist_locations', $dist_locations);
+
+  $this->loadModel('Modules');
+  $dist_modules = $this->Modules->find('all', [
+    'fields'=>['module_desc','module_data_name'],
+    'order'=>'module_desc ASC',
+    'group' => ['module_desc, module_data_name']])->join([
+        'offers' => [
+            'table' => 'job_offer',
+            'type' => 'INNER',
+            'conditions' => 'offers.module = Modules.module_desc'
+        ]
+    ]);
+
+  $this->set('dist_modules', $dist_modules);
 }
 ///end of job search
+
+
+///job details action
+
+    public function jobdetails($id)
+    {
+        $this->loadModel('jobOffer');
+        $offer = $this->jobOffer->get($id, [
+            'contain' => []
+        ]);
+
+        $this->set('offer', $offer);
+    }
+
+///end of job details action
+
+
+
+///about action
+
+        public function about()
+    {
+
+    }
+
+
+///end of about action
 
 //end of controller
 }

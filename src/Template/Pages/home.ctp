@@ -63,7 +63,7 @@
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item"><a href="/users/jobsearch" class="nav-link">Job offers<span class="sr-only">(current)</span></a></li>
-              <li class="nav-item"><a href="#" class="nav-link">Who are we?</a></li>
+              <li class="nav-item"><a href="/users/about" class="nav-link">Who are we?</a></li>
               <li class="nav-item dropdown"><a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">For Employers</a>
                 <div aria-labelledby="pages" class="dropdown-menu"><a href="#" data-toggle="modal" data-target="#login-modal-employer" class="dropdown-item">Login or Register</a><a href="#pricing" class="dropdown-item">Pricing</a><a href="/employer/postjob" class="dropdown-item">Post a job</a></div>
               </li>
@@ -171,6 +171,7 @@
                       </div>
                         <?php foreach ($dist_locations as $offer_row): ?>
                          <tr>
+                           <input type="checkbox" id=<?= $offer_row->location_data_name ?> autocomplete="off" hidden></input>
                            <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location" data-target-location=<?= $offer_row->location_data_name ?>><?= $offer_row->city ?></button>
                          </tr>
                         <?php endforeach;?>
@@ -183,6 +184,7 @@
                       </div>
                         <?php foreach ($dist_modules as $offer_row): ?>
                          <tr>
+                           <input type="checkbox" id=<?= $offer_row->module_data_name ?> autocomplete="off" hidden></input>
                            <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module" data-target-module=<?= $offer_row->module_data_name; ?>><?= $offer_row->module_desc ?></button>
                          </tr>
                         <?php endforeach;?>
@@ -198,7 +200,7 @@
     </section>
     <section>
       <div class="container">
-        <h3 class="heading">We have <span class="accent"><?= $offer->count(); ?> </span> active jobs</h3>
+        <h3 class="heading" id="jobcounter">We have <span class="accent"><?= $offer->count(); ?> </span> active offers</h3>
 
   				<div class="panel panel-default">
   					<div class="panel-body">
@@ -209,13 +211,43 @@
                     <?php foreach ($offer as $offer_row): ?>
                      <tr data-location=<?= $offer_row->location_data_name ?> data-module=<?= $module->find()->where(['module_desc' => $offer_row->module])->first()->module_data_name; ?>>
                        <td>
+                        <a href="users/jobdetails/<?= $offer_row->id ?>" class="nostyle">
                              <h4 class="title">
                                <?= $offer_row->job_title ?>
                                <span class="pull-right pagado"><?= $offer_row->city ?></span>
                              </h4>
-                             <p class="summary"></p>
+                             <div class="content">
+                               <h5>AT <?= $offer_row->company_name ?></h5>
+                               <div class="row">
+                               <div class="col-lg-12">
+                                 <div class="row">
+                                 <div class="col-lg-3">
+                                <p class="featured__details">
+                                 <span class="label featured__label label-success"><?= $offer_row->job_type ?> </span>
+                               </p>
+                               </div>
+                               <div class="col-lg-3">
+                                 <p class="featured__details">
+                                 <span class="label featured__label label-success"><?= $offer_row->salary ?> <?= $offer_row->currency ?> per <?= $offer_row->salary_type ?></span>
+                                 </p>
+                               </div>
+                               <div class="col-lg-3">
+                                 <p class="featured__details">
+                                 <span class="label featured__label label-success"><?= $offer_row->occupancy ?></span>
+                                 </p>
+                               </div>
+                               <div class="col-lg-3 text-right">
+                                 <p>Starts: <?= date_format($offer_row->project_start, "d/m/Y") ?></p>
+                               </div>
+                             </div>
+                             </div>
+                             <div class="col-lg-12">
+                               <p></p>
+                             </div>
+                             </div>
                            </div>
                          </div>
+                        </a>
                        </td>
                      </tr>
                     <?php endforeach;?>
@@ -297,7 +329,6 @@
         </div>
       </div>
     </section>
-
 
 
 

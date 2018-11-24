@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="../css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="../css/custom.css">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="../css/tablefilters.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="favicon.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
@@ -48,9 +50,9 @@
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item"><a href="/users/jobsearch" class="nav-link">Job offers<span class="sr-only">(current)</span></a></li>
-              <li class="nav-item"><a href="#" class="nav-link">Who are we?</a></li>
+              <li class="nav-item"><a href="/users/about" class="nav-link">Who are we?</a></li>
               <li class="nav-item dropdown"><a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">For Employers</a>
-                <div aria-labelledby="pages" class="dropdown-menu"><a href="#" data-toggle="modal" data-target="#login-modal-employer" class="dropdown-item">Login or Register</a><a href="#pricing" class="dropdown-item">Pricing</a><a href="/employer/postjob" class="dropdown-item">Post a job</a></div>
+                <div aria-labelledby="pages" class="dropdown-menu"><a href="#" data-toggle="modal" data-target="#login-modal-employer" class="dropdown-item">Login or Register</a><a href="/#pricing" class="dropdown-item">Pricing</a><a href="/employer/postjob" class="dropdown-item">Post a job</a></div>
               </li>
               <li class="nav-item"><a href="#" data-toggle="modal" data-target="#login-modal" class="nav-link">Login</a></li>
               <li class="nav-item dropdown"><a href="/employer/postjob" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0">Post a job</a></li>
@@ -149,19 +151,12 @@
                         <div class="row">
                         <label for="profession"><b>Location:</b></label>
                       </div>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Poznań</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Warszawa</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Łódź</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Wrocław</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Gdańsk</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Katowice</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Kraków</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Gdynia</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Białystok</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Szczecin</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Zielona Góra</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Koło</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Inne</button>
+                      <?php foreach ($dist_locations as $offer_row): ?>
+                       <tr>
+                         <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location" data-target-location=<?= $offer_row->location_data_name ?>><?= $offer_row->city ?></button>
+                       </tr>
+                      <?php endforeach;?>
+                        <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location" data-target-location="all">All</button>
                       </div>
                     </div>
                     <div class="col-md-12">
@@ -169,19 +164,12 @@
                         <div class="row">
                         <label for="location"><b>Module:</b></label>
                       </div>
-                        <button type="button" class="btn btn-info btn-sm btn-space">ABAP</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">SRM</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">ERP-FI</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">ERP-SD</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">ERP-CO</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">S4/HANA</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">C4C</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Marketing</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Commerce</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">ERP-MM</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">Ariba</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">HANA</button>
-                        <button type="button" class="btn btn-info btn-sm btn-space">CRM</button>
+                      <?php foreach ($dist_modules as $offer_row): ?>
+                       <tr>
+                         <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module" data-target-module=<?= $offer_row->module_data_name; ?>><?= $offer_row->module_desc ?></button>
+                       </tr>
+                      <?php endforeach;?>
+                      <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module" data-target-module="all">All</button>
                       </div>
                     </div>
                   </div>
@@ -192,35 +180,56 @@
 <div class="col-md-6 col-lg-6">
         <h3 class="heading">We have <span class="accent"><?= $offer->count(); ?> </span> active jobs</h3>
 
-
-        <?php foreach ($offer as $job): ?>
-        <div class="job-listing job-listing--featured ">
-          <div class="row">
-            <div class="col-md-6 col-lg-6">
-              <div class="row">
-                <div class="col-10">
-                  <h4 class="job__title"><a href="detail.html">
-                    <?= $job->job_title ?></a>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="table-container">
+              <table class="table table-filter">
+                <tbody>
+        <?php foreach ($offer as $offer_row): ?>
+          <tr data-location=<?= $offer_row->location_data_name ?> data-module=<?= $module->find()->where(['module_desc' => $offer_row->module])->first()->module_data_name; ?>>
+            <td>
+                  <h4 class="title">
+                    <?= $offer_row->job_title ?>
+                    <span class="pull-right pagado"><?= $offer_row->city ?></span>
                   </h4>
-                  <p class="job__company">
-                    <?= $job->company_name ?>
-                  </p>
+                  <div class="content">
+                    <h5>AT <?= $offer_row->company_name ?></h5>
+                    <div class="row">
+                    <div class="col-lg-12">
+                      <div class="row">
+                      <div class="col-lg-3">
+                     <p class="featured__details">
+                      <span class="label featured__label label-success"><?= $offer_row->contract_type ?> </span>
+                    </p>
+                    </div>
+                    <div class="col-lg-3">
+                      <p class="featured__details">
+                      <span class="label featured__label label-success"><?= $offer_row->salary ?> <?= $offer_row->currency ?> per <?= $offer_row->salary_type ?></span>
+                      </p>
+                    </div>
+                    <div class="col-lg-3">
+                      <p class="featured__details">
+                      <span class="label featured__label label-success"><?= $offer_row->occupancy ?></span>
+                      </p>
+                    </div>
+                    <div class="col-lg-3 text-right">
+                      <p>Starts: <?= date_format($offer_row->project_start, "d/m/Y") ?></p>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <p></p>
+                  </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>
-              <?= $job->city ?>
-            </div>
-            <div class="col-10 col-md-3 col-lg-3 ml-auto">
-              <p>Project starts: <?= date_format($job->project_start, "Y/m/d") ?></p>
-            </div>
-            <div class="col-sm-12 col-md-2 col-lg-1">
-              <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
-            </div>
-          </div>
-        </div>
+            </td>
+          </tr>
         <?php endforeach;?>
-
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
 
         <div class="pages">
           <p class="load-more"><a href="#" class="mb-4 btn btn-outline-white-primary"><i class="fa fa-chevron-down"> </i>Load more</a></p>
@@ -235,6 +244,7 @@
             </ul>
           </nav>
         </div>
+</div>
 </div>
 </div>
 
@@ -263,6 +273,7 @@
     <script src="../vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="../vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="../vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
+    <script src="../js/tablefilters.js"></script>
     <script src="../js/front.js"></script>
   </body>
 </html>

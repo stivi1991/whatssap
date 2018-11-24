@@ -1,17 +1,4 @@
 <?php
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
- */
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
@@ -146,153 +133,141 @@ use Cake\Network\Exception\NotFoundException;
          </div>
       </div>
       <!-- *** LOGIN MODAL END ***-->
-      <section class="job-form-section job-form-section--image">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-12 mx-auto">
-                  <div class="job-form-box">
-                     <h2 class="heading"><span class="center-heading">ADD NEW </span><span class="accent">JOB OFFER</span><span class="accent"></span></h2>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </section>
+
+
+
+
+
+
+
+          <section class="job-form-section job-form-section--image">
+      <div class="container">
+        <h2 class="heading"><span class="center-heading"><?= $offer->job_title ?><br><small>at 
+         <a target="_blank" rel="noopener noreferrer" href="//<?= $offer->company_url ?>"> <?= $offer->company_name ?></a></small></span></h2>
+        <div class="job-detail-description"><span class="center-heading"><i class="fa fa-map-marker job__location"> 
+            </i><?= $offer->city ?>
+          | <?= $offer->job_type ?> |<span class="badge featured-badge badge-success"><?= $offer->module ?></span></span>
+        </div>
+      </div>
+    </section>
       <section>
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-12 mx-auto">
-                  <form method="post" action="/employer/postjob" class="job-add-form">
-                     <div class="row">
-                        <div class="col-lg-12 form-group">
-                           <label for="title">Job Title:</label>
-                           <input id="job_title" type="text" name="job_title" class="form-control" required />
-                        </div>
-                     </div>
-                     <div class="row">
-                        <div class="col-lg-12 form-group">
-                           <label for="module">Module:</label>
-                           <select id="module" name="module" class="form-control select2" required />
-                              <?php foreach ($module as $module): ?>
-                              <option><?= h($module->module_desc) ?></option>
-                              <?php endforeach;?>
-                           </select>
-                        </div>
-                     </div>
-                     <div class="row">
-                        <div class="col-lg-12 form-group">
-                           <label for="text">Job Description:</label>
-                           <textarea id="description" name="description" rows="5" class="form-control" required /></textarea>
-                        </div>
-                     </div>
-                     <div class="row">
-                        <div class="col-lg-4 form-group">
-                           <label for="country">Country:</label>
-                           <input id="country" type="text" name="country" placeholder="Country" class="form-control" required />
-                        </div>
-                        <div class="col-lg-4 form-group">
-                           <label for="city">City:</label>
-                           <input id="city" type="text" name="city" placeholder="City" class="form-control" required />
-                        </div>
-                        <div class="col-lg-4 form-group">
-                           <label for="job_type">Type:</label>
-                           <select id="job_type" placeholder="Choose job type" name="job_type" class="form-control select2" required />
-                              <option>Permanent</option>
-                              <option>Freelance</option>
-                           </select>
-                        </div>
-                     </div>
-               </div>
+
+
+
+
+
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <h3>HTML Ipsum Presents</h3>
+            <p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
+            <h4>Header Level 4</h4>
+            <ol>
+              <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+              <li>Aliquam tincidunt mauris eu risus.</li>
+            </ol>
+            <blockquote class="blockquote">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p>
+            </blockquote>
+            <h5>Header Level 5</h5>
+            <ul>
+              <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+              <li>Aliquam tincidunt mauris eu risus.</li>
+            </ul>
+            <h4>Header Level 4</h4>
+            <ol>
+              <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+              <li>Aliquam tincidunt mauris eu risus.</li>
+            </ol>
+            <blockquote class="blockquote">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p>
+            </blockquote>
+            <h5>Header Level 5</h5>
+            <ul>
+              <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+              <li>Aliquam tincidunt mauris eu risus.</li>
+            </ul>
+            <div class="job-detail__apply-bottom"><a href="#" class="btn btn-outline-white-primary">Apply for this job</a></div>
+          </div>
+          <div class="col-lg-1"></div>
+          <div class="col-lg-3">
+            <h4>About Bootstrapious</h4>
+            <p class="job-detail__company-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. </p>
+            <p class="job-detail__social social social--outline"><a href="#" data-toggle="tooltip" data-placement="top" title="Website" class="link">
+                 
+                <i class="fa fa-link"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter" class="twitter">
+                 
+                <i class="fa fa-twitter"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook" class="facebook"><i class="fa fa-facebook"></i> </a></p>
+            <div class="job-detail__apply-top"><a href="#" class="btn btn-outline-white-primary">Apply for this job</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="bg-light-gray">
+      <div class="container">
+        <h3 class="heading">You might also like</h3>
+        <div class="row featured align-items-stretch">
+          <div class="col-lg-4 mb-5 mb-lg-0">
+            <div class="box-image-text bg-visible full-height">
+              <div class="top"><a href="detail.html">
+                  <div class="image"><img src="img/featured1.jpg" alt="" class="img-fluid"></div>
+                  <div class="bg"></div>
+                  <div class="logo"><img src="img/company-1.png" alt="" style="max-width: 80px;"></div></a></div>
+              <div class="content">
+                <h5><a href="detail.html">Software Engineer</a></h5>
+                <p class="featured__details">  <i class="fa fa-map-marker job__location"></i>San Francisco<span class="badge featured-badge badge-success">Full Time</span></p>
+                <p>Advantage old had otherwise sincerity dependent additions. It in adapted natural hastily is justice. Six draw you him full not mean evil. Prepare garrets it expense windows shewing do an.</p>
+              </div>
             </div>
-            <div class="row">
-            <div class="col-xl-2 form-group">
-            <label for="salary">Salary:</label>
-            <input id="salary" type="text" name="salary" placeholder="Salary" class="form-control" required />
+          </div>
+          <div class="col-lg-4 mb-5 mb-lg-0">
+            <div class="box-image-text bg-visible full-height">
+              <div class="top"><a href="detail.html">
+                  <div class="image"><img src="img/featured2.jpg" alt="" class="img-fluid"></div>
+                  <div class="bg"></div>
+                  <div class="logo"><img src="img/company-3.png" alt="" style="max-width: 80px;"></div></a></div>
+              <div class="content">
+                <h5><a href="detail.html">Customer support</a></h5>
+                <p class="featured__details">  <i class="fa fa-map-marker job__location"></i>Palo Alto<span class="badge featured-badge badge-success">Full Time</span></p>
+                <p>Am terminated it excellence invitation projection as. She graceful shy believed distance use nay. Lively is people so basket ladies window expect. </p>
+              </div>
             </div>
-            <div class="col-xl-2 form-group">
-            <label for="salary_type">Salary per:</label>
-            <select id="salary_type" placeholder="Salary per:" name="salary_type" class="form-control select2" required />
-            <option>Hour</option>
-            <option>Day</option>
-            <option>Month</option>
-            </select>
+          </div>
+          <div class="col-lg-4 mb-5 mb-lg-0">
+            <div class="box-image-text bg-visible full-height">
+              <div class="top"><a href="detail.html">
+                  <div class="image"><img src="img/featured3.jpg" alt="" class="img-fluid"></div>
+                  <div class="bg"></div>
+                  <div class="logo"><img src="img/company-2.png" alt="" style="max-width: 80px;"></div></a></div>
+              <div class="content">
+                <h5><a href="detail.html">Graphic designer</a></h5>
+                <p class="featured__details">  <i class="fa fa-map-marker job__location"></i>San Francisco<span class="badge featured-badge badge-dark">Part Time</span></p>
+                <p>Fifth abundantly made Give sixth hath. Cattle creature i be dont them behold green moved fowl Moved life us beast good yielding. Have bring.</p>
+              </div>
             </div>
-            <div class="col-xl-2 form-group">
-            <label for="currency">Currency:</label>
-            <select id="currency" placeholder="Currency:" name="currency" class="form-control select2" required />
-            <option>EUR</option>
-            <option>PLN</option>
-            <option>GBP</option>
-            </select>
-            </div>
-            <div class="col-xl-3 form-group">
-            <label for="project_start">Start date:</label>
-            <input id="project_start" name="project_start" type="date" class="form-control" required />
-            </div>
-            <div class="col-xl-3 form-group">
-            <label for="project_end">End date:</label>
-            <input id="project_end" name="project_end" type="date" class="form-control">
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-xl-4 form-group">
-            <label for="function">Function:</label>
-            <select id="function" data-placeholder="Function" name="function" class="form-control select2" required />
-            <option>Team Lead</option>
-            <option>Developer</option>
-            <option>Consultant</option>
-            <option>Project Manager</option>
-            </select>
-            </div>
-            <div class="col-xl-4 form-group">
-              <label for="exp_type">Level of expertise:</label>
-              <select id="exp_type" data-placeholder="Level of expertise" class="form-control select2" required />
-                <option>Junior</option>
-                <option>Regular</option>
-                <option>Senior</option>
-                <option>Expert</option>
-              </select>
-            </div>
-            <div class="col-xl-4 form-group">
-              <label for="occupancy">Mobility:</label>
-              <select id="occupancy" data-placeholder="Mobility" class="form-control select2" required />
-                <option>Onsite</option>
-                <option>Remote 20%</option>
-                <option>Remote 40%</option>
-                <option>Remote 60%</option>
-                <option>Remote 80%</option>
-                <option>Remote</option>
-              </select>
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-lg-6 form-group">
-            <label for="company_name">Company name</label>
-            <input id="company_name" name="company_name" type="text" class="form-control" required />
-            </div>
-            <div class="col-lg-6 form-group">
-            <label for="company_url">Company website</label>
-            <input id="company_url" name="company_url" type="text" class="form-control" required />
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-lg-12">
-            <hr>
-            <div class="checkbox text-center">
-            <label>
-            <input type="checkbox" required /> I agree with the <a href="#">Terms and conditions</a>.
-            </label>
-            </div>
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-lg-12 text-center">
-            <hr>
-            <button type="submit" class="btn btn-outline-white-primary"> <i class="fa fa-magic"></i> Save and publish</button>
-            </div>
-            </div>
-            </form>
-         </div>
-      </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
       <footer class="footer">
          <div class="footer__copyright">
             <div class="container">
