@@ -3367,3 +3367,56 @@ a.nostyle {
   all: unset;
 
 }
+
+span:focus {
+    outline: 0;
+}
+
+.junior {
+
+}
+
+.regular {
+
+}
+
+.senior {
+
+}
+
+.expert {
+  
+} 
+
+.border-junior:hover {
+      -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+border-left: solid 5px #67AECA;
+}
+
+.border-regular:hover {
+      -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+border-left: solid 5px #E52A6F;
+
+}
+
+.border-senior:hover {
+      -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+border-left: solid 5px #675682;
+}
+
+.border-expert:hover {
+      -moz-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+border-left: solid 5px #5F0F4E;
+}

@@ -29,9 +29,9 @@ class EmployerController extends AppController
       $this->loadModel('jobOffer');
       $offer = $this->jobOffer->newEntity();
 
-
     if ($this->request->is('post')) {
       $offer = $this->jobOffer->patchEntity($offer, $this->request->getData());
+
       $location_data_name = strtolower(str_replace('-','',str_replace(';','',str_replace(',','',str_replace('.', '',str_replace(' ','',str_replace('ł','l',
       str_replace('ę','e',str_replace('ą','a',str_replace('ź','z',str_replace('ż','z',str_replace('ó','o',str_replace('ń','n', $offer->city)))))))))))));
       $offer->location_data_name = $location_data_name;

@@ -43,11 +43,16 @@
     <link rel="stylesheet" href="css/custom.css">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/tablefilters.css">
+        <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/./css/scrolltop.css">
+
     <!-- Favicon-->
     <link rel="shortcut icon" href="favicon.ico">
   </head>
   <body>
     <!-- Preloader Start -->
+    <script src="/./vendor/jquery/jquery.min.js"></script>
+
     <div id="preloader">
         <div class="colorlib-load"></div>
     </div>
@@ -55,6 +60,8 @@
     <script src="../js/preloader.js"></script>
 
     <?= $this->Flash->render() ?>
+
+
     <!-- navbar-->
     <header class="header">
       <nav class="navbar navbar-expand-lg">
@@ -140,21 +147,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <section class="job-form-section job-form-section--image">
       <div class="container">
         <div class="row">
@@ -201,148 +193,58 @@
     <section>
       <div class="container">
         <h3 class="heading" id="jobcounter">We have <span class="accent"><?= $offer->count(); ?> </span> active offers</h3>
-
-  				<div class="panel panel-default">
-  					<div class="panel-body">
-  						<div class="table-container">
-  							<table class="table table-filter">
+  							<table id="offertable" class="table table-bordered table-sm table-filter" cellspacing="0" width="100%">
+                  <thead style='display:none;'>
+                    <tr>
+                      <th>Offer</th>
+                    </tr>
+                  </thead>
   								<tbody>
-
                     <?php foreach ($offer as $offer_row): ?>
-                     <tr data-location=<?= $offer_row->location_data_name ?> data-module=<?= $module->find()->where(['module_desc' => $offer_row->module])->first()->module_data_name; ?>>
-                       <td>
+                     <tr data-location="<?= $offer_row->location_data_name ?>" data-module="<?= $module->find()->where(['module_desc' => $offer_row->module])->first()->module_data_name; ?>">
+                       <td class="border-<?= strtolower($offer_row->exp_type) ?>">
                         <a href="users/jobdetails/<?= $offer_row->id ?>" class="nostyle">
                              <h4 class="title">
                                <?= $offer_row->job_title ?>
-                               <span class="pull-right pagado"><?= $offer_row->city ?></span>
+                               <span class="pull-right <?= strtolower($offer_row->exp_type) ?>"><?= $offer_row->city ?></span>
                              </h4>
                              <div class="content">
-                               <h5>AT <?= $offer_row->company_name ?></h5>
+                               <h5 class="<?= strtolower($offer_row->exp_type) ?>">AT <?= $offer_row->company_name ?></h5>
                                <div class="row">
                                <div class="col-lg-12">
                                  <div class="row">
                                  <div class="col-lg-3">
                                 <p class="featured__details">
-                                 <span class="label featured__label label-success"><?= $offer_row->job_type ?> </span>
+                                 <span class="label featured__label label-success  <?= strtolower($offer_row->exp_type) ?>"><?= $offer_row->job_type ?> </span>
                                </p>
                                </div>
                                <div class="col-lg-3">
                                  <p class="featured__details">
-                                 <span class="label featured__label label-success"><?= $offer_row->salary ?> <?= $offer_row->currency ?> per <?= $offer_row->salary_type ?></span>
+                                 <span class="label featured__label label-success  <?= strtolower($offer_row->exp_type) ?>"><?= $offer_row->salary ?> <?= $offer_row->currency ?> per <?= $offer_row->salary_type ?></span>
                                  </p>
                                </div>
                                <div class="col-lg-3">
                                  <p class="featured__details">
-                                 <span class="label featured__label label-success"><?= $offer_row->occupancy ?></span>
+                                 <span class="label featured__label label-success  <?= strtolower($offer_row->exp_type) ?>"><?= $offer_row->occupancy ?></span>
                                  </p>
                                </div>
-                               <div class="col-lg-3 text-right">
-                                 <p>Starts: <?= date_format($offer_row->project_start, "d/m/Y") ?></p>
+                               <div class="col-lg-3 text-right  <?= strtolower($offer_row->exp_type) ?>">
+                                <p class="featured__details">
+                                 <span class="label featured__label label-success  <?= strtolower($offer_row->exp_type) ?>">Starts: <?= date_format($offer_row->project_start, "d/m/Y") ?></span>
+                               </p>
                                </div>
                              </div>
                              </div>
-                             <div class="col-lg-12">
-                               <p></p>
-                             </div>
-                             </div>
-                           </div>
+                          </div>
                          </div>
                         </a>
                        </td>
                      </tr>
                     <?php endforeach;?>
-
   								</tbody>
   							</table>
-  						</div>
-  					</div>
-  				</div>
-
-
-
-
       </div>
     </section>
-
-    <section id ="pricing">
-      <div class="container">
-        <h3 class="heading">Our Offer</h3>
-        <p class="lead text-center mb-5">
-        </p>
-
-        <div class="row packages">
-          <!--single -->
-          <div class="col-md-4">
-            <div class="package ">
-              <div class="package-header">
-                <h5>Single Post</h5>
-                  <div class="meta-text"></div>
-              </div>
-              <div class="price">
-                <div class="price-container">
-                  <h4><span class="currency">$</span>5</h4>
-                </div>
-              </div>
-              <ul>
-                <li><i class="fa fa-check"></i>Post single job offer</li>
-                <li>&nbsp;</li>
-              </ul><a href="#" class="btn btn-outline-white-primary">Post</a>
-            </div>
-          </div>
-          <!--standard package -->
-          <div class="col-md-4">
-            <div class="package ">
-              <div class="package-header-middle">
-                <h5>Standard</h5>
-                  <div class="meta-text"></div>
-              </div>
-              <div class="price">
-                <div class="price-container">
-                  <h4><span class="currency">$</span>49</h4><span class="period">/ month</span>
-                </div>
-              </div>
-              <ul>
-                <li><i class="fa fa-check"></i>Access to candidate database</li>
-                <li><i class="fa fa-check"></i>Post 10 job offers a month</li>
-              </ul><a href="#" class="btn btn-outline-white-primary">Buy</a>
-            </div>
-          </div>
-
-          <!-- premium package -->
-          <div class="col-lg-4">
-            <div class="package best-value">
-              <div class="package-header">
-                <h5>Premium</h5>
-              </div>
-              <div class="price">
-                <div class="price-container">
-                  <h4><span class="currency">$</span>199</h4><span class="period">/ month</span>
-                </div>
-              </div>
-              <ul>
-                <li><i class="fa fa-check"></i>Access to candidate database</li>
-                <li><i class="fa fa-check"></i>Post 100 job offers a month</li>
-              </ul><a href="#" class="btn btn-primary">Buy</a>
-            </div>
-          </div>
-          <!-- end col-->
-        </div>
-      </div>
-    </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -362,13 +264,16 @@
       </div>
     </footer>
     <!-- JavaScript files-->
-    <script src="vendor/jquery/jquery.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js"> </script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
     <script src="js/tablefilters.js"></script>
     <script src="js/front.js"></script>
+
+    <script src="/./js/scrolltop.js"></script>
+    <a href="#" id="scroll" class="nostyle" style="display: none;"><span>
+
   </body>
+
 </html>

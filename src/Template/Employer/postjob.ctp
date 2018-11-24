@@ -171,7 +171,8 @@ use Cake\Network\Exception\NotFoundException;
                      <div class="row">
                         <div class="col-lg-12 form-group">
                            <label for="module">Module:</label>
-                           <select id="module" name="module" class="form-control select2" required />
+                           <select id="module" name="module" class="form-control select2" required >
+                              <option disabled selected hidden>SAP Module</option>
                               <?php foreach ($module as $module): ?>
                               <option><?= h($module->module_desc) ?></option>
                               <?php endforeach;?>
@@ -195,33 +196,34 @@ use Cake\Network\Exception\NotFoundException;
                         </div>
                         <div class="col-lg-4 form-group">
                            <label for="job_type">Type:</label>
-                           <select id="job_type" placeholder="Choose job type" name="job_type" class="form-control select2" required />
+                           <select id="job_type" placeholder="Choose job type" name="job_type" class="form-control select2" required >
+                              <option disabled selected hidden>Type</option>
                               <option>Permanent</option>
                               <option>Freelance</option>
                            </select>
                         </div>
                      </div>
-               </div>
-            </div>
             <div class="row">
             <div class="col-xl-2 form-group">
             <label for="salary">Salary:</label>
-            <input id="salary" type="text" name="salary" placeholder="Salary" class="form-control" required />
-            </div>
-            <div class="col-xl-2 form-group">
-            <label for="salary_type">Salary per:</label>
-            <select id="salary_type" placeholder="Salary per:" name="salary_type" class="form-control select2" required />
-            <option>Hour</option>
-            <option>Day</option>
-            <option>Month</option>
-            </select>
+            <input id="salary" type="text" name="salary" placeholder="Salary" class="form-control" required >
             </div>
             <div class="col-xl-2 form-group">
             <label for="currency">Currency:</label>
-            <select id="currency" placeholder="Currency:" name="currency" class="form-control select2" required />
-            <option>EUR</option>
-            <option>PLN</option>
-            <option>GBP</option>
+            <select id="currency" type="text" placeholder="Currency:" name="currency" class="form-control select2" required >
+                  <option disabled selected hidden>Currency</option>
+                  <option>EUR</option>
+                  <option>PLN</option>
+                  <option>GBP</option>
+               </select>
+            </div>
+            <div class="col-xl-2 form-group">
+            <label for="salary_type">Salary per:</label>
+            <select id="salary_type" placeholder="Salary per:" name="salary_type" class="form-control select2" required >
+            <option disabled selected hidden>Per</option>
+            <option>Hour</option>
+            <option>Day</option>
+            <option>Month</option>
             </select>
             </div>
             <div class="col-xl-3 form-group">
@@ -236,7 +238,8 @@ use Cake\Network\Exception\NotFoundException;
             <div class="row">
             <div class="col-xl-4 form-group">
             <label for="function">Function:</label>
-            <select id="function" data-placeholder="Function" name="function" class="form-control select2" required />
+            <select id="function" data-placeholder="Function" name="function" class="form-control select2" required >
+            <option disabled selected hidden>Function</option>  
             <option>Team Lead</option>
             <option>Developer</option>
             <option>Consultant</option>
@@ -245,7 +248,8 @@ use Cake\Network\Exception\NotFoundException;
             </div>
             <div class="col-xl-4 form-group">
               <label for="exp_type">Level of expertise:</label>
-              <select id="exp_type" data-placeholder="Level of expertise" class="form-control select2" required />
+              <select id="exp_type" data-placeholder="Level of expertise" name="exp_type" class="form-control select2" required >
+                <option disabled selected hidden>Level of expertise</option>
                 <option>Junior</option>
                 <option>Regular</option>
                 <option>Senior</option>
@@ -254,7 +258,8 @@ use Cake\Network\Exception\NotFoundException;
             </div>
             <div class="col-xl-4 form-group">
               <label for="occupancy">Mobility:</label>
-              <select id="occupancy" data-placeholder="Mobility" class="form-control select2" required />
+              <select id="occupancy" data-placeholder="Mobility" name="occupancy" class="form-control select2" required >
+                <option disabled selected hidden>Mobility</option>
                 <option>Onsite</option>
                 <option>Remote 20%</option>
                 <option>Remote 40%</option>
@@ -293,6 +298,75 @@ use Cake\Network\Exception\NotFoundException;
             </form>
          </div>
       </section>
+
+    <section id ="pricing">
+      <div class="container">
+        <h3 class="heading">Our Offer</h3>
+        <p class="lead text-center mb-5">
+        </p>
+
+        <div class="row packages">
+          <!--single -->
+          <div class="col-md-4">
+            <div class="package ">
+              <div class="package-header">
+                <h5>Single Post</h5>
+                  <div class="meta-text"></div>
+              </div>
+              <div class="price">
+                <div class="price-container">
+                  <h4><span class="currency">$</span>5</h4>
+                </div>
+              </div>
+              <ul>
+                <li><i class="fa fa-check"></i>Post single job offer</li>
+                <li>&nbsp;</li>
+              </ul><a href="#" class="btn btn-outline-white-primary">Post</a>
+            </div>
+          </div>
+          <!--standard package -->
+          <div class="col-md-4">
+            <div class="package ">
+              <div class="package-header-middle">
+                <h5>Standard</h5>
+                  <div class="meta-text"></div>
+              </div>
+              <div class="price">
+                <div class="price-container">
+                  <h4><span class="currency">$</span>49</h4><span class="period">/ month</span>
+                </div>
+              </div>
+              <ul>
+                <li><i class="fa fa-check"></i>Access to candidate database</li>
+                <li><i class="fa fa-check"></i>Post 10 job offers a month</li>
+              </ul><a href="#" class="btn btn-outline-white-primary">Buy</a>
+            </div>
+          </div>
+
+          <!-- premium package -->
+          <div class="col-lg-4">
+            <div class="package best-value">
+              <div class="package-header">
+                <h5>Premium</h5>
+              </div>
+              <div class="price">
+                <div class="price-container">
+                  <h4><span class="currency">$</span>199</h4><span class="period">/ month</span>
+                </div>
+              </div>
+              <ul>
+                <li><i class="fa fa-check"></i>Access to candidate database</li>
+                <li><i class="fa fa-check"></i>Post 100 job offers a month</li>
+              </ul><a href="#" class="btn btn-primary">Buy</a>
+            </div>
+          </div>
+          <!-- end col-->
+        </div>
+      </div>
+    </section>
+
+
+      
       <footer class="footer">
          <div class="footer__copyright">
             <div class="container">
