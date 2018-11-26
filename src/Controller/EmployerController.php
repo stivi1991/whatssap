@@ -26,6 +26,10 @@ class EmployerController extends AppController
       $module = $this->Modules->find('all');
       $this->set('module', $module);
 
+      $this->loadModel('Countries');
+      $country = $this->Countries->find('all');
+      $this->set('country', $country);
+
       $this->loadModel('jobOffer');
       $offer = $this->jobOffer->newEntity();
 
