@@ -419,16 +419,16 @@ endforeach;
                                  </div>
                                 </div>
                                 <div class="col-lg-3 form-group">
-                                    <label for="company_url" class="thinfont">Facebook <i class="fa fa-facebook"></i></label>
-                                    <input id="company_url" name="company_url" type="text" class="form-control" />
+                                    <label for="company_facebook" class="thinfont">Facebook <i class="fa fa-facebook"></i></label>
+                                    <input id="company_facebook" name="company_facebook" type="text" class="form-control" />
                                 </div>
                                 <div class="col-lg-3 form-group">
-                                    <label for="company_url" class="thinfont">Twitter <i class="fa fa-twitter"></i></label>
-                                    <input id="company_url" name="company_url" type="text" class="form-control" />
+                                    <label for="company_twitter" class="thinfont">Twitter <i class="fa fa-twitter"></i></label>
+                                    <input id="company_twitter" name="company_twitter" type="text" class="form-control" />
                                 </div>
                                 <div class="col-lg-3 form-group">
-                                    <label for="company_url" class="thinfont">Instagram <i class="fa fa-instagram"></i></label>
-                                    <input id="company_url" name="company_url" type="text" class="form-control" />
+                                    <label for="company_instagram" class="thinfont">Instagram <i class="fa fa-instagram"></i></label>
+                                    <input id="company_instagram" name="company_instagram" type="text" class="form-control" />
                                 </div>
                                  </p>
                                  </div>
