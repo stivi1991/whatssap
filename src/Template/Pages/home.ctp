@@ -206,7 +206,8 @@
                         <a href="users/jobdetails/<?= $offer_row->id ?>" class="nostyle">
                              <h4 class="title">
                                <?= $offer_row->job_title ?>
-                               <span class="pull-right <?= strtolower($offer_row->exp_type) ?>"><?= $offer_row->city ?></span>
+                               <span class="pull-right <?= strtolower($offer_row->exp_type) ?>"><i class="fa fa-map-marker job__location"> 
+                                </i> <?= $offer_row->country ?>, <?= $offer_row->city ?></span>
                              </h4>
                              <div class="content">
                                <h5 class="<?= strtolower($offer_row->exp_type) ?>">AT <?= $offer_row->company_name ?></h5>
@@ -230,7 +231,7 @@
                                </div>
                                <div class="col-lg-3 text-right  <?= strtolower($offer_row->exp_type) ?>">
                                 <p class="featured__details">
-                                 <span class="label featured__label label-success  <?= strtolower($offer_row->exp_type) ?>">Starts: <?= date_format($offer_row->project_start, "d/m/Y") ?></span>
+                                 <span class="label featured__label label-success  <?= strtolower($offer_row->exp_type) ?>">Posted: <?= $offer_row->elapsed ?></span>
                                </p>
                                </div>
                              </div>

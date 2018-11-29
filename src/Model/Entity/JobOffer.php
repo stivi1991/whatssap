@@ -9,14 +9,18 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $company_name
  * @property string $company_url
+ * @property string $company_facebook
+ * @property string $company_instagram
+ * @property string $company_twitter
  * @property string $job_title
  * @property string $module
  * @property string $job_type
  * @property \Cake\I18n\FrozenDate $project_start
- * @property \Cake\I18n\FrozenDate $project_end
+ * @property int $duration
  * @property string $occupancy
  * @property string $country
  * @property string $city
+ * @property string $location_data_name
  * @property int $capacity
  * @property int $salary
  * @property string $salary_type
@@ -25,6 +29,8 @@ use Cake\ORM\Entity;
  * @property string $exp_type
  * @property string $function
  * @property string $description
+ * @property \Cake\I18n\FrozenTime $post_date
+ * @property \Cake\I18n\FrozenTime $change_date
  */
 class JobOffer extends Entity
 {
@@ -41,11 +47,14 @@ class JobOffer extends Entity
     protected $_accessible = [
         'company_name' => true,
         'company_url' => true,
+        'company_facebook' => true,
+        'company_instagram' => true,
+        'company_twitter' => true,
         'job_title' => true,
         'module' => true,
         'job_type' => true,
         'project_start' => true,
-        'project_end' => true,
+        'duration' => true,
         'occupancy' => true,
         'country' => true,
         'city' => true,
@@ -57,6 +66,8 @@ class JobOffer extends Entity
         'contract_type' => true,
         'exp_type' => true,
         'function' => true,
-        'description' => true
+        'description' => true,
+        'post_date' => true,
+        'change_date' => true
     ];
 }

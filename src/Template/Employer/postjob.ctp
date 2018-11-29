@@ -353,9 +353,9 @@ endforeach;
                                             <input id="project_start" name="project_start" type="date" class="form-control" required />
                                         </div>
                                         <div class="col-xl-6 form-group">
-                                            <label for="project_duration" class="thinfont">Expected duration (months):</label>
+                                            <label for="duration" class="thinfont">Expected duration (months):</label>
                                             <div class="range-slider">
-                                                <input id="project_duration" class="range-slider__range" name="project_duration" type="range" value="1" min="1" max="60">
+                                                <input id="duration" class="range-slider__range" name="duration" type="range" value="1" min="1" max="60">
                                                 <span class="range-slider__value">1</span>
                                             </div>
                                         </div>

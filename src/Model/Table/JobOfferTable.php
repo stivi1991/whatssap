@@ -59,6 +59,21 @@ class JobOfferTable extends Table
             ->allowEmpty('company_url');
 
         $validator
+            ->scalar('company_facebook')
+            ->maxLength('company_facebook', 255)
+            ->allowEmpty('company_facebook');
+
+        $validator
+            ->scalar('company_instagram')
+            ->maxLength('company_instagram', 255)
+            ->allowEmpty('company_instagram');
+
+        $validator
+            ->scalar('company_twitter')
+            ->maxLength('company_twitter', 255)
+            ->allowEmpty('company_twitter');
+
+        $validator
             ->scalar('job_title')
             ->maxLength('job_title', 255)
             ->allowEmpty('job_title');
@@ -78,8 +93,8 @@ class JobOfferTable extends Table
             ->allowEmpty('project_start');
 
         $validator
-            ->date('project_end')
-            ->allowEmpty('project_end');
+            ->integer('duration')
+            ->allowEmpty('duration');
 
         $validator
             ->scalar('occupancy')
@@ -96,10 +111,10 @@ class JobOfferTable extends Table
             ->maxLength('city', 50)
             ->allowEmpty('city');
 
-            $validator
-                ->scalar('location_data_name')
-                ->maxLength('location_data_name', 10)
-                ->allowEmpty('location_data_name');
+        $validator
+            ->scalar('location_data_name')
+            ->maxLength('location_data_name', 10)
+            ->allowEmpty('location_data_name');
 
         $validator
             ->integer('capacity')
@@ -137,6 +152,14 @@ class JobOfferTable extends Table
         $validator
             ->scalar('description')
             ->allowEmpty('description');
+
+        $validator
+            ->dateTime('post_date')
+            ->allowEmpty('post_date');
+
+        $validator
+            ->dateTime('change_date')
+            ->allowEmpty('change_date');
 
         return $validator;
     }

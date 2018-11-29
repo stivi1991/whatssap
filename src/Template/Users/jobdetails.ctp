@@ -39,6 +39,9 @@ use Cake\Network\Exception\NotFoundException;
       <link rel="stylesheet" href="/./css/custom.css">
       <!-- Favicon-->
       <link rel="shortcut icon" href="/./favicon.png">
+
+      <!-- Custom stylesheet - for your changes-->
+      <link rel="stylesheet" href="/./css/scrolltop.css">
       <!-- Tweaks for older IEs--><!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -143,68 +146,149 @@ use Cake\Network\Exception\NotFoundException;
           <section class="job-form-section job-form-section--image">
       <div class="container">
         <h2 class="heading"><span class="center-heading"><?= $offer->job_title ?><br><small>at 
-         <a target="_blank" rel="noopener noreferrer" href="//<?= $offer->company_url ?>"> <?= $offer->company_name ?></a></small></span></h2>
+         <strong><a target="_blank" rel="noopener noreferrer" href="//<?= $offer->company_url ?>"> <?= $offer->company_name ?></a></strong></small>
+       </span></h2>
         <div class="job-detail-description"><span class="center-heading"><i class="fa fa-map-marker job__location"> 
-            </i><?= $offer->city ?>
+            </i> <?= $offer->country ?>, <?= $offer->city ?>
           | <?= $offer->job_type ?> |<span class="badge featured-badge badge-success"><?= $offer->module ?></span></span>
         </div>
       </div>
     </section>
-      <section>
 
 
-
-
-
-
-    <section>
       <div class="container">
         <div class="row">
-          <div class="col-lg-8">
-            <h3>HTML Ipsum Presents</h3>
-            <p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
-            <h4>Header Level 4</h4>
-            <ol>
-              <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-              <li>Aliquam tincidunt mauris eu risus.</li>
-            </ol>
-            <blockquote class="blockquote">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p>
-            </blockquote>
-            <h5>Header Level 5</h5>
-            <ul>
-              <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-              <li>Aliquam tincidunt mauris eu risus.</li>
-            </ul>
-            <h4>Header Level 4</h4>
-            <ol>
-              <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-              <li>Aliquam tincidunt mauris eu risus.</li>
-            </ol>
-            <blockquote class="blockquote">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p>
-            </blockquote>
-            <h5>Header Level 5</h5>
-            <ul>
-              <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-              <li>Aliquam tincidunt mauris eu risus.</li>
-            </ul>
-            <div class="job-detail__apply-bottom"><a href="#" class="btn btn-outline-white-primary">Apply for this job</a></div>
-          </div>
-          <div class="col-lg-1"></div>
-          <div class="col-lg-3">
-            <h4>About Bootstrapious</h4>
-            <p class="job-detail__company-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. </p>
-            <p class="job-detail__social social social--outline"><a href="#" data-toggle="tooltip" data-placement="top" title="Website" class="link">
+          <div class="col-lg-12">
+
+                    <div class="col-lg-12">
+                            <div class="col-lg-12">
+                            <div class="box box_title effect6">
+
+                                <div class="row">
+                                    <div class="col-lg-8 form-group">
+                                        <h3> <?= $offer->job_title ?> </h3>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-4 form-group">
+                                        <label for="function" class="thinfont">Function:</label>
+                                        <p class="capitalfont"> <?= $offer->function ?> </p>
+                                    </div>
+                                    <div class="col-lg-4 form-group">
+                                        <label for="module" class="thinfont">Module:</label>
+                                        <p class="capitalfont"> <?= $offer->module ?> </p>
+                                    </div>
+                                    <div class="col-xl-4 form-group">
+                                        <label for="exp_type" class="thinfont">Level of expertise:</label>
+                                        <p class="capitalfont"> <?= $offer->exp_type ?> </p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-4 form-group">
+                                        <label for="country" class="thinfont">Country:</label>
+                                        <p class="capitalfont"> <?= $offer->country ?> </p>
+                                    </div>
+                                    <div class="col-lg-4 form-group">
+                                        <label for="city" class="thinfont">City:</label>
+                                        <p class="capitalfont"> <?= $offer->city ?> </p>
+                                    </div>
+                                    <div class="col-xl-4 form-group">
+                                        <label for="job_type" class="thinfont">Type of contract:</label>
+                                        <p class="capitalfont"> <?= $offer->job_type ?> </p>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+
+<div class="row"> 
+
+<div class="col-lg-12">
+                          <span class="pull-right">
+                                      <div class="job-detail__apply-top"><a href="#" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0 largebtn">Apply</a></div>
+                         </span>
+                        </div>
+
+</div>
+
+
+<!--  Detailed information box !-->
+
+                            <div class="box box_title effect7">
+                                <div class="row">
+
+                                    <div class="col-xl-3 form-group">
+                                        <label for="country" class="thinfont">Salary:</label>
+                                        <p class="capitalfont"> <?= $offer->salary ?> <?= $offer->currency ?> per <?= $offer->salary_type ?> </p>
+                                    </div>
+
+                                    <div class="col-xl-2 form-group">
+                                        <label for="occupancy" class="thinfont">Occupancy:</label>
+                                        <p class="capitalfont"> <?= $offer->occupancy ?> </p>
+                                    </div>
+                                        <div class="col-xl-3 form-group">
+                                            <label for="project_start" class="thinfont">Expected start date:</label>
+                                            <p class="capitalfont"> <?= $offer->project_start ?> </p>
+                                        </div>
+                                        <div class="col-xl-4 form-group">
+                                            <label for="duration" class="thinfont">Expected duration (months):</label>
+                                            <p class="capitalfont"> <?= $offer->duration ?> </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+<!--  Description box !-->
+
+
+                            <div class="row">
+                                <div class="job-detail-description">
+                                    Description
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="box box_title effect9">
+                                    <div class="col-lg-12 form-group">
+                                        <p> <?= $offer->description ?> </p>
+                                    </div>
+                                </div>
+                            </div>
+<div class="row">
+
+<div class="col-lg-6">
+<span class="pull-left">
+<p class="job-detail__social social social--outline"><a href="#" data-toggle="tooltip" data-placement="top" title="Website" class="link">
                  
-                <i class="fa fa-link"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter" class="twitter">
+                                      <i class="fa fa-link"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter" class="twitter">
                  
-                <i class="fa fa-twitter"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook" class="facebook"><i class="fa fa-facebook"></i> </a></p>
-            <div class="job-detail__apply-top"><a href="#" class="btn btn-outline-white-primary">Apply for this job</a></div>
+                                      <i class="fa fa-twitter"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook" class="facebook"><i class="fa fa-facebook"></i> </a></p>
+
+</span>
+</div>
+<div class="col-lg-6">
+<span class="pull-right">
+            <div class="job-detail__apply-bottom"><a href="#" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0 largebtn">Apply</a>
+            </div>
+</span>
+
+</div>
+
           </div>
+
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+
+
+
+
+
     <section class="bg-light-gray">
       <div class="container">
         <h3 class="heading">You might also like</h3>
@@ -292,6 +376,10 @@ use Cake\Network\Exception\NotFoundException;
       <script src="/./vendor/owl.carousel/owl.carousel.min.js"></script>
       <script src="/./vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
       <script src="/./js/front.js"></script>
+
+      <script src="/./js/scrolltop.js"></script>
+      <a href="#" id="scroll" class="nostyle" style="display: none;"><span>
+
 
    </body>
 </html>

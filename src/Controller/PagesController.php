@@ -46,6 +46,13 @@ class PagesController extends AppController
       $offer = $this->jobOffer->find('all', array('order'=>'job_title'));
       $this->set('offer', $offer);
 
+      foreach($offer as $offer_row){
+
+        $offer_row->{"elapsed"} = $this->time_elapsed_string($offer_row->post_date);
+
+      }
+
+
       $module = TableRegistry::get('Modules');
       $this->set('module', $module);
 
@@ -122,5 +129,38 @@ class PagesController extends AppController
             }
         }
     /// end of login action
+    ///time elapsed function
+  function time_elapsed_string($datetime, $full = false) {
+    $tz = 'Europe/Warsaw';
+    $tz_obj = new \DateTimeZone($tz);
+    $now = new \DateTime("now", $tz_obj);
+    $ago = new \DateTime($datetime, $tz_obj);
+    $diff = $now->diff($ago);
+
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+
+    $string = array(
+        'y' => 'year',
+        'm' => 'month',
+        'w' => 'week',
+        'd' => 'day',
+        'h' => 'hour',
+        'i' => 'minute',
+        's' => 'second',
+    );
+    foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+            unset($string[$k]);
+        }
+    }
+
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? implode(', ', $string) . ' ago' : 'just now';
+}
+
+///end of time elapsed function
 
 }
