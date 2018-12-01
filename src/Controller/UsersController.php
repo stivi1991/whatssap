@@ -276,7 +276,7 @@ public function jobsearch() {
                 //if(($this->request->data['candidate_cv']['type'] == 'image/jpeg')
                   //{
 
-          $uploadDir = 'Attachments/CV/' . $offer_id . DS . $this->request->getData('candidate_email') . DS;
+          $uploadDir = 'Attachments/CV/' . $offer_id . DS . $this->request->getData()['candidate_email'] . DS;
 
 
           // check if folder exist, if not, create
@@ -287,21 +287,21 @@ public function jobsearch() {
             return $this->redirect($this->Auth->redirectUrl('/users/jobdetails/' . $offer_id));
           }
 
-          $file_target = ROOT . DS . $uploadDir . $this->request->data['candidate_cv']['name'];
+          $file_target = ROOT . DS . $uploadDir . $this->request->getData()['candidate_cv']['name'];
           $apply->cv_url = $file_target;
           date_default_timezone_set('Europe/Warsaw');
           $apply->apply_timestamp = date("Y-m-d H:i:s",time());
 
           //file upload
-          $cv_tmp = $this->request->data['candidate_cv']['tmp_name'];
+          $cv_tmp = $this->request->getData()['candidate_cv']['tmp_name'];
             move_uploaded_file($cv_tmp, $file_target);
             $email = new Email('default');
-            if($email->to($apply_email)
-            ->subject("📄 New application " . strtoupper($job_title))
-            ->emailFormat('html')
-            ->template('default','default')
-            ->viewVars(['offer_id' => $offer_id,'job_title' => $job_title,'city' => $city,'country' => $country,'company_name' => $company_name])
-            ->attachments(array($file_target))
+            if($email->setTo($apply_email)
+            ->setSubject("📄 New application " . strtoupper($job_title))
+            ->setEmailFormat('html')
+            ->setTemplate('default','default')
+            ->setViewVars(['offer_id' => $offer_id,'job_title' => $job_title,'city' => $city,'country' => $country,'company_name' => $company_name])
+            ->setAttachments(array($file_target))
             ->send()){
             if($this->JobApplies->save($apply)){
             $this->Flash->success(__('Your application has been sent. Good luck!'));
