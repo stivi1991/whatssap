@@ -281,7 +281,7 @@ public function jobsearch() {
 
           // check if folder exist, if not, create
           if (!file_exists(ROOT . DS . $uploadDir)) {
-           //$dir = new Folder(ROOT . DS . $uploadDir, true);
+           $dir = new Folder(ROOT . DS . $uploadDir, true);
           } else {
             $this->Flash->error(__('You have already applied for this offer.'));
             return $this->redirect($this->Auth->redirectUrl('/users/jobdetails/' . $offer_id));
@@ -294,16 +294,16 @@ public function jobsearch() {
 
           //file upload
           $cv_tmp = $this->request->data['candidate_cv']['tmp_name'];
-            //move_uploaded_file($cv_tmp, $file_target);
+            move_uploaded_file($cv_tmp, $file_target);
             $email = new Email('default');
             if($email->to($apply_email)
             ->subject("📄 New application " . strtoupper($job_title))
             ->emailFormat('html')
             ->template('default','default')
             ->viewVars(['offer_id' => $offer_id,'job_title' => $job_title,'city' => $city,'country' => $country,'company_name' => $company_name])
-            //->attachments(array($file_target))
+            ->attachments(array($file_target))
             ->send()){
-            if(1/*$this->JobApplies->save($apply)*/){
+            if($this->JobApplies->save($apply)){
             $this->Flash->success(__('Your application has been sent. Good luck!'));
             return $this->redirect($this->Auth->redirectUrl('/users/jobdetails/' . $offer_id));
               }
