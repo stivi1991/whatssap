@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Filesystem\Folder;
+use Cake\Mailer\Email;
 
 /**
  * Users Controller
@@ -257,6 +259,61 @@ public function jobsearch() {
 
 
 ///end of about action
+
+
+///job apply action
+
+        public function jobapply($offer_id, $apply_email, $job_title, $city, $country, $company_name)
+    {
+
+        $this->loadModel('JobApplies');
+
+          $apply = $this->JobApplies->newEntity();
+          if ($this->request->is('post')) {
+
+          $apply = $this->JobApplies->patchEntity($apply, $this->request->getData());
+      // check if file is a document
+                //if(($this->request->data['candidate_cv']['type'] == 'image/jpeg')
+                  //{
+
+          $uploadDir = 'Attachments/CV/' . $offer_id . DS . $this->request->getData('candidate_email') . DS;
+
+
+          // check if folder exist, if not, create
+          if (!file_exists(ROOT . DS . $uploadDir)) {
+           //$dir = new Folder(ROOT . DS . $uploadDir, true);
+          } else {
+            $this->Flash->error(__('You have already applied for this offer.'));
+            return $this->redirect($this->Auth->redirectUrl('/users/jobdetails/' . $offer_id));
+          }
+
+          $file_target = ROOT . DS . $uploadDir . $this->request->data['candidate_cv']['name'];
+          $apply->cv_url = $file_target;
+          date_default_timezone_set('Europe/Warsaw');
+          $apply->apply_timestamp = date("Y-m-d H:i:s",time());
+
+          //file upload
+          $cv_tmp = $this->request->data['candidate_cv']['tmp_name'];
+            //move_uploaded_file($cv_tmp, $file_target);
+            $email = new Email('default');
+            if($email->to($apply_email)
+            ->subject("📄 New application " . strtoupper($job_title))
+            ->emailFormat('html')
+            ->template('default','default')
+            ->viewVars(['offer_id' => $offer_id,'job_title' => $job_title,'city' => $city,'country' => $country,'company_name' => $company_name])
+            //->attachments(array($file_target))
+            ->send()){
+            if(1/*$this->JobApplies->save($apply)*/){
+            $this->Flash->success(__('Your application has been sent. Good luck!'));
+            return $this->redirect($this->Auth->redirectUrl('/users/jobdetails/' . $offer_id));
+              }
+            }
+        //}
+        }
+
+    }
+
+///end of job apply action
 
 //end of controller
 }

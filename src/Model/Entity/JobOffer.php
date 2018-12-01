@@ -10,8 +10,8 @@ use Cake\ORM\Entity;
  * @property string $company_name
  * @property string $company_url
  * @property string $company_facebook
- * @property string $company_instagram
- * @property string $company_twitter
+ * @property string $company_linkedin
+ * @property string $apply_email
  * @property string $job_title
  * @property string $module
  * @property string $job_type
@@ -48,8 +48,8 @@ class JobOffer extends Entity
         'company_name' => true,
         'company_url' => true,
         'company_facebook' => true,
-        'company_instagram' => true,
-        'company_twitter' => true,
+        'company_linkedin' => true,
+        'apply_email' => true,
         'job_title' => true,
         'module' => true,
         'job_type' => true,

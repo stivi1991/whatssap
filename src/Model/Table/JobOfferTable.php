@@ -64,14 +64,14 @@ class JobOfferTable extends Table
             ->allowEmpty('company_facebook');
 
         $validator
-            ->scalar('company_instagram')
-            ->maxLength('company_instagram', 255)
-            ->allowEmpty('company_instagram');
+            ->scalar('company_linkedin')
+            ->maxLength('company_linkedin', 255)
+            ->allowEmpty('company_linkedin');
 
         $validator
-            ->scalar('company_twitter')
-            ->maxLength('company_twitter', 255)
-            ->allowEmpty('company_twitter');
+            ->scalar('apply_email')
+            ->maxLength('apply_email', 255)
+            ->allowEmpty('apply_email');
 
         $validator
             ->scalar('job_title')
