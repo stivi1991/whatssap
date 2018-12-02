@@ -67,13 +67,7 @@ class PagesController extends AppController
       $dist_modules = $this->Modules->find('all', [
         'fields'=>['module_desc','module_data_name'],
         'order'=>'module_desc ASC',
-        'group' => ['module_desc, module_data_name']])->join([
-            'offers' => [
-                'table' => 'job_offer',
-                'type' => 'INNER',
-                'conditions' => 'offers.module = Modules.module_desc'
-            ]
-        ]);
+        'group' => ['module_desc, module_data_name']]);
 
       $this->set('dist_modules', $dist_modules);
 

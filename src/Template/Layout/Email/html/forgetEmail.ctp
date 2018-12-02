@@ -182,7 +182,7 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 								<td width="100%" height="40"></td>
 							</tr>
 						</table><!-- End Space -->						
-						<table width="90%" border="0" style="background-color: #67AECA;" cellpadding="0" cellspacing="0" align="center" class="full">
+						<table width="90%" border="0" cellpadding="0" cellspacing="0" align="center" class="full">
 							<tr>
 								<td width="100%" valign="middle" class="image175" align="center">
 									
@@ -192,16 +192,8 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 											<td width="100%" height="10"></td>
 										</tr>
 										<tr>
-											<td valign="middle" width="100%" style="text-align: center; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; font-size: 25px; color: #ffffff; line-height: 40px; font-weight: 300;" id="box3" class="fullCenter">
-											
-												New application for<span style="font-weight: 600; color:#5F0F4E;"><br><?= strtoupper($job_title) ?></span>
-											<!-- Space -->
-											<table width="80%" border="0" cellpadding="0" cellspacing="0" align="center" class="full">
-												<tr>
-											<td width="100%" height="0"></td>
-												</tr>
-											</table><!-- End Space -->	
-												<span style="font-size: 20px;"> is waiting in the attachment.</span>	
+											<td valign="middle" width="100%" style="text-align: center; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; font-size: 18px; color: #ffffff; line-height: 40px; font-weight: 300;" id="box3" class="fullCenter">
+												Forgot your password?
 											</td>
 										</tr>
 									</table>
@@ -214,7 +206,7 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 							<tr>
 								<td width="100%" valign="middle" align="center">	
 								
-									<table width="100%" style="background-color: #67AECA;" border="0" cellpadding="0" cellspacing="0" align="center" style="text-align: center; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
+									<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" style="text-align: center; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
 										
 										<tr>
 											<td width="100%" height="5"></td>
@@ -222,16 +214,10 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 										<!-- Button Center -->
 										<tr>
 											<td class="buttonScale" width="auto" align="center" id="box4">
-												
 												<table border="0" cellpadding="0" cellspacing="0" align="center" class="buttonScale">
 													<tr>
-														<td width="auto" align="center" height="10" bgcolor="#E52A6F" style="border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-left: 40px; padding-right: 40px; font-weight: 650; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; color: #ffffff;">
-															<a href="http://35.204.146.234/users/jobdetails/<?= $offer_id ?>" style="color: #ffffff; font-size: 10px; text-decoration: none; line-height: 30px; width: 50%; letter-spacing: 0.25rem;">VIEW OFFER</a>
-														</td>
-														<td width="15">
-														</td>
-														<td width="auto" align="center" height="10" bgcolor="#E52A6F" style="border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-left: 40px; padding-right: 40px; font-weight: 650; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; color: #ffffff;">
-															<a href="#" style="color: #ffffff; font-size: 10px; text-decoration: none; line-height: 30px; width: 50%; letter-spacing: 0.25rem;">EDIT OFFER</a>
+														<td width="50%" align="center" height="10" bgcolor="#E52A6F" style="border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-left: 40px; padding-right: 40px; font-weight: 650; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; color: #ffffff;">
+															<a href="http://35.204.146.234/users/passwordReset/<?= $token ?>" style="color: #ffffff; font-size: 10px; text-decoration: none; line-height: 30px; width: 50%; letter-spacing: 0.25rem;">RESET PASSWORD</a>
 														</td>
 													</tr>
 												</table>
@@ -248,7 +234,7 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 						<table width="90%" border="0" cellpadding="0" cellspacing="0" align="center" class="full">
 							<tr>
 								<td width="100%" valign="middle" align="center">
-									<table width="100%" style="background-color: #67AECA;" border="0" cellpadding="0" cellspacing="0" align="center" style="text-align: center; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
+									<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" style="text-align: center; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
 										
 										<tr>
 											<td width="100%" height="20"></td>

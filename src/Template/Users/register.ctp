@@ -162,7 +162,7 @@
             <p class="text-center">
               <center>
                 <?= $this->Form->submit(__('Login'), array(
-'class' => 'btn btn-outline-white-primary'
+'class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0'
 )); ?>
                 <?= $this->Form->end() ?>
               </center>
@@ -224,7 +224,7 @@
             <p class="text-center">
               <center>
                 <?= $this->Form->submit(__('Login'), array(
-'class' => 'btn btn-outline-white-primary'
+'class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0'
 )); ?>
                 <?= $this->Form->end() ?>
               </center>

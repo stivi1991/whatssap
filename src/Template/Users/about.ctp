@@ -117,7 +117,7 @@
             </div>
             <p class="text-center">
               <center>
-                <?= $this->Form->submit(__('Login'), array('class' => 'btn btn-outline-white-primary')); ?>
+                <?= $this->Form->submit(__('Login'), array('class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0')); ?>
                 <?= $this->Form->end() ?>
               </center>
             </p>
@@ -158,7 +158,7 @@
             </div>
             <p class="text-center">
               <center>
-                <?= $this->Form->submit(__('Login'), array('class' => 'btn btn-outline-white-primary')); ?>
+                <?= $this->Form->submit(__('Login'), array('class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0')); ?>
                 <?= $this->Form->end() ?>
               </center>
             </p>
@@ -175,6 +175,88 @@
       </div>
     </div>
     <!-- *** LOGIN MODAL END ***-->
+
+
+    <!-- *** EMAIL PRZEMEK ***_________________________________________________________
+-->
+    <div id="przemek-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade">
+      <div role="document" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="exampleModalLabel" class="modal-title">Contact Przemek
+            </h4>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+              <span aria-hidden="true">×
+              </span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <?= $this->Flash->render('auth'); ?>
+            <?= $this->Form->create('User', array('url'=>array('controller'=>'users', 'action'=>'email_przemek'))); ?>
+            <div class="form-group">
+              <?= $this->Form->control('name' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Your name','value'=>'', 'required'=>true)) ?>
+            </div>
+            <div class="form-group">
+              <?= $this->Form->control('email' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'email','placeholder'=>'Your email','value'=>'', 'required'=>true)) ?>
+            </div>
+            <div class="form-group">
+              <?= $this->Form->control('message', array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'textarea','placeholder'=>'Your message','value'=>'', 'required'=>true)) ?>
+            </div>
+            <p class="text-center">
+              <center>
+                <?= $this->Form->submit(__('Send'), array('class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0')); ?>
+                <?= $this->Form->end() ?>
+              </center>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- *** EMAIL PRZEMEK END ***-->
+
+
+        <!-- *** EMAIL MARIKA***_________________________________________________________
+-->
+    <div id="marika-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade">
+      <div role="document" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="exampleModalLabel" class="modal-title">Contact Marika
+            </h4>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+              <span aria-hidden="true">×
+              </span>
+            </button>
+          </div>
+         <div class="modal-body">
+            <?= $this->Flash->render('auth'); ?>
+            <?= $this->Form->create('User', array('url'=>array('controller'=>'users', 'action'=>'email_marika'))); ?>
+            <div class="form-group">
+              <?= $this->Form->control('name' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Your name','value'=>'', 'required'=>true)) ?>
+            </div>
+            <div class="form-group">
+              <?= $this->Form->control('email' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'email','placeholder'=>'Your email','value'=>'', 'required'=>true)) ?>
+            </div>
+            <div class="form-group">
+              <?= $this->Form->control('message', array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'textarea','placeholder'=>'Your message','value'=>'', 'required'=>true)) ?>
+            </div>
+            <p class="text-center">
+              <center>
+                <?= $this->Form->submit(__('Send'), array('class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0')); ?>
+                <?= $this->Form->end() ?>
+              </center>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- *** END EMAIL MARIKA ***-->
+
+
+
+
+
+
     <section class="job-form-section job-form-section--image">
       <div class="container">
         <h2 class="heading">
@@ -187,7 +269,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <p class="lead">Hi!<br>
+            <p class="lead thinfont" style="text-transform: uppercase; font-size: 13px">Hi!<br>
 We are a polish start-up based in Poznań, Poland.<br> 
 We worked in Recruitment and in  IT sector and realized that there is no recruiting platform dedicated for SAP Consultants. Companies struggle to connect and to find the place for job offers and candidates struggle to see through so many messages and a lot of spam!<br>
 <br>
@@ -210,7 +292,7 @@ If you want to know more about us:<br>
                 <a href="#">Marika Gajewska-Święcicka
                 </a>
               </h3>
-              <p class="role">OWNER
+              <p class="role"><strong>OWNER</strong>
               </p>
               <div class="social">
                 <a target="_blank" href="https://www.facebook.com/marika.gajewskaswiecicka" class="external facebook">
@@ -221,14 +303,13 @@ If you want to know more about us:<br>
                   <i class="fa fa-linkedin">
                   </i>
                 </a>
-                <a target="_blank" href="#" class="email">
+                <a target="_blank" href="#" data-toggle="modal" data-target="#marika-modal" class="email">
                   <i class="fa fa-envelope">
                   </i>
                 </a>
               </div>
-              <div class="text">
-                <p><strong>I am an owner and chef at What's SAP platform. I'm really passionate about psychology, fair business and employer branding. I also love cats and dogs, and lately started to learn ukulele! Please find me on social media and say hi!
-                </strong>
+              <div class="text thinfont" style="text-transform: uppercase; font-size: 13px">
+                <p>I am an owner and chef at What's SAP platform. I'm really passionate about psychology, fair business and employer branding. I also love cats and dogs, and lately started to learn ukulele! Please find me on social media and say hi!
                 </p>
               </div>
             </div>
@@ -243,7 +324,7 @@ If you want to know more about us:<br>
                 <a href="#">Przemysław Święcicki
                 </a>
               </h3>
-              <p class="role">LEAD DEVELOPER
+              <p class="role"><strong>LEAD DEVELOPER</strong>
               </p>
               <div class="social">
                 <a target="_blank" href="https://www.facebook.com/przemek.swiecicki" class="external facebook">
@@ -254,14 +335,13 @@ If you want to know more about us:<br>
                   <i class="fa fa-linkedin">
                   </i>
                 </a>
-                <a target="_blank" href="#" class="email">
+                <a target="_blank" href="#" data-toggle="modal" data-target="#przemek-modal" class="email">
                   <i class="fa fa-envelope">
                   </i>
                 </a>
               </div>
-              <div class="text">
-                <p><strong>I'm a cat, dog, and heavy guitar riff lover. When I'm not programming at the moment, you can usually find me in my small home recording studio. Passionate about guitar playing, and metal music production. Besides creating What's SAP platform, I'm a SAP HANA consultant, with ABAP and SAP Marketing background. Always first to learn new stuff (like creating What's SAP).
-                </strong>
+              <div class="text thinfont" style="text-transform: uppercase; font-size: 13px">
+                <p>I'm a cat, dog, and heavy guitar riff lover. When I'm not programming at the moment, you can usually find me in my small home recording studio. Passionate about guitar playing, and metal music production. Besides creating What's SAP platform, I'm a SAP HANA consultant, with ABAP and SAP Marketing background. Always first to learn new stuff (like creating What's SAP).
                 </p>
               </div>
             </div>

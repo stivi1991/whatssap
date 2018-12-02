@@ -139,7 +139,7 @@
             <p class="text-center">
               <center>
                 <?= $this->Form->submit(__('Login'), array(
-'class' => 'btn btn-outline-white-primary'
+'class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0'
 )); ?>
                 <?= $this->Form->end() ?>
               </center>
@@ -201,7 +201,7 @@
             <p class="text-center">
               <center>
                 <?= $this->Form->submit(__('Login'), array(
-'class' => 'btn btn-outline-white-primary'
+'class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0'
 )); ?>
                 <?= $this->Form->end() ?>
               </center>
@@ -411,7 +411,7 @@ endforeach;
                 <div class="col-xl-6 form-group">
                   <label for="project_start" class="thinfont">Expected start date:
                   </label>
-                  <input id="project_start" name="project_start" type="date" class="form-control" required />
+                  <input id="project_start" name="project_start" type="text" class="form-control" required />
                 </div>
                 <div class="col-xl-6 form-group">
                   <label for="duration" class="thinfont">Expected duration (months):
@@ -436,8 +436,7 @@ endforeach;
               <div class="row">
                 <div class="box box_title effect9">
                   <div class="form-group noborder">
-                    <textarea id="description" name="description" rows="15" class="form-control noborder" required>
-                    </textarea>
+                    <textarea id="description" name="description" rows="15" class="form-control noborder" required></textarea>
                   </div>
                 </div>
               </div>
@@ -663,6 +662,13 @@ endforeach;
 <script src="/./js/front.js">
 </script>
 <script src="/./js/slider.js">
+</script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+ $(document).ready(function () {
+ $( "#project_start" ).datepicker();
+ });
 </script>
 </body>
 </html>

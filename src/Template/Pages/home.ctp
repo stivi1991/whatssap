@@ -117,7 +117,7 @@
             </div>
             <p class="text-center">
               <center>
-                <?= $this->Form->submit(__('Login'), array('class' => 'btn btn-outline-white-primary')); ?>
+                <?= $this->Form->submit(__('Login'), array('class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0')); ?>
                 <?= $this->Form->end() ?>
               </center>
             </p>
@@ -127,7 +127,13 @@
               <a href="/users/register">
                 <strong>Register now
                 </strong>
-              </a>! It is easy and done in 1 minute and gives you access to special discounts and much more!
+              </a>!
+            </p>
+            <p class="text-center text-muted">
+              <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#forget-modal">
+                <strong>Forgot my password
+                </strong>
+              </a>!
             </p>
           </div>
         </div>
@@ -158,7 +164,7 @@
             </div>
             <p class="text-center">
               <center>
-                <?= $this->Form->submit(__('Login'), array('class' => 'btn btn-outline-white-primary')); ?>
+                <?= $this->Form->submit(__('Login'), array('class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0')); ?>
                 <?= $this->Form->end() ?>
               </center>
             </p>
@@ -168,13 +174,50 @@
               <a href="/employer/register">
                 <strong>Register now
                 </strong>
-              </a>! It is easy and done in 1 minute and gives you access to special discounts and much more!
+              </a>!
+            </p>
+            <p class="text-center text-muted">
+              <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#forget-modal">
+                <strong>Forgot my password
+                </strong>
+              </a>!
             </p>
           </div>
         </div>
       </div>
     </div>
     <!-- *** LOGIN MODAL END ***-->
+
+    <!-- *** FORGET PASSWORD MODAL***-->
+    <div id="forget-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade">
+      <div role="document" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="exampleModalLabel" class="modal-title">Password Reset
+            </h4>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+              <span aria-hidden="true">×
+              </span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <?= $this->Flash->render('auth'); ?>
+            <?= $this->Form->create('User', array('url'=>array('controller'=>'users', 'action'=>'forgetEmail'))); ?>
+            <div class="form-group">
+              <?= $this->Form->control('email' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Email','value'=>'')) ?>
+            </div>
+            <p class="text-center">
+              <center>
+                <?= $this->Form->submit(__('Send email'), array('class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0')); ?>
+                <?= $this->Form->end() ?>
+              </center>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- *** FORGET PASSWORD MODAL END ***-->
+
     <section class="job-form-section job-form-section--image">
       <div class="container">
         <div class="row">

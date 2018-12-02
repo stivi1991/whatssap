@@ -168,7 +168,7 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 
 <table width="80%" border="0" cellpadding="0" cellspacing="0" align="center" class="full">
 	<tr>
-		<td align="center" bgcolor="#67AECA" style="background-image: url('http://www.imagedost.com/images/co3zelbk4nm5ve7i0k3.jpg'); background-position: center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-position: center center; background-repeat: no-repeat;">
+		<td align="center" style="background-position: center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-position: center center; background-repeat: no-repeat;">
 		
 			<!-- Wrapper -->
 			<table width="90%" border="0" cellpadding="0" cellspacing="0" align="center" class="mobile">
@@ -182,9 +182,9 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 								<td width="100%" height="40"></td>
 							</tr>
 						</table><!-- End Space -->						
-						<table width="90%" border="0" style="background-color: #67AECA;" cellpadding="0" cellspacing="0" align="center" class="full">
+						<table width="90%" border="0" cellpadding="0" cellspacing="0" align="center" class="full">
 							<tr>
-								<td width="100%" valign="middle" class="image175" align="center">
+								<td width="100%" valign="middle" class="image175">
 									
 									<!-- Header Text --> 
 									<table width="400" border="0" cellpadding="0" cellspacing="0" align="center" style="text-align: center; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
@@ -192,53 +192,28 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 											<td width="100%" height="10"></td>
 										</tr>
 										<tr>
-											<td valign="middle" width="100%" style="text-align: center; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; font-size: 25px; color: #ffffff; line-height: 40px; font-weight: 300;" id="box3" class="fullCenter">
+											<td valign="middle" width="100%" style="text-align: center; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; font-size: 16px; color: black; line-height: 30px; font-weight: 300;" id="box3" class="fullCenter">
 											
-												New application for<span style="font-weight: 600; color:#5F0F4E;"><br><?= strtoupper($job_title) ?></span>
+												New message from <span style="font-weight: 600; color:#5F0F4E;"><?= $name ?></span>
+											</td>
 											<!-- Space -->
-											<table width="80%" border="0" cellpadding="0" cellspacing="0" align="center" class="full">
+											<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="full">
 												<tr>
 											<td width="100%" height="0"></td>
 												</tr>
-											</table><!-- End Space -->	
-												<span style="font-size: 20px;"> is waiting in the attachment.</span>	
+											</table><!-- End Space -->
+										</tr>
+										<tr>
+											<td valign="middle" width="100%">
+												<span style="font-size: 13px;text-align: left;"><?= $message ?></span>
+												<br>
 											</td>
 										</tr>
-									</table>
-									
-								</td>
-							</tr>
-						</table>
-									
-						<table width="90%" border="0" cellpadding="0" cellspacing="0" align="center" class="full">
-							<tr>
-								<td width="100%" valign="middle" align="center">	
-								
-									<table width="100%" style="background-color: #67AECA;" border="0" cellpadding="0" cellspacing="0" align="center" style="text-align: center; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
-										
 										<tr>
-											<td width="100%" height="5"></td>
-										</tr>
-										<!-- Button Center -->
-										<tr>
-											<td class="buttonScale" width="auto" align="center" id="box4">
-												
-												<table border="0" cellpadding="0" cellspacing="0" align="center" class="buttonScale">
-													<tr>
-														<td width="auto" align="center" height="10" bgcolor="#E52A6F" style="border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-left: 40px; padding-right: 40px; font-weight: 650; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; color: #ffffff;">
-															<a href="http://35.204.146.234/users/jobdetails/<?= $offer_id ?>" style="color: #ffffff; font-size: 10px; text-decoration: none; line-height: 30px; width: 50%; letter-spacing: 0.25rem;">VIEW OFFER</a>
-														</td>
-														<td width="15">
-														</td>
-														<td width="auto" align="center" height="10" bgcolor="#E52A6F" style="border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-left: 40px; padding-right: 40px; font-weight: 650; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; color: #ffffff;">
-															<a href="#" style="color: #ffffff; font-size: 10px; text-decoration: none; line-height: 30px; width: 50%; letter-spacing: 0.25rem;">EDIT OFFER</a>
-														</td>
-													</tr>
-												</table>
-											
+											<td valign="middle" width="100%" style="text-align: center; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; font-size: 16px; color: black; line-height: 30px; font-weight: 300;" id="box3" class="fullCenter">
+												Resond to <?= $email ?>
 											</td>
 										</tr>
-										<!-- End Button Center -->
 									</table>
 									
 								</td>
@@ -248,7 +223,7 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 						<table width="90%" border="0" cellpadding="0" cellspacing="0" align="center" class="full">
 							<tr>
 								<td width="100%" valign="middle" align="center">
-									<table width="100%" style="background-color: #67AECA;" border="0" cellpadding="0" cellspacing="0" align="center" style="text-align: center; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
+									<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" style="text-align: center; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
 										
 										<tr>
 											<td width="100%" height="20"></td>

@@ -5,6 +5,7 @@ use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 use Cake\Filesystem\Folder;
 use Cake\Mailer\Email;
+use Cake\Utility\Text;
 
 /**
  * Users Controller
@@ -282,10 +283,10 @@ public function jobsearch() {
           // check if folder exist, if not, create
           if (!file_exists(ROOT . DS . $uploadDir)) {
            $dir = new Folder(ROOT . DS . $uploadDir, true);
-          } else {
-            $this->Flash->error(__('You have already applied for this offer.'));
-            return $this->redirect($this->Auth->redirectUrl('/users/jobdetails/' . $offer_id));
-          }
+          } //else {
+            //$this->Flash->error(__('You have already applied for this offer.'));
+            //return $this->redirect($this->Auth->redirectUrl('/users/jobdetails/' . $offer_id));
+          //}
 
           $file_target = ROOT . DS . $uploadDir . $this->request->getData()['candidate_cv']['name'];
           $apply->cv_url = $file_target;
@@ -297,10 +298,10 @@ public function jobsearch() {
             move_uploaded_file($cv_tmp, $file_target);
             $email = new Email('default');
             if($email->setTo($apply_email)
-            ->setSubject("📄 New application " . strtoupper($job_title))
+            ->setSubject("New application for " . strtoupper($job_title) . ' from ' . $apply->candidate_name)
             ->setEmailFormat('html')
             ->setTemplate('default','default')
-            ->setViewVars(['offer_id' => $offer_id,'job_title' => $job_title,'city' => $city,'country' => $country,'company_name' => $company_name])
+            ->setViewVars(['offer_id' => $offer_id,'job_title' => $job_title])
             ->setAttachments(array($file_target))
             ->send()){
             if($this->JobApplies->save($apply)){
@@ -314,6 +315,116 @@ public function jobsearch() {
     }
 
 ///end of job apply action
+
+
+    ///email_przemek action
+
+        public function emailPrzemek()
+    {
+      if ($this->request->is('post')) {
+
+      $order   = array("\r\n", "\n", "\r");
+      $replace = '<br />';
+      $message = str_replace($order, $replace, $this->request->getData()['message']);
+
+      $email = new Email('default');
+            if($email->setTo("swiecicki.przemek@gmail.com")
+            ->setSubject("New message from " . $this->request->getData()['name'])
+            ->template('default','usercontact')
+            ->setEmailFormat('html')
+            ->setViewVars(['message' => $message, 'name' => $this->request->getData()['name'], 'email' => $this->request->getData()['email']])
+            ->send())
+      $this->Flash->success(__('Your email has been sent to Przemek. Thank you!'));
+      return $this->redirect($this->Auth->redirectUrl('/users/about/'));
+
+      }
+    }
+
+
+///end of action
+
+    ///email_marika action
+
+        public function emailMarika()
+    {
+      if ($this->request->is('post')) {
+
+      $order   = array("\r\n", "\n", "\r");
+      $replace = '<br />';
+      $message = str_replace($order, $replace, $this->request->getData()['message']);
+
+      $email = new Email('default');
+            if($email->setTo("gajewska.marika@gmail.com")
+            ->setSubject("New message from " . $this->request->getData()['name'])
+            ->template('default','usercontact')
+            ->setEmailFormat('html')
+            ->setViewVars(['message' => $message, 'name' => $this->request->getData()['name'], 'email' => $this->request->getData()['email']])
+            ->send())
+      $this->Flash->success(__('Your email has been sent to Przemek. Thank you!'));
+      return $this->redirect($this->Auth->redirectUrl('/users/about/'));
+
+      }
+    }
+
+
+///end of action
+
+    ///forget password action
+
+        public function forgetEmail()
+    { 
+      $this->loadModel('forgetTokens');
+      $this->loadModel('Users');
+      $token_entry = $this->forgetTokens->newEntity();
+      if ($this->request->is('post')) {
+      $token_entry = $this->forgetTokens->patchEntity($token_entry, $this->request->getData());
+      $email = $this->request->getData()['email'];
+
+      if($this->Users->find('all', array('conditions' => array('email' => $email)))->first()) {
+
+
+      $token  = str_replace('-','',Text::uuid());
+      $token_entry->token_hash = $token;
+      date_default_timezone_set('Europe/Warsaw');
+      $currentTime = time();
+      $validTime = $currentTime+(60*10);
+      $token_entry->valid_to = date("Y-m-d H:i:s",$validTime);
+
+      if($this->forgetTokens->save($token_entry)){
+      $email = new Email('default');
+            if($email->setTo('swiecicki.przemek@gmail.com')
+            ->setSubject("Password Reset")
+            ->template('default','forgetEmail')
+            ->setEmailFormat('html')
+            ->setViewVars(['token' => $token])
+            ->send())
+      $this->Flash->success(__('Email was sent to your email address. Link is valid for 10 minutes.'));
+      return $this->redirect($this->Auth->redirectUrl('/'));
+        } else {
+        $this->Flash->error(__("Something went wrong, and we couldn't send the email. Please try again."));
+        return $this->redirect($this->Auth->redirectUrl('/'));
+        } 
+      } else {
+        $this->Flash->error(__('User with this email address was not found.'));
+        return $this->redirect($this->Auth->redirectUrl('/'));
+      }
+    }
+  }
+
+
+///end of action
+
+///reset password action
+
+        public function passwordReset()
+    { 
+        $this->Flash->error(__('Your password has been reset. You can now log in.'));
+        return $this->redirect($this->Auth->redirectUrl('/'));
+      }
+
+///end of reset password action
+
+
 
 //end of controller
 }

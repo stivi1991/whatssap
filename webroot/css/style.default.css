@@ -3283,24 +3283,31 @@ div.message {
     text-align: center;
     cursor: pointer;
     display: block;
+    font-size: 16px;
     font-weight: normal;
-    padding: 0 1.5rem 0 1.5rem;
+    padding: 0 1.0rem 0 1.0rem;
     transition: height 300ms ease-out 0s;
-    background-color: #a0d3e8;
-    color: #626262;
+    background-color: #4cb740;
+    color: #fff;
     top: 15px;
     right: 15px;
     z-index: 999;
     overflow: hidden;
-    height: 50px;
-    line-height: 2.5em;
+    height: 60px;
+    line-height: 3.0em;
+    font-family: "Montserrat", Helvetica, Arial, sans-serif;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    padding: 0.75rem 0.45rem;
+    font-weight: 100;
+    text-transform: uppercase;
 }
 
 div.message:before {
     line-height: 0px;
-    font-size: 20px;
-    height: 12px;
-    width: 12px;
+    font-size: 15px;
+    height: 10px;
+    width: 10px;
     border-radius: 15px;
     text-align: center;
     vertical-align: middle;
@@ -3311,6 +3318,7 @@ div.message:before {
     padding: 12px 14px 12px 10px;
     content: "i";
     color: #a0d3e8;
+    text-transform: lowercase;
 }
 
 div.message.error {
