@@ -667,7 +667,7 @@ endforeach;
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
  $(document).ready(function () {
- $( "#project_start" ).datepicker();
+ $( "#project_start" ).datepicker({ dateFormat: 'yy-mm-dd' });
  });
 </script>
 </body>
