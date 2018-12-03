@@ -300,7 +300,8 @@ public function jobsearch() {
             if($email->setTo($apply_email)
             ->setSubject("New application for " . strtoupper($job_title) . ' from ' . $apply->candidate_name)
             ->setEmailFormat('html')
-            ->setTemplate('default','default')
+            ->setTemplate('default')
+            ->setLayout('default')
             ->setViewVars(['offer_id' => $offer_id,'job_title' => $job_title])
             ->setAttachments(array($file_target))
             ->send()){
@@ -330,7 +331,8 @@ public function jobsearch() {
       $email = new Email('default');
             if($email->setTo("swiecicki.przemek@gmail.com")
             ->setSubject("New message from " . $this->request->getData()['name'])
-            ->template('default','usercontact')
+            ->setTemplate('default')
+            ->setLayout('usercontact')
             ->setEmailFormat('html')
             ->setViewVars(['message' => $message, 'name' => $this->request->getData()['name'], 'email' => $this->request->getData()['email']])
             ->send())
@@ -356,7 +358,8 @@ public function jobsearch() {
       $email = new Email('default');
             if($email->setTo("gajewska.marika@gmail.com")
             ->setSubject("New message from " . $this->request->getData()['name'])
-            ->template('default','usercontact')
+            ->setTemplate('default')
+            ->setLayout('usercontact')
             ->setEmailFormat('html')
             ->setViewVars(['message' => $message, 'name' => $this->request->getData()['name'], 'email' => $this->request->getData()['email']])
             ->send())
@@ -380,30 +383,35 @@ public function jobsearch() {
       $token_entry = $this->forgetTokens->patchEntity($token_entry, $this->request->getData());
       $email = $this->request->getData()['email'];
 
-      if($this->Users->find('all', array('conditions' => array('email' => $email)))->first()) {
-
+      if(!empty($this->Users->find('all', array('conditions' => array('email' => $email)))->first())) {
 
       $token  = str_replace('-','',Text::uuid());
       $token_entry->token_hash = $token;
       date_default_timezone_set('Europe/Warsaw');
       $currentTime = time();
-      $validTime = $currentTime+(60*10);
+      $validTime = $currentTime+(60*30);
       $token_entry->valid_to = date("Y-m-d H:i:s",$validTime);
 
       if($this->forgetTokens->save($token_entry)){
       $email = new Email('default');
             if($email->setTo('swiecicki.przemek@gmail.com')
             ->setSubject("Password Reset")
-            ->template('default','forgetEmail')
+            ->setTemplate('default')
+            ->setLayout('forgetEmail')
             ->setEmailFormat('html')
             ->setViewVars(['token' => $token])
-            ->send())
+            ->send()){
       $this->Flash->success(__('Email was sent to your email address. Link is valid for 10 minutes.'));
       return $this->redirect($this->Auth->redirectUrl('/'));
         } else {
         $this->Flash->error(__("Something went wrong, and we couldn't send the email. Please try again."));
         return $this->redirect($this->Auth->redirectUrl('/'));
-        } 
+        }
+      } else {
+        $this->Flash->error(__("Something went wrong, and we couldn't send the email. Please try again."));
+        return $this->redirect($this->Auth->redirectUrl('/'));
+        }
+
       } else {
         $this->Flash->error(__('User with this email address was not found.'));
         return $this->redirect($this->Auth->redirectUrl('/'));
@@ -416,15 +424,68 @@ public function jobsearch() {
 
 ///reset password action
 
-        public function passwordReset()
+        public function passwordReset($token_hash)
     { 
-        $this->Flash->error(__('Your password has been reset. You can now log in.'));
+      
+      $this->loadModel('forgetTokens');
+      $this->loadModel('Users');
+      $token_entry = $this->forgetTokens->newEntity();
+      date_default_timezone_set('Europe/Warsaw');
+      if(!empty($this->forgetTokens->find('all', array(
+        'conditions' => array('token_hash' => $token_hash, 
+          'valid_to >=' => date("Y-m-d H:i:s",time()))))->first())) {
+
+      } else {
+        $this->Flash->error(__('Your password reset link is wrong, or not valid anymore.'));
         return $this->redirect($this->Auth->redirectUrl('/'));
+      }
+
+      if ($this->request->is('post')) {
+
+        if($this->request->getData()['password'] == $this->request->getData()['password_confirm']) {
+          if($this->checkPassword($this->request->getData()['password'])){
+
+        $entry = $this->Users->find('all')->join([
+        'tokens' => [
+            'table' => 'forget_tokens',
+            'type' => 'INNER',
+            'conditions' => array('tokens.email = Users.email', 'token_hash' => $token_hash,
+          'valid_to >=' => date("Y-m-d H:i:s",time()))
+        ]
+        ])->first();
+
+        $update_table = TableRegistry::get('Users');
+        $update_row = $update_table->get($entry->id);
+        $update_row->password = $this->request->getData()['password'];              
+
+        if($this->Users->save($update_row)) {
+        $this->forgetTokens->deleteAll(array('forgetTokens.email' => $update_row->email)); 
+        $this->Flash->success(__("Your password has been reset."));
+        return $this->redirect($this->Auth->redirectUrl('/'));
+        } else {
+          $this->Flash->error(__("Something went wrong. Please try again."));
+          return $this->redirect($this->request->here);
+        }
+          } else {
+            $this->Flash->error(__('Password need to be at least 8 characters long, contain one capital letter, number, and special character.'));
+            return $this->redirect($this->request->here);
+          }
+        } else {
+        $this->Flash->error(__('Passwords need to be identical.'));
+        return $this->redirect($this->request->here);
+          }
+        }
       }
 
 ///end of reset password action
 
-
+public function checkPassword($pwd) {
+  if(!preg_match('/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/',$pwd)) {
+    return false;
+  } else {
+    return true;
+  }
+}
 
 //end of controller
 }
