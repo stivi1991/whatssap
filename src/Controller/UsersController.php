@@ -479,6 +479,59 @@ public function jobsearch() {
 
 ///end of reset password action
 
+    ///contact email action
+
+        public function contactEmail()
+    {
+      if ($this->request->is('post')) {
+
+      $order   = array("\r\n", "\n", "\r");
+      $replace = '<br />';
+      $message = str_replace($order, $replace, $this->request->getData()['message']);
+
+      $email = new Email('default');
+            if($email->setTo("swiecicki.przemek@gmail.com")
+            ->setSubject("New message from " . $this->request->getData()['name'])
+            ->setTemplate('default')
+            ->setLayout('usercontact')
+            ->setEmailFormat('html')
+            ->setViewVars(['message' => $message, 'name' => $this->request->getData()['name'], 'email' => $this->request->getData()['email']])
+            ->send()){
+      $this->Flash->success(__('Your email has been sent to our team. Thank you!'));
+      if(!($this->request->getData()['redirect'] == 'display')) {
+      return $this->redirect($this->Auth->redirectUrl('/users/' . $this->request->getData()['redirect']));
+      } else {
+        return $this->redirect($this->Auth->redirectUrl('/'));
+      }
+        } else {
+          $this->Flash->success(__('Something went wront. Please try again.'));
+          if(!($this->request->getData()['redirect'] == 'display')) {
+          return $this->redirect($this->Auth->redirectUrl('/users/' . $this->request->getData()['redirect']));
+          } else {
+            return $this->redirect($this->Auth->redirectUrl('/'));
+          }
+        }
+
+      }
+    }
+
+
+///end of action
+
+
+///blog action
+
+        public function blog()
+    {
+      
+    }
+
+
+///end of action
+
+
+
+
 public function checkPassword($pwd) {
   if(!preg_match('/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/',$pwd)) {
     return false;

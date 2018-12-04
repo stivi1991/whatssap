@@ -80,7 +80,9 @@ class AppController extends Controller
             $this->Auth->allow('emailMarika');
             $this->Auth->allow('emailPrzemek'); 
             $this->Auth->allow('forgetEmail');  
-            $this->Auth->allow('passwordReset');          
+            $this->Auth->allow('passwordReset'); 
+            $this->Auth->allow('contactEmail');
+            $this->Auth->allow('blog');             
             $this->Auth->deny('admin');
           }
       }

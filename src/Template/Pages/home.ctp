@@ -29,7 +29,7 @@
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="/./css/scrolltop.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="/./favicon.png">
   </head>
   <body>
     <!-- Preloader Start -->
@@ -47,8 +47,8 @@
       <nav class="navbar navbar-expand-lg">
         <div class="container">
           <a href="/" class="navbar-brand">
-            <img src="/img/logo.png" alt="logo" class="d-none d-lg-block">
-            <img src="img/logo-small.png" alt="logo" class="d-block d-lg-none">
+            <img src="/./img/logo.png" alt="logo" class="d-none d-lg-block">
+            <img src="/./img/logo-small.png" alt="logo" class="d-block d-lg-none">
             <span class="sr-only">Go to homepage
             </span>
           </a>
@@ -68,13 +68,17 @@
                 <a href="/users/about" class="nav-link">Who are we?
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/users/blog" class="nav-link">Blog
+                </a>
+              </li>
               <li class="nav-item dropdown">
                 <a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">For Employers
                 </a>
                 <div aria-labelledby="pages" class="dropdown-menu">
                   <a href="#" data-toggle="modal" data-target="#login-modal-employer" class="dropdown-item">Login or Register
                   </a>
-                  <a href="#pricing" class="dropdown-item">Pricing
+                  <a href="/employer/postjob/#pricing" class="dropdown-item">Pricing
                   </a>
                   <a href="/employer/postjob" class="dropdown-item">Post a job
                   </a>
@@ -93,8 +97,7 @@
         </div>
       </nav>
     </header>
-    <!-- *** LOGIN MODAL CANDIDATE***_________________________________________________________
--->
+    <!-- *** LOGIN MODAL CANDIDATE***-->
     <div id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade">
       <div role="document" class="modal-dialog">
         <div class="modal-content">
@@ -218,6 +221,68 @@
     </div>
     <!-- *** FORGET PASSWORD MODAL END ***-->
 
+        <!-- *** EMAIL CONTACT ***-->
+    <div id="contact-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade">
+      <div role="document" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="exampleModalLabel" class="modal-title">Contact us
+            </h4>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+              <span aria-hidden="true">×
+              </span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <?= $this->Flash->render('auth'); ?>
+            <?= $this->Form->create('User', array('url'=>array('controller'=>'users', 'action'=>'contact_email'))); ?>
+            <div class="form-group">
+              <?= $this->Form->control('name' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Your name','value'=>'', 'required'=>true)) ?>
+            </div>
+            <div class="form-group">
+              <?= $this->Form->control('email' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'email','placeholder'=>'Your email','value'=>'', 'required'=>true)) ?>
+            </div>
+            <div class="form-group">
+              <?= $this->Form->control('message', array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'textarea','placeholder'=>'Your message','value'=>'', 'required'=>true)) ?>
+            </div>
+            <p class="text-center">
+              <center>
+                <?= $this->Form->control('redirect', array('value' => strtolower($this->request->params['action']),'type'=>'hidden')) ?>
+                <?= $this->Form->submit(__('Send'), array('class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0')); ?>
+                <?= $this->Form->end() ?>
+              </center>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- *** EMAIL CONTACT END ***-->
+
+        <!-- *** TERMS MODAL ***-->
+    <div id="terms-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade">
+      <div role="document" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="exampleModalLabel" class="modal-title">Terms and conditions
+            </h4>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+              <span aria-hidden="true">×
+              </span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="text-center">
+              <center>
+                BĘDZIE JAK MARIKA ZROBI
+              </center>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- *** TERMS MODAL ***-->
+
+
     <section class="job-form-section job-form-section--image">
       <div class="container">
         <div class="row">
@@ -329,7 +394,9 @@
                       <div class="col-lg-3">
                         <p class="featured__details">
                           <span class="label featured__label label-success">
-                            <?= $offer_row->salary ?> 
+                            <?= $offer_row->salary_from ?> - 
+                            <?= $offer_row->salary_to ?> 
+                            <?= $offer_row->salary_kind ?>
                             <?= $offer_row->currency ?> per 
                             <?= $offer_row->salary_type ?>
                           </span>
@@ -361,18 +428,23 @@
     </table>
   </div>
 </section>
+
 <footer class="footer">
   <hr>
   <div class="footer__copyright">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 text-md-left text-center">
+        <div class="col-md-2 text-md-left text-center">
           <p>&copy;2018 What's SAP
           </p>
         </div>
-        <div class="col-md-6 text-md-right text-center">
+        <div class="col-md-8 text-center" align="center">
+          <a href="#" data-toggle="modal" data-target="#contact-modal" class="credit" style="color:black;">CONTACT</a> | 
+          <a href="#" data-toggle="modal" data-target="#terms-modal" class="credit" style="color:black;">TERMS AND CONDITIONS</a> | 
+          <a href="/users/about/" class="credit" style="color:black;">WHO ARE WE</a>
+      </div>
+        <div class="col-md-2 text-md-right text-center">
           <p class="credit">Amity Consulting
-          </a>
         </p>
     </div>
   </div>

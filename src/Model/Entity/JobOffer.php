@@ -22,13 +22,16 @@ use Cake\ORM\Entity;
  * @property string $city
  * @property string $location_data_name
  * @property int $capacity
- * @property int $salary
+ * @property int $salary_from
+ * @property int $salary_to
  * @property string $salary_type
+ * @property string $salary_kind
  * @property string $currency
  * @property string $contract_type
  * @property string $exp_type
  * @property string $function
  * @property string $description
+ * @property \Cake\I18n\FrozenTime $valid_to
  * @property \Cake\I18n\FrozenTime $post_date
  * @property \Cake\I18n\FrozenTime $change_date
  */
@@ -60,13 +63,16 @@ class JobOffer extends Entity
         'city' => true,
         'location_data_name' => true,
         'capacity' => true,
-        'salary' => true,
+        'salary_from' => true,
+        'salary_to' => true,
         'salary_type' => true,
+        'salary_kind' => true,
         'currency' => true,
         'contract_type' => true,
         'exp_type' => true,
         'function' => true,
         'description' => true,
+        'valid_to' => true,
         'post_date' => true,
         'change_date' => true
     ];

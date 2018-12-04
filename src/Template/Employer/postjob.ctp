@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="/./css/custom.css">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="/./css/slider.css">
+        <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/./css/scrolltop.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="/./favicon.png">
     <!-- Tweaks for older IEs-->
@@ -50,7 +52,7 @@
         <div class="container">
           <a href="/" class="navbar-brand">
             <img src="/./img/logo.png" alt="logo" class="d-none d-lg-block">
-            <img src="./img/logo-small.png" alt="logo" class="d-block d-lg-none">
+            <img src="/./img/logo-small.png" alt="logo" class="d-block d-lg-none">
             <span class="sr-only">Go to homepage
             </span>
           </a>
@@ -70,13 +72,17 @@
                 <a href="/users/about" class="nav-link">Who are we?
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/users/blog" class="nav-link">Blog
+                </a>
+              </li>
               <li class="nav-item dropdown">
                 <a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">For Employers
                 </a>
                 <div aria-labelledby="pages" class="dropdown-menu">
                   <a href="#" data-toggle="modal" data-target="#login-modal-employer" class="dropdown-item">Login or Register
                   </a>
-                  <a href="/#pricing" class="dropdown-item">Pricing
+                  <a href="#pricing" class="dropdown-item">Pricing
                   </a>
                   <a href="/employer/postjob" class="dropdown-item">Post a job
                   </a>
@@ -95,8 +101,7 @@
         </div>
       </nav>
     </header>
-    <!-- *** LOGIN MODAL CANDIDATE***_________________________________________________________
--->
+    <!-- *** LOGIN MODAL CANDIDATE***-->
     <div id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade">
       <div role="document" class="modal-dialog">
         <div class="modal-content">
@@ -110,47 +115,32 @@
           </div>
           <div class="modal-body">
             <?= $this->Flash->render('auth'); ?>
-            <?= $this->Form->create('User', array(
-'url' => array(
-'controller' => 'users',
-'action' => 'login'
-)
-)); ?>
+            <?= $this->Form->create('User', array('url'=>array('controller'=>'users', 'action'=>'login'))); ?>
             <div class="form-group">
-              <?= $this->Form->control('email', array(
-'div' => false,
-'label' => false,
-'class' => 'form-control',
-'type' => 'email',
-'placeholder' => 'Email',
-'value' => ''
-)) ?>
+              <?= $this->Form->control('email' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Email','value'=>'')) ?>
             </div>
             <div class="form-group">
-              <?= $this->Form->control('password', array(
-'div' => false,
-'label' => false,
-'class' => 'form-control',
-'type' => 'password',
-'placeholder' => 'Password',
-'value' => ''
-)) ?>
+              <?= $this->Form->control('password', array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'password','placeholder'=>'Password','value'=>'')) ?>
             </div>
             <p class="text-center">
               <center>
-                <?= $this->Form->submit(__('Login'), array(
-'class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0'
-)); ?>
+                <?= $this->Form->submit(__('Login'), array('class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0')); ?>
                 <?= $this->Form->end() ?>
               </center>
             </p>
             <p class="text-center text-muted">Not registered yet?
             </p>
             <p class="text-center text-muted">
-              <a href="client-register.html">
+              <a href="/users/register">
                 <strong>Register now
                 </strong>
-              </a>! It is easy and done in 1 minute and gives you access to special discounts and much more!
+              </a>!
+            </p>
+            <p class="text-center text-muted">
+              <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#forget-modal">
+                <strong>Forgot my password
+                </strong>
+              </a>!
             </p>
           </div>
         </div>
@@ -172,53 +162,130 @@
           </div>
           <div class="modal-body">
             <?= $this->Flash->render('auth'); ?>
-            <?= $this->Form->create('Employer', array(
-'url' => array(
-'controller' => 'employer',
-'action' => 'login'
-)
-)); ?>
+            <?= $this->Form->create('Employer', array('url'=>array('controller'=>'employer', 'action'=>'login'))); ?>
             <div class="form-group">
-              <?= $this->Form->control('email', array(
-'div' => false,
-'label' => false,
-'class' => 'form-control',
-'type' => 'email',
-'placeholder' => 'Email',
-'value' => ''
-)) ?>
+              <?= $this->Form->control('email' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Email','value'=>'')) ?>
             </div>
             <div class="form-group">
-              <?= $this->Form->control('password', array(
-'div' => false,
-'label' => false,
-'class' => 'form-control',
-'type' => 'password',
-'placeholder' => 'Password',
-'value' => ''
-)) ?>
+              <?= $this->Form->control('password', array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'password','placeholder'=>'Password','value'=>'')) ?>
             </div>
             <p class="text-center">
               <center>
-                <?= $this->Form->submit(__('Login'), array(
-'class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0'
-)); ?>
+                <?= $this->Form->submit(__('Login'), array('class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0')); ?>
                 <?= $this->Form->end() ?>
               </center>
             </p>
             <p class="text-center text-muted">Not registered yet?
             </p>
             <p class="text-center text-muted">
-              <a href="#">
+              <a href="/employer/register">
                 <strong>Register now
                 </strong>
-              </a>! It is easy and done in 1 minute and gives you access to special discounts and much more!
+              </a>!
+            </p>
+            <p class="text-center text-muted">
+              <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#forget-modal">
+                <strong>Forgot my password
+                </strong>
+              </a>!
             </p>
           </div>
         </div>
       </div>
     </div>
     <!-- *** LOGIN MODAL END ***-->
+
+    <!-- *** FORGET PASSWORD MODAL***-->
+    <div id="forget-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade">
+      <div role="document" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="exampleModalLabel" class="modal-title">Password Reset
+            </h4>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+              <span aria-hidden="true">×
+              </span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <?= $this->Flash->render('auth'); ?>
+            <?= $this->Form->create('User', array('url'=>array('controller'=>'users', 'action'=>'forgetEmail'))); ?>
+            <div class="form-group">
+              <?= $this->Form->control('email' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Email','value'=>'', 'required'=>true)) ?>
+            </div>
+            <p class="text-center">
+              <center>
+                <?= $this->Form->submit(__('Send email'), array('class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0')); ?>
+                <?= $this->Form->end() ?>
+              </center>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- *** FORGET PASSWORD MODAL END ***-->
+
+        <!-- *** EMAIL CONTACT ***-->
+    <div id="contact-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade">
+      <div role="document" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="exampleModalLabel" class="modal-title">Contact us
+            </h4>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+              <span aria-hidden="true">×
+              </span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <?= $this->Flash->render('auth'); ?>
+            <?= $this->Form->create('User', array('url'=>array('controller'=>'users', 'action'=>'contact_email'))); ?>
+            <div class="form-group">
+              <?= $this->Form->control('name' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Your name','value'=>'', 'required'=>true)) ?>
+            </div>
+            <div class="form-group">
+              <?= $this->Form->control('email' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'email','placeholder'=>'Your email','value'=>'', 'required'=>true)) ?>
+            </div>
+            <div class="form-group">
+              <?= $this->Form->control('message', array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'textarea','placeholder'=>'Your message','value'=>'', 'required'=>true)) ?>
+            </div>
+            <p class="text-center">
+              <center>
+                <?= $this->Form->control('redirect', array('value' => strtolower($this->request->params['action']),'type'=>'hidden')) ?>
+                <?= $this->Form->submit(__('Send'), array('class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0')); ?>
+                <?= $this->Form->end() ?>
+              </center>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- *** EMAIL CONTACT END ***-->
+
+        <!-- *** TERMS MODAL ***-->
+    <div id="terms-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade">
+      <div role="document" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="exampleModalLabel" class="modal-title">Terms and conditions
+            </h4>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+              <span aria-hidden="true">×
+              </span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="text-center">
+              <center>
+                BĘDZIE JAK MARIKA ZROBI
+              </center>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- *** TERMS MODAL ***-->
+
     <section class="job-form-section job-form-section--image">
       <div class="container">
         <div class="row">
@@ -250,7 +317,7 @@
             <div class="box box_title effect6">
               <div class="row">
                 <div class="col-lg-12 form-group">
-                  <label for="module" class="thinfont">Job title:
+                  <label for="job_title" class="thinfont">Job title:
                   </label>
                   <input id="job_title" type="text" placeholder="JOB TITLE" name="job_title" class="form-control capitalfont" required />
                 </div>
@@ -352,12 +419,17 @@ endforeach;
             <div class="box box_title effect7">
               <div class="row">
                 <div class="col-xl-3 form-group">
-                  <label for="country" class="thinfont">Salary:
+                  <label for="salary_from" class="thinfont">Salary from:
                   </label>
-                  <input id="salary" type="text" name="salary" placeholder="Salary" class="form-control capitalfont" required>
+                  <input id="salary_from" type="text" name="salary_from" placeholder="Salary from" class="form-control capitalfont" required>
                 </div>
                 <div class="col-xl-3 form-group">
-                  <label for="country" class="thinfont">Currency:
+                  <label for="salary_to" class="thinfont">Salary to:
+                  </label>
+                  <input id="salary_to" type="text" name="salary_to" placeholder="Salary to" class="form-control capitalfont" required>
+                </div>
+                <div class="col-xl-2 form-group">
+                  <label for="currency" class="thinfont">Currency:
                   </label>
                   <select id="currency" type="text" placeholder="Currency:" name="currency" class="form-control select2" required>
                     <option disabled selected hidden>Currency
@@ -370,8 +442,8 @@ endforeach;
                     </option>
                   </select>
                 </div>
-                <div class="col-xl-3 form-group">
-                  <label for="country" class="thinfont">Per:
+                <div class="col-xl-2 form-group">
+                  <label for="salary_type" class="thinfont">Per:
                   </label>
                   <select id="salary_type" placeholder="Salary per:" name="salary_type" class="form-control select2" required>
                     <option disabled selected hidden>Per
@@ -386,7 +458,21 @@ endforeach;
                     </option>
                   </select>
                 </div>
-                <div class="col-xl-3 form-group">
+                <div class="col-xl-2 form-group">
+                  <label for="salary_kind" class="thinfont">Kind:
+                  </label>
+                  <select id="salary_kind" placeholder="Kind" name="salary_kind" class="form-control select2" required>
+                    <option disabled selected hidden>Kind
+                    </option>
+                    <option>Net
+                    </option>
+                    <option>Gross
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-4 form-group">
                   <label for="occupancy" class="thinfont">Occupancy:
                   </label>
                   <select id="occupancy" data-placeholder="Mobility" name="occupancy" class="form-control select2" required>
@@ -406,14 +492,12 @@ endforeach;
                     </option>
                   </select>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-xl-6 form-group">
+                <div class="col-xl-3 form-group">
                   <label for="project_start" class="thinfont">Expected start date:
                   </label>
                   <input id="project_start" name="project_start" type="text" class="form-control" required />
                 </div>
-                <div class="col-xl-6 form-group">
+                <div class="col-xl-5 form-group">
                   <label for="duration" class="thinfont">Expected duration (months):
                   </label>
                   <div class="range-slider">
@@ -628,23 +712,27 @@ endforeach;
     </div>
   </section>
   <!--  Footer !-->
-  <footer class="footer">
-    <hr>
-    <div class="footer__copyright">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 text-md-left text-center">
-            <p>&copy;2018 What's SAP
-            </p>
-          </div>
-          <div class="col-md-6 text-md-right text-center">
-            <p class="credit">Amity Consulting
-            </a>
+<footer class="footer">
+  <hr>
+  <div class="footer__copyright">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2 text-md-left text-center">
+          <p>&copy;2018 What's SAP
           </p>
+        </div>
+        <div class="col-md-8 text-center" align="center">
+          <a href="#" data-toggle="modal" data-target="#contact-modal" class="credit" style="color:black;">CONTACT</a> | 
+          <a href="#" data-toggle="modal" data-target="#terms-modal" class="credit" style="color:black;">TERMS AND CONDITIONS</a> | 
+          <a href="/users/about/" class="credit" style="color:black;">WHO ARE WE</a>
       </div>
-    </div>
+        <div class="col-md-2 text-md-right text-center">
+          <p class="credit">Amity Consulting
+        </p>
     </div>
   </div>
+  </div>
+</div>
 </footer>
 <!-- JavaScript files-->
 <script src="/./vendor/jquery/jquery.min.js">
@@ -670,5 +758,9 @@ endforeach;
  $( "#project_start" ).datepicker({ dateFormat: 'yy-mm-dd' });
  });
 </script>
+<script src="/./js/scrolltop.js">
+</script>
+<a href="#" id="scroll" class="nostyle" style="display: none;">
+  <span>
 </body>
 </html>

@@ -216,7 +216,7 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 											<td class="buttonScale" width="auto" align="center" id="box4">
 												<table border="0" cellpadding="0" cellspacing="0" align="center" class="buttonScale">
 													<tr>
-														<td width="50%" align="center" height="10" bgcolor="#E52A6F" style="border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-left: 40px; padding-right: 40px; font-weight: 650; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; color: #ffffff;">
+														<td width="200" align="center" height="10" bgcolor="#E52A6F" style="border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-left: 40px; padding-right: 40px; font-weight: 650; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; color: #ffffff;">
 															<a href="http://35.204.146.234/users/passwordReset/<?= $token ?>" style="color: #ffffff; font-size: 10px; text-decoration: none; line-height: 30px; width: 50%; letter-spacing: 0.25rem;">RESET PASSWORD</a>
 														</td>
 													</tr>

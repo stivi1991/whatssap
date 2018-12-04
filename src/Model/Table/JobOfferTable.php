@@ -121,13 +121,22 @@ class JobOfferTable extends Table
             ->allowEmpty('capacity');
 
         $validator
-            ->integer('salary')
-            ->allowEmpty('salary');
+            ->integer('salary_from')
+            ->allowEmpty('salary_from');
+
+        $validator
+            ->integer('salary_to')
+            ->allowEmpty('salary_to');
 
         $validator
             ->scalar('salary_type')
             ->maxLength('salary_type', 20)
             ->allowEmpty('salary_type');
+
+        $validator
+            ->scalar('salary_kind')
+            ->maxLength('salary_kind', 10)
+            ->allowEmpty('salary_kind');
 
         $validator
             ->scalar('currency')
@@ -152,6 +161,10 @@ class JobOfferTable extends Table
         $validator
             ->scalar('description')
             ->allowEmpty('description');
+
+        $validator
+            ->dateTime('valid_to')
+            ->allowEmpty('valid_to');
 
         $validator
             ->dateTime('post_date')

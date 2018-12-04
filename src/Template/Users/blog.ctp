@@ -9,56 +9,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!--preloader-->
-    <link href="../css/preloader.css" rel="stylesheet">
+    <link href="/./css/preloader.css" rel="stylesheet">
     <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/./vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="../vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/./vendor/font-awesome/css/font-awesome.min.css">
     <!-- Google fonts - Roboto for copy, Montserrat for headings-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <!-- Bootstrap Select-->
+    <link rel="stylesheet" href="/./vendor/bootstrap-select/css/bootstrap-select.min.css">
     <!-- owl carousel-->
-    <link rel="stylesheet" href="../vendor/owl.carousel/assets/owl.carousel.css">
-    <link rel="stylesheet" href="../vendor/owl.carousel/assets/owl.theme.default.css">
+    <link rel="stylesheet" href="/./vendor/owl.carousel/assets/owl.carousel.css">
+    <link rel="stylesheet" href="/./vendor/owl.carousel/assets/owl.theme.default.css">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="../css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="/./css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="../css/custom.css">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="../css/rating.css">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="../css/dynamictable.css">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="../css/bootstrap-tagsinput.css">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="../css/profilepicture.css">
-        <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="/./css/scrolltop.css">
+    <link rel="stylesheet" href="/./css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="/./favicon.png">
+        <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/./css/scrolltop.css">
     <!-- Tweaks for older IEs-->
     <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
-    </script>
-    <script>
-      $(document).ready(function() {
-        $(window).keydown(function(event){
-          if(event.keyCode == 13) {
-            event.preventDefault();
-            return false;
-          }
-        }
-                         );
-      }
-                       );
-      $('#tags').tagsinput({
-        confirmKeys: [44, 32, 13]
-      }
-                          );
-    </script>
   </head>
   <body>
     <!-- Preloader Start -->
@@ -66,7 +41,7 @@
       <div class="colorlib-load">
       </div>
     </div>
-    <script src="../js/preloader.js">
+    <script src="/./js/preloader.js">
     </script>
     <?= $this->Flash->render() ?>
     <!-- navbar-->
@@ -313,193 +288,27 @@
 
     <section class="job-form-section job-form-section--image">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-12 mx-auto">
-            <div class="job-form-box">
-              <h2 class="heading">
-                <span class="center-heading">NEW CANDIDATE
-                </span>
-                <span class="accent"> ACCOUNT
-                </span>
-                <span class="accent">
-                </span>
-              </h2>
-            </div>
-          </div>
-        </div>
+        <h2 class="heading">
+          <span class="center-heading">Blog
+          </span>
+        </h2>
       </div>
     </section>
     <section>
       <div class="container">
         <div class="row">
-          <div class="col-md-12">
-            <div class="box">
-              <form action="/users/register" method="post">
-                <div class="row">
-                  <div class="col-md-8">
-                    <div class="form-group">
-                      <label for="name_first">First Name
-                      </label>
-                      <input id="name_first" name="name_first" type="text" class="form-control" required />
-                    </div>
-                    <div class="form-group">
-                      <label for="name_last">Last Name
-                      </label>
-                      <input id="name_last" name="name_last" type="text" class="form-control" required />
-                    </div>
-                    <div class="form-group">
-                      <label for="email">Email address
-                      </label>
-                      <input id="email" name="email" type="email" class="form-control" required />
-                    </div>
-                    <div class="form-group">
-                      <label for="password">Password
-                      </label>
-                      <input id="password" type="password" name="password" class="form-control" required />
-                    </div>
-                    <div class="form-group">
-                      <label for="password_confirm">Confirm password
-                      </label>
-                      <input id="password_confirm" type="password" name="password_confirm" class="form-control" required />
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="profile">
-                      <div class="photo">
-                        <input type="file" accept="image/*">
-                        <div class="photo__helper">
-                          <div class="photo__frame photo__frame--circle">
-                            <canvas class="photo__canvas">
-                            </canvas>
-                            <div class="picture is-empty">
-                              <p class="picture--desktop">Drop your photo here or browse your computer.
-                              </p>
-                              <p class="picture--mobile">Tap here to select your picture.
-                              </p>
-                            </div>
-                            <div class="picture is-loading">
-                              <i class="fa fa-2x fa-spin fa-spinner">
-                              </i>
-                            </div>
-                            <div class="picture is-dragover">
-                              <i class="fa fa-2x fa-cloud-upload">
-                              </i>
-                              <p>Drop your photo
-                              </p>
-                            </div>
-                            <div class="picture is-wrong-file-type">
-                              <p>Only images allowed.
-                              </p>
-                              <p class="picture--desktop">
-                                <span>Drop your photo here or browse your computer.
-                                </span>
-                              </p>
-                              <p class="picture--mobile">Tap here to select your picture.
-                              </p>
-                            </div>
-                            <div class="picture is-wrong-image-size">
-                              <p>Your photo must be larger than 350px.
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="photo__options hide">
-                          <div class="photo__zoom">
-                            <input type="range" class="zoom-handler">
-                          </div>
-                          <a href="javascript:;" class="remove">
-                            <i class="fa fa-trash">
-                            </i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="form-group">
-                    <div class="table-title">
-                      <div class="row">
-                        <div class="col-sm-8">
-                          <h5>Skills
-                          </h5>
-                        </div>
-                        <div class="col-sm-4">
-                          <button type="button" class="btn btn-info add-new">
-                            <i class="fa fa-plus">
-                            </i> Add New Skill
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Skill name
-                          </th>
-                          <th>Level
-                          </th>
-                          <th>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="row">
-                    <div class="form-group">
-                      <div class="col-lg-12">
-                        <h5>Preffered Work Locations
-                        </h5>
-                      </div>
-                      <div class="col-lg-12">
-                        <input id='preffered_location' type="text" value="" data-role="tagsinput" name="preffered_location" class="form-control" required />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="text-center">
-                  <button type="submit" class="btn btn-primary">
-                    <i class="fa fa-user-md">
-                    </i> Register
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="box">
-              <h3 class="heading">Login
-              </h3>
-              <p class="lead">Already have an account? Login!
-              </p>
-              <hr>
-              <form action="client-dashboard.html" method="post">
-                <div class="form-group">
-                  <label for="email">Email
-                  </label>
-                </div>
-                <input id="email" type="text" class="form-control">
-              </form>
-              <div class="form-group">
-                <label for="password">Password
-                </label>
-                <input id="password" type="password" class="form-control">
-              </div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary">
-                  <i class="fa fa-sign-in">
-                  </i> Log in
-                </button>
-              </div>
-            </div>
+          <div class="col-lg-12">
+            <p class="lead thinfont text-center" style="text-transform: uppercase; font-size: 13px">
+              COMING SOON
+            </p>
           </div>
         </div>
       </div>
     </section>
+
+
+
+
 <footer class="footer">
   <hr>
   <div class="footer__copyright">
@@ -512,7 +321,7 @@
         <div class="col-md-8 text-center" align="center">
           <a href="#" data-toggle="modal" data-target="#contact-modal" class="credit" style="color:black;">CONTACT</a> | 
           <a href="#" data-toggle="modal" data-target="#terms-modal" class="credit" style="color:black;">TERMS AND CONDITIONS</a> | 
-          <a href="/users/about/" class="credit" style="color:black;">WHO ARE WE</a>
+          <a href="#" class="credit" style="color:black;">WHO ARE WE</a>
       </div>
         <div class="col-md-2 text-md-right text-center">
           <p class="credit">Amity Consulting
@@ -523,22 +332,16 @@
 </div>
 </footer>
 <!-- JavaScript files-->
-<script src="../js/preloader.js">
+<script src="/./vendor/jquery/jquery.min.js">
 </script>
-<script src="../vendor/jquery/jquery.min.js">
+<script src="/./vendor/popper.js/umd/popper.min.js"> </script>
+<script src="/./vendor/bootstrap/js/bootstrap.min.js">
 </script>
-<script src="../vendor/popper.js/umd/popper.min.js"> </script>
-<script src="../vendor/bootstrap/js/bootstrap.min.js">
+<script src="/./vendor/jquery.cookie/jquery.cookie.js"> </script>
+<script src="/./vendor/owl.carousel/owl.carousel.min.js">
 </script>
-<script src="../vendor/jquery.cookie/jquery.cookie.js"> </script>
-<script src="../vendor/owl.carousel/owl.carousel.min.js">
-</script>
-<script src="../vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
-<script src="../js/bootstrap-tagsinput.js">   </script>
-<script src="../js/profilepicture.js">   </script>
-<script src="../js/front.js">
-</script>
-<script src="../js/dynamictable.js">
+<script src="/./vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
+<script src="/./js/front.js">
 </script>
 <script src="/./js/scrolltop.js">
 </script>
