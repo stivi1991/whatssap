@@ -274,7 +274,7 @@
             </div>
             <p class="text-center">
               <center>
-                <?= $this->Form->control('redirect', array('value' => strtolower($this->request->params['action']),'type'=>'hidden')) ?>
+                <?= $this->Form->control('redirect', array('value' => strtolower($this->request->getParam('action')),'type'=>'hidden')) ?>
                 <?= $this->Form->submit(__('Send'), array('class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0')); ?>
                 <?= $this->Form->end() ?>
               </center>
