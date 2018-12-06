@@ -82,6 +82,7 @@ class AppController extends Controller
             $this->Auth->allow('forgetEmail');  
             $this->Auth->allow('passwordReset'); 
             $this->Auth->allow('contactEmail');
+            $this->Auth->allow('invoiceGen');
             $this->Auth->allow('blog');             
             $this->Auth->deny('admin');
           }

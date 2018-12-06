@@ -286,6 +286,8 @@
     </div>
     <!-- *** TERMS MODAL ***-->
 
+
+
     <section class="job-form-section job-form-section--image">
       <div class="container">
         <div class="row">
@@ -305,6 +307,7 @@
       </div>
     </section>
     <!--  Detailed information box !-->
+<form method="post" action="/employer/postjob" class="job-add-form">
     <section>
       <div class="container">
         <div class="row">
@@ -313,7 +316,6 @@
           </div>
         </div>
         <div class="col-lg-12 mx-auto">
-          <form method="post" action="/employer/postjob" class="job-add-form">
             <div class="box box_title effect6">
               <div class="row">
                 <div class="col-lg-12 form-group">
@@ -598,14 +600,60 @@ endforeach;
           <div class="row">
             <div class="col-lg-12 text-center">
               <hr>
-              <button type="submit" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0">POST IT
-              </button>
+              <a href="" data-toggle="modal" data-target="#payment-modal"><button class="btn navbar-btn btn-outline-light mb-5 mb-lg-0">POST IT
+              </button></a>
             </div>
           </div>
-          </form>
       </div>
       </div>
     </section>
+
+            <!-- *** PAYMENT INFO MODAL***-->
+    <div id="payment-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade">
+      <div role="document" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="exampleModalLabel" class="modal-title">Payment details
+            </h4>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+              <span aria-hidden="true">×
+              </span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <?= $this->Form->control('service' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text', 'value'=>'Single Job Offer Post', 'required'=>true, 'hidden'=>'true')) ?>
+            <p align="left">SINGLE JOB OFFER POST</p>
+            <?= $this->Form->control('amount' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text', 'value'=>'199.99', 'required'=>true, 'hidden'=>'true')) ?>
+            <p align="left">199.99$ NET</p>
+            <p align="left">Company Invoicing Information</p>
+            <div class="form-group">
+              <?= $this->Form->control('company_tax' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Tax Number','value'=>'', 'required'=>true)) ?>
+            </div>
+            <div class="form-group">
+              <?= $this->Form->control('company_country' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Country','value'=>'', 'required'=>true)) ?>
+            </div>
+            <div class="form-group">
+              <?= $this->Form->control('company_city' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'City','value'=>'', 'required'=>true)) ?>
+            </div>
+            <div class="form-group">
+              <?= $this->Form->control('company_street' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Street/apartment','value'=>'', 'required'=>true)) ?>
+            </div>
+            <div class="form-group">
+              <?= $this->Form->control('postal_code' , array('div'=>false,'label'=>false,'class'=>'form-control', 'type'=>'text','placeholder'=>'Postal code','value'=>'', 'required'=>true)) ?>
+            </div>
+            <p class="text-center">
+              <center>
+                <?= $this->Form->submit(__('Go to payment'), array('class' => 'btn navbar-btn btn-outline-light mb-5 mb-lg-0')); ?>
+                <?= $this->Form->end() ?>
+              </center>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- *** PAYMENT INFO MODAL END ***-->
+
+
   <!--  Pricing section !-->            
   <section id="pricing">
     <div class="container">
