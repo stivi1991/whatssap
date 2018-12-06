@@ -27,7 +27,7 @@
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="../css/tablefilters.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="/./favicon.png">
+    <link rel="shortcut icon" href="/./favicon.ico">
         <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="/./css/scrolltop.css">
     <!-- Tweaks for older IEs-->

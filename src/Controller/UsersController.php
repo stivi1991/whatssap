@@ -363,7 +363,7 @@ public function jobsearch() {
             ->setEmailFormat('html')
             ->setViewVars(['message' => $message, 'name' => $this->request->getData()['name'], 'email' => $this->request->getData()['email']])
             ->send())
-      $this->Flash->success(__('Your email has been sent to Przemek. Thank you!'));
+      $this->Flash->success(__('Your email has been sent to Marika. Thank you!'));
       return $this->redirect($this->Auth->redirectUrl('/users/about/'));
 
       }

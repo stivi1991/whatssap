@@ -31,7 +31,7 @@
         <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="/./css/scrolltop.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="/./favicon.png">
+    <link rel="shortcut icon" href="/./favicon.ico">
     <!-- Tweaks for older IEs-->
     <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
