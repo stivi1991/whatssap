@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification"
+             content="<meta name="google-site-verification" content="fNGugkgKXiozkbkiwNYbMBNJkeBfbbVXQahch6PMPcM" />" />
     <title>What's SAP
     </title>
     <meta name="description" content="">
