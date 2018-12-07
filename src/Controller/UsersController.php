@@ -329,9 +329,10 @@ public function jobsearch() {
       $message = str_replace($order, $replace, $this->request->getData()['message']);
 
       $email = new Email('default');
-            if($email->setTo("swiecicki.przemek@gmail.com")
+            if($email->setTo("przemek@whatssap.it")
             ->setSubject("New message from " . $this->request->getData()['name'])
             ->setTemplate('default')
+            ->setSender('contact@whatssap.it','What\'s SAP')
             ->setLayout('usercontact')
             ->setEmailFormat('html')
             ->setViewVars(['message' => $message, 'name' => $this->request->getData()['name'], 'email' => $this->request->getData()['email']])
@@ -356,9 +357,10 @@ public function jobsearch() {
       $message = str_replace($order, $replace, $this->request->getData()['message']);
 
       $email = new Email('default');
-            if($email->setTo("gajewska.marika@gmail.com")
+            if($email->setTo("marika@whatssap.it")
             ->setSubject("New message from " . $this->request->getData()['name'])
             ->setTemplate('default')
+            ->setSender('contact@whatssap.it','What\'s SAP')
             ->setLayout('usercontact')
             ->setEmailFormat('html')
             ->setViewVars(['message' => $message, 'name' => $this->request->getData()['name'], 'email' => $this->request->getData()['email']])
@@ -394,14 +396,15 @@ public function jobsearch() {
 
       if($this->forgetTokens->save($token_entry)){
       $email = new Email('default');
-            if($email->setTo('swiecicki.przemek@gmail.com')
+            if($email->setTo($this->request->getData()['email'])
             ->setSubject("Password Reset")
             ->setTemplate('default')
+            ->setSender('contact@whatssap.it','What\'s SAP')
             ->setLayout('forgetEmail')
             ->setEmailFormat('html')
             ->setViewVars(['token' => $token])
             ->send()){
-      $this->Flash->success(__('Email was sent to your email address. Link is valid for 10 minutes.'));
+      $this->Flash->success(__('Email was sent to your email address. Link is valid for 30 minutes.'));
       return $this->redirect($this->Auth->redirectUrl('/'));
         } else {
         $this->Flash->error(__("Something went wrong, and we couldn't send the email. Please try again."));
@@ -490,8 +493,9 @@ public function jobsearch() {
       $message = str_replace($order, $replace, $this->request->getData()['message']);
 
       $email = new Email('default');
-            if($email->setTo("swiecicki.przemek@gmail.com")
+            if($email->setTo("contact@whatssap.it")
             ->setSubject("New message from " . $this->request->getData()['name'])
+            ->setSender('contact@whatssap.it','What\'s SAP')
             ->setTemplate('default')
             ->setLayout('usercontact')
             ->setEmailFormat('html')
