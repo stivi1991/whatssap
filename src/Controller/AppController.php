@@ -78,12 +78,10 @@ class AppController extends Controller
             $this->Auth->allow('jobapply');
             $this->Auth->allow('about');
             $this->Auth->allow('emailMarika');
-            $this->Auth->allow('emailPrzemek'); 
-            $this->Auth->allow('forgetEmail');  
+            $this->Auth->allow('emailPrzemek');  
             $this->Auth->allow('passwordReset'); 
             $this->Auth->allow('contactEmail');
-            $this->Auth->allow('invoiceGen');
-            $this->Auth->allow('blog');             
+            $this->Auth->allow('howto');             
             $this->Auth->deny('admin');
           }
       }

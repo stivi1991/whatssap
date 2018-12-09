@@ -6,6 +6,7 @@ use Cake\ORM\TableRegistry;
 use Cake\Filesystem\Folder;
 use Cake\Mailer\Email;
 use Cake\Utility\Text;
+use Cake\ORM\Query;
 
 /**
  * Users Controller
@@ -245,6 +246,91 @@ public function jobsearch() {
         ]);
 
         $this->set('offer', $offer);
+
+        $number_of_recomendations = 3;
+
+///////////////////////
+////recommended both
+
+        $similar_all = $this->jobOffer->find('all', [
+            'conditions' => [ 'city' => $offer->city, 'module' => $offer->module, 'id !=' => $offer->id]
+          , 'order' => 'rand()'
+        ]);
+
+
+///////////////////////
+////recommended module
+
+        if($number_of_recomendations > 0) {
+
+        $similar_module = $this->jobOffer->find('all', [
+            'conditions' => ['module' => $offer->module, 'id !=' => $offer->id, 'result_all.jobOffer__id IS' => NULL],
+            'order' => 'rand()'
+          ])->join([
+        'result_all' => [
+            'table' => $similar_all,
+            'type' => 'LEFT',
+            'conditions' => '(result_all.jobOffer__id = id)'
+        ]
+        ]);
+        }
+
+
+    ///////////////////////
+////recommended city
+
+        if($number_of_recomendations > 0) {
+
+        $similar_city = $this->jobOffer->find('all', [
+            'conditions' => ['city' => $offer->city, 'id !=' => $offer->id, 'result_all.jobOffer__id IS' => NULL,  'result_module.jobOffer__id IS' => NULL],
+            'order' => 'rand()'
+          ])->join([
+        'result_all' => [
+            'table' => $similar_all,
+            'type' => 'LEFT',
+            'conditions' => '(result_all.jobOffer__id = id)'
+        ],
+        'result_module' => [
+          'table' => $similar_module,
+            'type' => 'LEFT',
+            'conditions' => '(result_module.jobOffer__id = id)'
+        ]
+        ]);
+        }
+
+
+    ///////////////////////
+////recommended random
+
+        if($number_of_recomendations > 0) {
+
+        $similar_random = $this->jobOffer->find('all', [
+            'conditions' => ['id !=' => $offer->id, 'result_all.jobOffer__id IS' => NULL,  'result_module.jobOffer__id IS' => NULL, 'result_city.jobOffer__id IS' => NULL],
+            'order' => 'rand()'
+          ])->join([
+        'result_all' => [
+            'table' => $similar_all,
+            'type' => 'LEFT',
+            'conditions' => '(result_all.jobOffer__id = id)'
+        ],
+        'result_module' => [
+          'table' => $similar_module,
+            'type' => 'LEFT',
+            'conditions' => '(result_module.jobOffer__id = id)'
+        ],
+        'result_city' => [
+          'table' => $similar_city,
+            'type' => 'LEFT',
+            'conditions' => '(result_city.jobOffer__id = id)'
+        ]
+        ]);
+        }
+
+        $this->set('similar_all', $similar_all);
+        $this->set('similar_module', $similar_module);
+        $this->set('similar_city', $similar_city);
+        $this->set('similar_random', $similar_random);
+
     }
 
 ///end of job details action
@@ -525,7 +611,7 @@ public function jobsearch() {
 
 ///blog action
 
-        public function blog()
+        public function howto()
     {
       
     }

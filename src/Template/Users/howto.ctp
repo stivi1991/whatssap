@@ -61,7 +61,7 @@
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a href="/users/jobsearch" class="nav-link">Job offers
+                <a href="/users/jobsearch" class="nav-link">Advanced Search
                   <span class="sr-only">(current)
                   </span>
                 </a>
@@ -71,7 +71,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/users/blog" class="nav-link">Blog
+                <a href="/users/howto" class="nav-link">How to start
                 </a>
               </li>
               <li class="nav-item dropdown">
@@ -289,7 +289,7 @@
     <section class="job-form-section job-form-section--image">
       <div class="container">
         <h2 class="heading">
-          <span class="center-heading">Blog
+          <span class="center-heading">How to start
           </span>
         </h2>
       </div>

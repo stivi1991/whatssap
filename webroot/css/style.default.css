@@ -3581,14 +3581,14 @@ border-left: solid 5px #5F0F4E;
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
   letter-spacing: 0.2em;
   padding: 0.375rem 0.75rem;
-  font-size: 0.875rem;
+  font-size: 0.600rem;
   font-weight: 700;
   color: black;
 }
 
 .thinfont {
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
-  font-size: 0.875rem;
+  font-size: 0.575rem;
   letter-spacing: 0.1em;
   padding: 0.75rem 0.45rem;
   font-weight: 100;
@@ -3641,10 +3641,10 @@ background-color: #67AECA;
 }
 
 .largebtn {
-  width: 200px;
-  height: 60px;
+  width: 180px;
+  height: 50px;
   margin-top: 5px;
-  padding-top: 18px;
+  padding-top: 15px;
 }
 
 .socialicons {
@@ -3725,13 +3725,21 @@ background-color: #67AECA;
 }
 
 .rowclose {
-  margin-bottom:-35px !important;"
+  margin-bottom:-40px !important;"
 }
 
 .labelclose {
-  margin-bottom:-30px !important;"
+  margin-bottom:-35px !important;"
 }
 
 .titleclose {
   margin-bottom:-5px !important;"
+}
+
+.navbar {
+  font-size: 11px;
+}
+
+.smaller-font{
+  font-size: 10px !important;
 }

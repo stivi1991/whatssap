@@ -61,7 +61,7 @@
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a href="/users/jobsearch" class="nav-link">Job offers
+                <a href="/users/jobsearch" class="nav-link">Advanced Search
                   <span class="sr-only">(current)
                   </span>
                 </a>
@@ -71,7 +71,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/users/blog" class="nav-link">Blog
+                <a href="/users/howto" class="nav-link">How to start
                 </a>
               </li>
               <li class="nav-item dropdown">

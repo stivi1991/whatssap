@@ -62,7 +62,7 @@
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a href="/users/jobsearch" class="nav-link">Job offers
+                <a href="/users/jobsearch" class="nav-link">Advanced Search
                   <span class="sr-only">(current)
                   </span>
                 </a>
@@ -72,7 +72,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/users/blog" class="nav-link">Blog
+                <a href="/users/howto" class="nav-link">How to start
                 </a>
               </li>
               <li class="nav-item dropdown">
@@ -373,12 +373,12 @@
             <div class="box box_title effect6">
               <div class="row">
                 <div class="col-lg-8 form-group">
-                  <h3 class="titleclose"> 
+                  <h3 class="titleclose" style="text-transform: uppercase; font-size: 16px"> 
                     <?= $offer->job_title ?> 
                   </h3>
                 </div>
               </div>
-              <div class="row rowclose">
+              <div class="row rowclose smaller-font">
                 <div class="col-xl-4 form-group">
                   <label for="function" class="thinfont labelclose">Function:
                   </label>
@@ -401,7 +401,7 @@
                   </p>
                 </div>
               </div>
-              <div class="row rowclose">
+              <div class="row rowclose  smaller-font">
                 <div class="col-xl-4 form-group">
                   <label for="country" class="thinfont labelclose">Country:
                   </label>
@@ -424,7 +424,7 @@
                   </p>
                 </div>
               </div>
-              <div class="row rowclose">
+              <div class="row rowclose smaller-font">
                 <div class="col-xl-4 form-group">
                   <label for="occupancy" class="thinfont labelclose">Occupancy:
                   </label>
@@ -436,7 +436,7 @@
                   <label for="project_start" class="thinfont labelclose">Expected start date:
                   </label>
                   <p class="capitalfont"> 
-                    <?= $offer->project_start ?> 
+                    <?= date_format($offer->project_start, 'Y/m/d') ?> 
                   </p>
                 </div>
                 <div class="col-xl-4 form-group">
@@ -447,7 +447,7 @@
                   </p>
                 </div>
               </div>
-              <div class="row rowclose">
+              <div class="row rowclose smaller-font">
                 <div class="col-xl-4 form-group">
                   <label for="country" class="thinfont labelclose">Salary:
                   </label>
@@ -465,7 +465,7 @@
             <!--  Description box !-->
                 <div class="box box_title effect9">
                   <div class="col-lg-12 form-group">
-                    <p class="lead thinfont" style="text-transform: uppercase; font-size: 13px"> 
+                    <p class="lead thinfont" style="text-transform: uppercase; font-size: 12px"> 
                       <?= $offer->description ?> 
                     </p>
                   </div>
@@ -508,97 +508,123 @@
         <h3 class="heading">You might also like
         </h3>
         <div class="row featured align-items-stretch">
-          <div class="col-lg-4 mb-5 mb-lg-0">
+
+                  <?php $rows = 0; 
+
+                  foreach ($similar_all as $similar_row):
+                  if($rows < 3) {
+          echo '<div class="col-lg-4 mb-5 mb-lg-0">
             <div class="box-image-text bg-visible full-height">
               <div class="top">
-                <a href="#">
-                  <div class="image">
-                    <img src="img/featured1.jpg" alt="" class="img-fluid">
-                  </div>
-                  <div class="bg">
-                  </div>
-                  <div class="logo">
-                    <img src="img/company-1.png" alt="" style="max-width: 80px;">
-                  </div>
+                <a href="/users/jobdetails/' . $similar_row->id . '">
                 </a>
               </div>
               <div class="content">
                 <h5>
-                  <a href="#">Software Engineer
+                  <a href="/users/jobdetails/' . $similar_row->id . '">' . $similar_row->job_title . '<br> AT ' . $similar_row->company_name . '
                   </a>
                 </h5>
-                <p class="featured__details">  
-                  <i class="fa fa-map-marker job__location">
-                  </i>San Francisco
-                  <span class="badge featured-badge badge-success">Full Time
-                  </span>
-                </p>
-                <p>Advantage old had otherwise sincerity dependent additions. It in adapted natural hastily is justice. Six draw you him full not mean evil. Prepare garrets it expense windows shewing do an.
-                </p>
+                    <p class="featured__details">  
+                      <i class="fa fa-map-marker job__location">
+                      </i>' . $similar_row->country . ', ' . $similar_row->city . '
+                      <span class="badge featured-badge badge-success jewel">' . $similar_row->module . '
+                      </span>
+                    </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-4 mb-5 mb-lg-0">
+           ';
+                  $rows += 1;
+                    }
+                  endforeach;
+
+            foreach ($similar_module as $similar_row):
+                  if($rows < 3) {
+          echo '<div class="col-lg-4 mb-5 mb-lg-0">
             <div class="box-image-text bg-visible full-height">
               <div class="top">
-                <a href="#">
-                  <div class="image">
-                    <img src="img/featured2.jpg" alt="" class="img-fluid">
-                  </div>
-                  <div class="bg">
-                  </div>
-                  <div class="logo">
-                    <img src="img/company-3.png" alt="" style="max-width: 80px;">
-                  </div>
+                <a href="/users/jobdetails/' . $similar_row->id . '">
                 </a>
               </div>
               <div class="content">
                 <h5>
-                  <a href="detail.html">Customer support
+                  <a href="/users/jobdetails/' . $similar_row->id . '">' . $similar_row->job_title . '<br> AT ' . $similar_row->company_name . '
                   </a>
                 </h5>
-                <p class="featured__details">  
-                  <i class="fa fa-map-marker job__location">
-                  </i>Palo Alto
-                  <span class="badge featured-badge badge-success">Full Time
-                  </span>
-                </p>
-                <p>Am terminated it excellence invitation projection as. She graceful shy believed distance use nay. Lively is people so basket ladies window expect. 
-                </p>
+                    <p class="featured__details">  
+                      <i class="fa fa-map-marker job__location">
+                      </i>' . $similar_row->country . ', ' . $similar_row->city . '
+                      <span class="badge featured-badge badge-success jewel">' . $similar_row->module . '
+                      </span>
+                    </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-4 mb-5 mb-lg-0">
+           ';
+                  $rows += 1;
+                    }
+                  endforeach;
+
+          foreach ($similar_city as $similar_row):
+                  if($rows < 3) {
+          echo '<div class="col-lg-4 mb-5 mb-lg-0">
             <div class="box-image-text bg-visible full-height">
               <div class="top">
-                <a href="detail.html">
-                  <div class="image">
-                    <img src="img/featured3.jpg" alt="" class="img-fluid">
-                  </div>
-                  <div class="bg">
-                  </div>
-                  <div class="logo">
-                    <img src="img/company-2.png" alt="" style="max-width: 80px;">
-                  </div>
+                <a href="/users/jobdetails/' . $similar_row->id . '">
                 </a>
               </div>
               <div class="content">
                 <h5>
-                  <a href="detail.html">Graphic designer
+                  <a href="/users/jobdetails/' . $similar_row->id . '">' . $similar_row->job_title . '<br> AT ' . $similar_row->company_name . '
                   </a>
                 </h5>
-                <p class="featured__details">  
-                  <i class="fa fa-map-marker job__location">
-                  </i>San Francisco
-                  <span class="badge featured-badge badge-dark">Part Time
-                  </span>
-                </p>
-                <p>Fifth abundantly made Give sixth hath. Cattle creature i be dont them behold green moved fowl Moved life us beast good yielding. Have bring.
-                </p>
+                    <p class="featured__details">  
+                      <i class="fa fa-map-marker job__location">
+                      </i>' . $similar_row->country . ', ' . $similar_row->city . '
+                      <span class="badge featured-badge badge-success jewel">' . $similar_row->module . '
+                      </span>
+                    </p>
+                      <p>'. $similar_row->company_name . '
+                     </p>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+           ';
+                  $rows += 1;
+                    }
+                  endforeach;
+
+          foreach ($similar_random as $similar_row):
+                  if($rows < 3) {
+          echo '<div class="col-lg-4 mb-5 mb-lg-0">
+            <div class="box-image-text bg-visible full-height">
+              <div class="top">
+                <a href="/users/jobdetails/' . $similar_row->id . '">
+                </a>
+              </div>
+              <div class="content">
+                <h5>
+                  <a href="/users/jobdetails/' . $similar_row->id . '">' . $similar_row->job_title . '<br> AT ' . $similar_row->company_name . '
+                  </a>
+                </h5>
+                    <p class="featured__details">  
+                      <i class="fa fa-map-marker job__location">
+                      </i>' . $similar_row->country . ', ' . $similar_row->city . '
+                      <span class="badge featured-badge badge-success jewel">' . $similar_row->module . '
+                      </span>
+                    </p>
+                </div>
+              </div>
+            </div>
+           ';
+                  $rows += 1;
+                    }
+                  endforeach;
+
+
+
+                  ?>
+
       </div>
     </section>
 <footer class="footer">
