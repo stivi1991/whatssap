@@ -373,7 +373,7 @@
             <div class="box box_title effect6">
               <div class="row">
                 <div class="col-lg-8 form-group">
-                  <h3 class="titleclose" style="text-transform: uppercase; font-size: 16px"> 
+                  <h3 class="titleclose" style="text-transform: uppercase; font-size: 18px"> 
                     <?= $offer->job_title ?> 
                   </h3>
                 </div>
@@ -465,7 +465,7 @@
             <!--  Description box !-->
                 <div class="box box_title effect9">
                   <div class="col-lg-12 form-group">
-                    <p class="lead thinfont" style="text-transform: uppercase; font-size: 12px"> 
+                    <p class="lead thinfont" style="text-transform: uppercase; font-size: 13px"> 
                       <?= $offer->description ?> 
                     </p>
                   </div>

@@ -3585,14 +3585,14 @@ border-left: solid 5px #5F0F4E;
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
   letter-spacing: 0.2em;
   padding: 0.375rem 0.75rem;
-  font-size: 0.600rem;
+  font-size: 0.710rem;
   font-weight: 700;
   color: black;
 }
 
 .thinfont {
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
-  font-size: 0.575rem;
+  font-size: 0.690rem;
   letter-spacing: 0.1em;
   padding: 0.75rem 0.45rem;
   font-weight: 100;
@@ -3746,9 +3746,9 @@ background-color: #67AECA;
 }
 
 .smaller-font{
-  font-size: 11px !important;
+  font-size: 12px !important;
 }
 
 .bootstrap-select .dropdown-toggle .filter-option {
-  font-size: 10px !important;
+  font-size: 12px !important;
 }
