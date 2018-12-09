@@ -584,8 +584,6 @@
                       <span class="badge featured-badge badge-success jewel">' . $similar_row->module . '
                       </span>
                     </p>
-                      <p>'. $similar_row->company_name . '
-                     </p>
                 </div>
               </div>
             </div>

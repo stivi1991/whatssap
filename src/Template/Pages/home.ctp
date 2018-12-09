@@ -312,7 +312,7 @@
                           <input type="checkbox" id=
                                  <?= $offer_row->location_data_name ?> autocomplete="off" hidden>
                         </input>
-                      <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location" data-target-location=
+                      <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location btn-rounded" data-target-location=
                               <?= $offer_row->location_data_name ?>>
                       <?= $offer_row->city ?>
                       </button>
@@ -333,7 +333,7 @@
                     <input type="checkbox" id=
                            <?= $offer_row->module_data_name ?> autocomplete="off" hidden>
                   </input>
-                <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module" data-target-module=
+                <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module btn-rounded" data-target-module=
                         <?= $offer_row->module_data_name; ?>>
                 <?= $offer_row->module_desc ?>
                 </button>

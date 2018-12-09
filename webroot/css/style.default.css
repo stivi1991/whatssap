@@ -1923,6 +1923,10 @@ STYLE SWITCHER FOR DEMO
     margin-top: 5px;
 }
 
+.btn-rounded {
+    border-radius:8px !important;
+}
+
 .btn-info:hover {
   color: color-yiq(#5f0f4e);
   background-color: #5f0f4e;
@@ -3610,8 +3614,9 @@ border-left: solid 5px #5F0F4E;
   text-transform: uppercase;
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
   letter-spacing: 0.1em;
-  font-size: 0.775rem;
+  font-size: 10px !important;
   color: black;
+
 }
 
 .noborder {
@@ -3729,7 +3734,7 @@ background-color: #67AECA;
 }
 
 .labelclose {
-  margin-bottom:-35px !important;"
+  margin-bottom:-30px !important;"
 }
 
 .titleclose {
@@ -3741,5 +3746,9 @@ background-color: #67AECA;
 }
 
 .smaller-font{
+  font-size: 11px !important;
+}
+
+.bootstrap-select .dropdown-toggle .filter-option {
   font-size: 10px !important;
 }

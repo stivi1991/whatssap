@@ -253,7 +253,7 @@ public function jobsearch() {
 ////recommended both
 
         $similar_all = $this->jobOffer->find('all', [
-            'conditions' => [ 'city' => $offer->city, 'module' => $offer->module, 'id !=' => $offer->id]
+            'conditions' => [ 'UPPER(city)' => strtoupper($offer->city), 'UPPER(module)' => strtoupper($offer->module), 'id !=' => $offer->id]
           , 'order' => 'rand()'
         ]);
 
@@ -264,7 +264,7 @@ public function jobsearch() {
         if($number_of_recomendations > 0) {
 
         $similar_module = $this->jobOffer->find('all', [
-            'conditions' => ['module' => $offer->module, 'id !=' => $offer->id, 'result_all.jobOffer__id IS' => NULL],
+            'conditions' => ['UPPER(module)' => strtoupper($offer->module), 'id !=' => $offer->id, 'result_all.jobOffer__id IS' => NULL],
             'order' => 'rand()'
           ])->join([
         'result_all' => [
@@ -282,7 +282,7 @@ public function jobsearch() {
         if($number_of_recomendations > 0) {
 
         $similar_city = $this->jobOffer->find('all', [
-            'conditions' => ['city' => $offer->city, 'id !=' => $offer->id, 'result_all.jobOffer__id IS' => NULL,  'result_module.jobOffer__id IS' => NULL],
+            'conditions' => ['UPPER(city)' => strtoupper($offer->city), 'id !=' => $offer->id, 'result_all.jobOffer__id IS' => NULL,  'result_module.jobOffer__id IS' => NULL],
             'order' => 'rand()'
           ])->join([
         'result_all' => [

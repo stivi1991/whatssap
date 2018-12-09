@@ -319,14 +319,14 @@
             <div class="box box_title effect6">
               <div class="row">
                 <div class="col-lg-12 form-group">
-                  <label for="job_title" class="thinfont">Job title:
+                  <label for="job_title" class="thinfont labelclose smaller-font">Job title:
                   </label>
                   <input id="job_title" type="text" placeholder="JOB TITLE" name="job_title" class="form-control capitalfont" required />
                 </div>
               </div>
               <div class="row">
                 <div class="col-xl-4 form-group">
-                  <label for="function" class="thinfont">Function:
+                  <label for="function" class="thinfont labelclose smaller-font">Function:
                   </label>
                   <select id="function" placeholder="FUNCTION" name="function" class="form-control select2" required>
                     <option disabled selected hidden>Function
@@ -342,7 +342,7 @@
                   </select>
                 </div>
                 <div class="col-lg-4 form-group">
-                  <label for="module" class="thinfont">Module:
+                  <label for="module" class="thinfont labelclose smaller-font">Module:
                   </label>
                   <select id="module" name="module" class="form-control select2" required>
                     <option disabled selected hidden>SAP Module
@@ -359,7 +359,7 @@ endforeach;
                   </select>
                 </div>
                 <div class="col-xl-4 form-group">
-                  <label for="exp_type" class="thinfont">Level of expertise:
+                  <label for="exp_type" class="thinfont labelclose smaller-font">Level of expertise:
                   </label>
                   <select id="exp_type" placeholder="Level of expertise" name="exp_type" class="form-control select2 capitalfont" required>
                     <option disabled selected hidden>Level of expertise
@@ -377,7 +377,7 @@ endforeach;
               </div>
               <div class="row">
                 <div class="col-xl-4 form-group">
-                  <label for="country" class="thinfont">Country:
+                  <label for="country" class="thinfont labelclose smaller-font">Country:
                   </label>
                   <select id="country" name="country" class="form-control select2" required>
                     <option disabled selected hidden>Country
@@ -394,12 +394,12 @@ endforeach;
                   </select>
                 </div>
                 <div class="col-lg-4 form-group">
-                  <label for="city" class="thinfont">City:
+                  <label for="city" class="thinfont labelclose smaller-font">City:
                   </label>
                   <input id="city" type="text" name="city" placeholder="City" class="form-control capitalfont" required />
                 </div>
                 <div class="col-xl-4 form-group">
-                  <label for="job_type" class="thinfont">Type of contract:
+                  <label for="job_type" class="thinfont labelclose smaller-font">Type of contract:
                   </label>
                   <select id="job_type" placeholder="type" name="job_type" class="form-control select2" required>
                     <option disabled selected hidden>Type of contract
@@ -421,17 +421,17 @@ endforeach;
             <div class="box box_title effect7">
               <div class="row">
                 <div class="col-xl-3 form-group">
-                  <label for="salary_from" class="thinfont">Salary from:
+                  <label for="salary_from" class="thinfont labelclose smaller-font">Salary from:
                   </label>
                   <input id="salary_from" type="text" name="salary_from" placeholder="Salary from" class="form-control capitalfont" required>
                 </div>
                 <div class="col-xl-3 form-group">
-                  <label for="salary_to" class="thinfont">Salary to:
+                  <label for="salary_to" class="thinfont labelclose smaller-font">Salary to:
                   </label>
                   <input id="salary_to" type="text" name="salary_to" placeholder="Salary to" class="form-control capitalfont" required>
                 </div>
                 <div class="col-xl-2 form-group">
-                  <label for="currency" class="thinfont">Currency:
+                  <label for="currency" class="thinfont labelclose smaller-font">Currency:
                   </label>
                   <select id="currency" type="text" placeholder="Currency:" name="currency" class="form-control select2" required>
                     <option disabled selected hidden>Currency
@@ -445,7 +445,7 @@ endforeach;
                   </select>
                 </div>
                 <div class="col-xl-2 form-group">
-                  <label for="salary_type" class="thinfont">Per:
+                  <label for="salary_type" class="thinfont labelclose smaller-font">Per:
                   </label>
                   <select id="salary_type" placeholder="Salary per:" name="salary_type" class="form-control select2" required>
                     <option disabled selected hidden>Per
@@ -461,7 +461,7 @@ endforeach;
                   </select>
                 </div>
                 <div class="col-xl-2 form-group">
-                  <label for="salary_kind" class="thinfont">Kind:
+                  <label for="salary_kind" class="thinfont labelclose smaller-font">Kind:
                   </label>
                   <select id="salary_kind" placeholder="Kind" name="salary_kind" class="form-control select2" required>
                     <option disabled selected hidden>Kind
@@ -475,7 +475,7 @@ endforeach;
               </div>
               <div class="row">
                 <div class="col-xl-4 form-group">
-                  <label for="occupancy" class="thinfont">Occupancy:
+                  <label for="occupancy" class="thinfont labelclose smaller-font">Occupancy:
                   </label>
                   <select id="occupancy" data-placeholder="Mobility" name="occupancy" class="form-control select2" required>
                     <option disabled selected hidden>Occupancy
@@ -495,12 +495,12 @@ endforeach;
                   </select>
                 </div>
                 <div class="col-xl-3 form-group">
-                  <label for="project_start" class="thinfont">Expected start date:
+                  <label for="project_start" class="thinfont labelclose smaller-font">Expected start date:
                   </label>
                   <input id="project_start" name="project_start" type="text" class="form-control" required />
                 </div>
                 <div class="col-xl-5 form-group">
-                  <label for="duration" class="thinfont">Expected duration (months):
+                  <label for="duration" class="thinfont labelclose smaller-font">Expected duration (months):
                   </label>
                   <div class="range-slider">
                     <input id="duration" class="range-slider__range" name="duration" type="range" value="1" min="1" max="60">
@@ -538,12 +538,12 @@ endforeach;
                 <div class="box box_title effect8">
                   <div class="row">
                     <div class="col-lg-6 form-group">
-                      <label for="company_name" class="thinfont">Company name:
+                      <label for="company_name" class="thinfont labelclose smaller-font">Company name:
                       </label>
                       <input id="company_name" name="company_name" type="text" class="form-control" required />
                     </div>
                     <div class="col-lg-6 form-group">
-                      <label for="apply_email" class="thinfont">
+                      <label for="apply_email" class="thinfont labelclose  smaller-font">
                         <div class="row">
                         Applying email:<div class="question-mark">
                         <div class="tooltip">
@@ -557,7 +557,7 @@ endforeach;
                   <div class="row">
                     <p class="job-detail__social social social--outline">
                     <div class="col-lg-4 form-group">
-                      <label for="company_url" class="thinfont">Website 
+                      <label for="company_url" class="thinfont labelclose smaller-font">Website 
                         <i class="fa fa-globe">
                         </i>
                       </label>
@@ -566,14 +566,14 @@ endforeach;
                       </div>
                     </div>
                     <div class="col-lg-4 form-group">
-                      <label for="company_facebook" class="thinfont">Facebook 
+                      <label for="company_facebook" class="thinfont labelclose smaller-font">Facebook 
                         <i class="fa fa-facebook">
                         </i>
                       </label>
                       <input id="company_facebook" name="company_facebook" type="url" class="form-control" />
                     </div>
                     <div class="col-lg-4 form-group">
-                      <label for="company_linkedin" class="thinfont">LinkedIn 
+                      <label for="company_linkedin" class="thinfont labelclose smaller-font">LinkedIn 
                         <i class="fa fa-linkedin">
                         </i>
                       </label>
