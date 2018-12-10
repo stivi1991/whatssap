@@ -9,39 +9,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!--preloader-->
-    <link href="../css/preloader.css" rel="stylesheet">
+    <link href="/./css/preloader.css" rel="stylesheet">
     <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/./vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="../vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/./vendor/font-awesome/css/font-awesome.min.css">
     <!-- Google fonts - Roboto for copy, Montserrat for headings-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <!-- owl carousel-->
-    <link rel="stylesheet" href="../vendor/owl.carousel/assets/owl.carousel.css">
-    <link rel="stylesheet" href="../vendor/owl.carousel/assets/owl.theme.default.css">
+    <link rel="stylesheet" href="/./vendor/owl.carousel/assets/owl.carousel.css">
+    <link rel="stylesheet" href="/./vendor/owl.carousel/assets/owl.theme.default.css">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="../css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="/./css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="/./css/custom.css">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="../css/tablefilters.css">
+    <link rel="stylesheet" href="/./css/tablefilters.css">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/./css/scrolltop.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="/./favicon.ico">
-        <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="/./css/scrolltop.css">
-    <!-- Tweaks for older IEs-->
-    <!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
   <body>
     <!-- Preloader Start -->
+    <script src="/./vendor/jquery/jquery.min.js">
+    </script>
     <div id="preloader">
       <div class="colorlib-load">
       </div>
     </div>
-    <script src="../js/preloader.js">
+    <script src="/./js/preloader.js">
     </script>
     <?= $this->Flash->render() ?>
     <!-- navbar-->
@@ -284,78 +282,114 @@
     </div>
     <!-- *** TERMS MODAL ***-->
 
-    <div class="row">
-      <div class="col-md-6 col-lg-6">
-        <div class="col-lg-12 mx-auto">
-          <h3 class="heading">FIND YOUR NEXT 
-            <span class="accent">PROJECT
-            </span>.
-          </h3>
-          <form id="job-main-form" method="get" action="#" class="job-main-form">
-            <div class="row align-items-center">
+
+
+    <section class="job-form-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <div class="job-form-box">
+              <h2 class="heading">
+                <span class="accent">ADVANCED SEARCH
+                </span>
+                <span class="accent">
+                </span>
+              </h2>
+              <form id="job-main-form" method="get" action="#" class="job-main-form">
+                <div class="controls">
+                  <div class="row align-items-center">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <hr>
+                        <div class="row">
+                          <label for="profession" class='main-center-text' style="color:black;">
+                            <b>Country
+                            </b>
+                          </label>
+                        </div>
+                        <?php foreach ($dist_countries as $offer_row): ?>
+                        <tr>
+                      <button type="button" class="btn btn-info btn-sm btn-space btn-filter btn-rounded" data-target-country=
+                              <?= strtolower($offer_row->country) ?>>
+                      <?= $offer_row->country ?>
+                      </button>
+                    </tr>
+                  <?php endforeach;?>
+                </div>
+                </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <hr>
+                        <div class="row">
+                          <label for="profession" class='main-center-text' style="color:black;">
+                            <b>City
+                            </b>
+                          </label>
+                        </div>
+                        <?php foreach ($dist_locations as $offer_row): ?>
+                        <tr>
+                      <button type="button" class="btn btn-info btn-sm btn-space btn-filter btn-rounded" data-target-location=
+                              <?= $offer_row->location_data_name ?>>
+                      <?= $offer_row->city ?>
+                      </button>
+                    </tr>
+                  <?php endforeach;?>
+                </div>
+                </div>
               <div class="col-md-12">
                 <div class="form-group">
+                  <hr>
                   <div class="row">
-                    <label for="profession">
-                      <b>Location:
+                    <label for="location" class='main-center-text' style="color:black;">
+                      <b>Module
                       </b>
                     </label>
                   </div>
-                  <?php foreach ($dist_locations as $offer_row): ?>
+                  <?php foreach ($dist_modules as $offer_row): ?>
                   <tr>
-                    <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location" data-target-location=
-                            <?= $offer_row->location_data_name ?>>
-                    <?= $offer_row->city ?>
-                  </button>
-                </tr>
-              <?php endforeach;?>
-              <button type="button" class="btn btn-info btn-sm btn-space btn-filter-location" data-target-location="all">All
-              </button>
-            </div>
-            </div>
-          <div class="col-md-12">
-            <div class="form-group">
-              <div class="row">
-                <label for="location">
-                  <b>Module:
-                  </b>
-                </label>
-              </div>
-              <?php foreach ($dist_modules as $offer_row): ?>
-              <tr>
-                <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module" data-target-module=
+                <button type="button" class="btn btn-info btn-sm btn-space btn-filter btn-rounded" data-target-module=
                         <?= $offer_row->module_data_name; ?>>
                 <?= $offer_row->module_desc ?>
-              </button>
-            </tr>
-          <?php endforeach;?>
-          <button type="button" class="btn btn-info btn-sm btn-space btn-filter-module" data-target-module="all">All
-          </button>
+                </button>
+              </tr>
+            <?php endforeach;?>
+          </div>
         </div>
       </div>
-    </div>
+      </div>
     </form>
   </div>
 </div>
-<div class="col-md-6 col-lg-6">
-  <h3 class="heading">We have 
-    <span class="accent">
-      <?= $offer->count(); ?> 
-    </span> active jobs
-  </h3>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div class="table-container">
-        <table class="table table-filter">
-          <tbody>
-            <?php foreach ($offer as $offer_row): ?>
-            <tr data-location=
-                <?= $offer_row->location_data_name ?> data-module=
-            <?= $module->find()->where(['module_desc' => $offer_row->module])->first()->module_data_name; ?>>
-            <td>
+</div>
+</div>
+</section>
+
+
+<section>
+  <div class="container">
+    <h3 class="heading" id="jobcounter">We have 
+      <span class="accent">
+        <?= $offer->count(); ?> 
+      </span> active offers
+    </h3>
+    <table id="offertable" class="table table-bordered table-sm table-filter" cellspacing="0" width="100%">
+      <thead style='display:none;'>
+        <tr>
+          <th>Offer
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($offer as $offer_row): ?>
+        <tr data-location="<?= $offer_row->location_data_name ?>" data-module="<?= $module->find()->where(['module_desc' => $offer_row->module])->first()->module_data_name; ?>">
+          <td class="border-<?= strtolower($offer_row->exp_type) ?>">
+            <a href="users/jobdetails/<?= $offer_row->id ?>" class="nostyle">
               <h4 class="title">
                 <?= $offer_row->job_title ?>
-                <span class="pull-right pagado">
+                <span class="pull-right">
+                  <i class="fa fa-map-marker job__location"> 
+                  </i> 
+                  <?= $offer_row->country ?>, 
                   <?= $offer_row->city ?>
                 </span>
               </h4>
@@ -369,14 +403,16 @@
                       <div class="col-lg-3">
                         <p class="featured__details">
                           <span class="label featured__label label-success">
-                            <?= $offer_row->contract_type ?> 
+                            <?= $offer_row->job_type ?> 
                           </span>
                         </p>
                       </div>
                       <div class="col-lg-3">
                         <p class="featured__details">
                           <span class="label featured__label label-success">
-                            <?= $offer_row->salary ?> 
+                            <?= $offer_row->salary_from ?> - 
+                            <?= $offer_row->salary_to ?> 
+                            <?= $offer_row->salary_kind ?>
                             <?= $offer_row->currency ?> per 
                             <?= $offer_row->salary_type ?>
                           </span>
@@ -390,73 +426,26 @@
                         </p>
                       </div>
                       <div class="col-lg-3 text-right">
-                        <p>Starts: 
-                          <?= date_format($offer_row->project_start, "d/m/Y") ?>
+                        <p class="featured__details">
+                          <span class="label featured__label label-success">Posted: 
+                            <?= $offer_row->elapsed ?>
+                          </span>
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-12">
-                    <p>
-                    </p>
-                  </div>
                 </div>
               </div>
-            </td>
-          </tr>
+            </a>
+          </td>
+        </tr>
         <?php endforeach;?>
-        </tbody>
-      </table>
+      </tbody>
+    </table>
   </div>
-</div>
-</div>
-<div class="pages">
-  <p class="load-more">
-    <a href="#" class="mb-4 btn btn-outline-white-primary">
-      <i class="fa fa-chevron-down"> 
-      </i>Load more
-    </a>
-  </p>
-  <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4 mb-4">
-    <ul class="pagination">
-      <li class="page-item">
-        <a href="#" aria-label="Previous" class="page-link">
-          <span aria-hidden="true">«
-          </span>
-          <span class="sr-only">Previous
-          </span>
-        </a>
-      </li>
-      <li class="page-item active">
-        <a href="#" class="page-link">1
-        </a>
-      </li>
-      <li class="page-item">
-        <a href="#" class="page-link">2
-        </a>
-      </li>
-      <li class="page-item">
-        <a href="#" class="page-link">3
-        </a>
-      </li>
-      <li class="page-item">
-        <a href="#" class="page-link">4
-        </a>
-      </li>
-      <li class="page-item">
-        <a href="#" aria-label="Next" class="page-link">
-          <span aria-hidden="true">»
-          </span>
-          <span class="sr-only">Next
-          </span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-</div>
-</div>
-</div>
-</div>
+</section>
+
+
 <footer class="footer">
   <hr>
   <div class="footer__copyright">
@@ -480,24 +469,19 @@
 </div>
 </footer>
 <!-- JavaScript files-->
-<script src="../js/preloader.js">
+<script src="/./vendor/popper.js/umd/popper.min.js"> </script>
+<script src="/./vendor/bootstrap/js/bootstrap.min.js">
 </script>
-<script src="../vendor/jquery/jquery.min.js">
+<script src="/./vendor/owl.carousel/owl.carousel.min.js">
 </script>
-<script src="../vendor/popper.js/umd/popper.min.js"> </script>
-<script src="../vendor/bootstrap/js/bootstrap.min.js">
+<script src="/./vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
+<script src="/./js/tablefilters.js">
 </script>
-<script src="../vendor/jquery.cookie/jquery.cookie.js"> </script>
-<script src="../vendor/owl.carousel/owl.carousel.min.js">
-</script>
-<script src="../vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
-<script src="../js/tablefilters.js">
-</script>
-<script src="../js/front.js">
+<script src="/./js/front.js">
 </script>
 <script src="/./js/scrolltop.js">
 </script>
 <a href="#" id="scroll" class="nostyle" style="display: none;">
   <span>
-</body>
-</html>
+    </body>
+  </html>

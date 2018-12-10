@@ -106,15 +106,3 @@
 	font-size: .8em;
 	margin-right: 20px;
 }
-.table-filter .media .title span.pagado {
-	color: #5cb85c;
-}
-.table-filter .media .title span.pendiente {
-	color: #f0ad4e;
-}
-.table-filter .media .title span.cancelado {
-	color: #d9534f;
-}
-.table-filter .media .summary {
-	font-size: 14px;
-}

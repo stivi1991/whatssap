@@ -213,11 +213,18 @@ public function jobsearch() {
   $this->set('module', $module);
 
   $dist_locations = $this->jobOffer->find('all', array(
-    'fields'=>['city','location_data_name', 'module'],
-    'order'=>'city ASC',
-    'group' => ['city, location_data_name', 'module']));
+        'fields'=>['city','location_data_name'],
+        'order'=>'city ASC',
+        'group' => ['city, location_data_name']));
 
   $this->set('dist_locations', $dist_locations);
+
+  $dist_countries = $this->jobOffer->find('all', array(
+        'fields'=>['country'],
+        'order'=>'country ASC',
+        'group' => ['country']));
+
+  $this->set('dist_countries', $dist_countries);
 
   $this->loadModel('Modules');
   $dist_modules = $this->Modules->find('all', [
