@@ -3785,7 +3785,7 @@ background-color: #67AECA;
   }}
 @media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */     
   html {
-    font-size: 90% !important;
+    font-size: 85% !important;
   }}
 @media (min-width:1281px) { /* hi-res laptops and desktops */
   html {
