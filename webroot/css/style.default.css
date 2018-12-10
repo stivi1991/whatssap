@@ -3752,3 +3752,10 @@ background-color: #67AECA;
 .bootstrap-select .dropdown-toggle .filter-option {
   font-size: 12px !important;
 }
+
+
+@media (max-width: 992px) {
+    html {
+    font-size: 85% !important;
+  }
+}

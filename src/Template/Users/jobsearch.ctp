@@ -383,7 +383,7 @@
         <?php foreach ($offer as $offer_row): ?>
         <tr data-location="<?= $offer_row->location_data_name ?>" data-module="<?= $module->find()->where(['module_desc' => $offer_row->module])->first()->module_data_name; ?>">
           <td class="border-<?= strtolower($offer_row->exp_type) ?>">
-            <a href="users/jobdetails/<?= $offer_row->id ?>" class="nostyle">
+            <a href="/jobdetails/<?= $offer_row->id ?>" class="nostyle">
               <h4 class="title">
                 <?= $offer_row->job_title ?>
                 <span class="pull-right">
