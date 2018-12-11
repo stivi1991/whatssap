@@ -15,6 +15,7 @@
     <?= $this->Html->css('/./admin/assets/css/animate.min.css') ?>
     <?= $this->Html->css('/./admin/assets/css/light-bootstrap-dashboard.css?v=1.4.0') ?>
     <?= $this->Html->css('/./admin/assets/css/pe-icon-7-stroke.css') ?>
+    <?= $this->Html->css('/./admin/assets/css/messages.css') ?>
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
@@ -38,7 +39,7 @@
     	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="/admin/" class="simple-text">
-                    <h7><img src="/img/logo.png" alt="logo" class="d-none d-lg-block"></h7><h8>ADMIN PANEL</h8>
+                    <h7><img src="/./img/logo.png" alt="logo" class="d-none d-lg-block"></h7><h8>ADMIN PANEL</h8>
                 </a>
             </div>
 
@@ -57,13 +58,13 @@
                 </li>
                 <li class="active">
                     <a href="/admin/offers">
-                        <i class="pe-7s-user"></i>
+                        <i class="pe-7s-id"></i>
                         <p>Job offers</p>
                     </a>
                 </li>
                 <li>
                     <a href="/admin/maintain">
-                        <i class="pe-7s-note2"></i>
+                        <i class="pe-7s-settings"></i>
                         <p>Selection data</p>
                     </a>
                 </li>

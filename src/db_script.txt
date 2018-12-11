@@ -71,7 +71,7 @@ change_date DATETIME
 CREATE TABLE modules (
 module_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 module_desc VARCHAR(50) CHARACTER SET utf8,
-module_data_name VARCHAR(10) CHARACTER SET utf8
+module_data_name VARCHAR(40) CHARACTER SET utf8
 );
 
 CREATE TABLE countries (

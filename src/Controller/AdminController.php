@@ -229,21 +229,257 @@ $this->set('info', $info);
 }
 
   
-//////////EDIT SELECTION DATA
+//////////ADD SELECTION DATA
   
 public function maintainmodule(){
   $this->loadModel('Modules');
   $module = $this->Modules->newEntity();
     if ($this->request->is('post')) {
-        $module = $this->Modules->patchEntity($module, $this->request->getData());
+      $module = $this->Modules->patchEntity($module, $this->request->getData());
         if ($this->Modules->save($module)) {
             $this->Flash->success(__('The module has been saved.'));
-          return $this->redirect($this->Auth->redirectUrl('/admin/modulelist'));
-        }
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
         $this->Flash->error(__('The module could not be saved. Please, try again.'));
+       }          
+    }
+}
+  
+public function maintaincountry(){
+  $this->loadModel('Countries');
+  $country = $this->Countries->newEntity();
+    if ($this->request->is('post')) {
+      $country = $this->Countries->patchEntity($country, $this->request->getData());
+        if ($this->Countries->save($country)) {
+            $this->Flash->success(__('The country has been saved.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The country could not be saved. Please, try again.'));
+       }          
+    }
+}
+
+public function maintainfunction(){
+  $this->loadModel('Func');
+  $func = $this->Func->newEntity();
+    if ($this->request->is('post')) {
+      $func = $this->Func->patchEntity($func, $this->request->getData());
+        if ($this->Func->save($func)) {
+            $this->Flash->success(__('The function has been saved.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The function could not be saved. Please, try again.'));
+       }          
+    }
+}
+  
+public function maintainjobtype(){
+  $this->loadModel('JobTypes');
+  $type = $this->JobTypes->newEntity();
+    if ($this->request->is('post')) {
+      $type = $this->JobTypes->patchEntity($type, $this->request->getData());
+        if ($this->JobTypes->save($type)) {
+            $this->Flash->success(__('The type has been saved.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The type could not be saved. Please, try again.'));
+       }          
+    }
+}
+  
+public function maintainlevel(){
+  $this->loadModel('ExpLevels');
+  $level = $this->ExpLevels->newEntity();
+    if ($this->request->is('post')) {
+      $level = $this->ExpLevels->patchEntity($level, $this->request->getData());
+        if ($this->ExpLevels->save($level)) {
+            $this->Flash->success(__('The level has been saved.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The level could not be saved. Please, try again.'));
+       }          
+    }
+}
+  
+public function maintainoccupancy(){
+  $this->loadModel('Occupancies');
+  $occupancy = $this->Occupancies->newEntity();
+    if ($this->request->is('post')) {
+      $occupancye = $this->Occupancies->patchEntity($occupancy, $this->request->getData());
+        if ($this->Occupancies->save($occupancy)) {
+            $this->Flash->success(__('The occupancy has been saved.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The occupancy could not be saved. Please, try again.'));
+       }          
+    }
+}
+  
+public function maintainsalcurr(){
+  $this->loadModel('SalaryCurrs');
+  $salcurr = $this->SalaryCurrs->newEntity();
+    if ($this->request->is('post')) {
+      $salcurr = $this->SalaryCurrs->patchEntity($salcurr, $this->request->getData());
+        if ($this->SalaryCurrs->save($salcurr)) {
+            $this->Flash->success(__('The currency has been saved.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The currency could not be saved. Please, try again.'));
+       }          
+    }
+}  
+  
+public function maintainsalkind(){
+  $this->loadModel('SalaryKinds');
+  $salkind = $this->SalaryKinds->newEntity();
+    if ($this->request->is('post')) {
+      $salkind = $this->SalaryKinds->patchEntity($salkind, $this->request->getData());
+        if ($this->SalaryKinds->save($salkind)) {
+            $this->Flash->success(__('The salary kind has been saved.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The salary kind could not be saved. Please, try again.'));
+       }          
+    }
+}  
+  
+public function maintainsalper(){
+  $this->loadModel('SalaryPers');
+  $salper = $this->SalaryPers->newEntity();
+    if ($this->request->is('post')) {
+      $salper = $this->SalaryPers->patchEntity($salper, $this->request->getData());
+        if ($this->SalaryPers->save($salper)) {
+            $this->Flash->success(__('The salary per has been saved.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The salary per could not be saved. Please, try again.'));
+       }          
+    }
+}  
+   
+////////////////////////////////////////////////////////
+  
+  
+  
+//////////DELETE SELECTION DATA
+  
+public function deletemodule(){
+  $this->loadModel('Modules');
+    if ($this->request->is('post')) {
+        $module = $this->Modules->get($this->request->getData()['id']);
+        if ($this->Modules->delete($module)) {
+            $this->Flash->success(__('The module has been deleted.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The module could not be deleted. Please, try again.'));
+        }
+    }
+}
+  
+public function deletecountry(){
+  $this->loadModel('Countries');
+    if ($this->request->is('post')) {
+        $country = $this->Countries->get($this->request->getData()['id']);
+        if ($this->Countries->delete($country)) {
+            $this->Flash->success(__('The country has been deleted.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The country could not be deleted. Please, try again.'));
+        }
+    }
+}
+     
+public function deletefunction(){
+  $this->loadModel('Func');
+    if ($this->request->is('post')) {
+        $func = $this->Func->get($this->request->getData()['id']);
+        if ($this->Func->delete($func)) {
+            $this->Flash->success(__('The function has been deleted.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The function could not be deleted. Please, try again.'));
+        }
     }
 }
    
+public function deletejobtype(){
+  $this->loadModel('JobTypes');
+    if ($this->request->is('post')) {
+        $type = $this->JobTypes->get($this->request->getData()['id']);
+        if ($this->JobTypes->delete($type)) {
+            $this->Flash->success(__('The job type has been deleted.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The job type could not be deleted. Please, try again.'));
+        }
+    }
+}
+   
+public function deletelevel(){
+  $this->loadModel('ExpLevels');
+    if ($this->request->is('post')) {
+        $level = $this->ExpLevels->get($this->request->getData()['id']);
+        if ($this->ExpLevels->delete($level)) {
+            $this->Flash->success(__('The experience level has been deleted.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The experience level could not be deleted. Please, try again.'));
+        }
+    }
+}
+   
+public function deleteoccupancy(){
+  $this->loadModel('Occupancies');
+    if ($this->request->is('post')) {
+        $occu = $this->Occupancies->get($this->request->getData()['id']);
+        if ($this->Occupancies->delete($occu)) {
+            $this->Flash->success(__('The occupancy has been deleted.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The occupancy could not be deleted. Please, try again.'));
+        }
+    }
+}
+   
+public function deletesalcurr(){
+  $this->loadModel('SalaryCurrs');
+    if ($this->request->is('post')) {
+        $curr = $this->SalaryCurrss->get($this->request->getData()['id']);
+        if ($this->SalaryCurrs->delete($curr)) {
+            $this->Flash->success(__('The currency has been deleted.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The currency could not be deleted. Please, try again.'));
+        }
+    }
+}
+   
+public function deletesalkind(){
+  $this->loadModel('SalaryKinds');
+    if ($this->request->is('post')) {
+        $kind = $this->SalaryKinds->get($this->request->getData()['id']);
+        if ($this->SalaryKinds->delete($kind)) {
+            $this->Flash->success(__('The salary kind has been deleted.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The salary kind could not be deleted. Please, try again.'));
+        }
+    }
+}
+  
+public function deletesalper(){
+  $this->loadModel('SalaryPers');
+    if ($this->request->is('post')) {
+        $per = $this->SalaryPers->get($this->request->getData()['id']);
+        if ($this->SalaryPers->delete($per)) {
+            $this->Flash->success(__('The salary per has been deleted.'));
+          return $this->redirect($this->Auth->redirectUrl($this->request->getAttribute("here")));
+        } else {
+        $this->Flash->error(__('The salary per could not be deleted. Please, try again.'));
+        }
+    }
+}
+     
 ////////////////////////////////////////////////////////
 
   

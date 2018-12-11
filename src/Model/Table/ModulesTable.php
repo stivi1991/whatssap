@@ -55,7 +55,7 @@ class ModulesTable extends Table
 
         $validator
             ->scalar('module_data_name')
-            ->maxLength('module_data_name', 10)
+            ->maxLength('module_data_name', 40)
             ->allowEmpty('module_data_name');
 
         return $validator;

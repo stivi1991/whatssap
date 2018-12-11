@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -11,6 +10,7 @@
     <title>Admin Panel</title>
 
     <!--preloader-->
+    <?= $this->Html->script('/./admin/assets/js/jquery.3.2.1.min.js') ?>
     <?= $this->Html->css('/./css/preloader.css') ?>
     <?= $this->Html->css('/./admin/assets/css/bootstrap.min.css') ?>
     <?= $this->Html->css('/./admin/assets/css/animate.min.css') ?>
@@ -30,7 +30,7 @@
       <div class="colorlib-load"></div>
   </div>
 
-  <script src="/./js/preloader.js"></script>
+  <script src="../js/preloader.js"></script>
 
   <?= $this->Flash->render() ?>
 
@@ -59,13 +59,13 @@
                 </li>
                 <li>
                     <a href="/admin/offers">
-                        <i class="pe-7s-id"></i>
+                        <i class="pe-7s-user"></i>
                         <p>Job offers</p>
                     </a>
                 </li>
                 <li class="active">
                     <a href="/admin/maintain">
-                        <i class="pe-7s-settings"></i>
+                        <i class="pe-7s-note2"></i>
                         <p>Selection data</p>
                     </a>
                 </li>
@@ -101,64 +101,31 @@
 
         <div class="content">
             <div class="container-fluid">
-              <ul class="nav">
-                <a href="/admin/maintaincountry">
-                    <button class="btn btn-outline-white-primary"></i>Add</button>
-                </a>         
-                <a href="/admin/deletecountry">
-                    <button class="btn btn-outline-white-primary"></i>Delete</button>
-                </a>
-                </a>         
-                <a href="/admin/maintain">
-                    <button class="btn btn-outline-white-primary"></i>Back</button>
-                </a>
-              </ul>
-            <br>
 
-          <div class="row">
-                <div class="col-md-12">
-                                  <div class="card ">
-                                      <div class="header">
-                                          <h4 class="title">Countries</h4>
-                                      </div>
-                                      <div class="content">
-                                        <div class="content table-responsive table-full-width">
-                                            <table class="table table-hover table-striped">
-                                                <thead>
-                                                  <th>ID</th>
-                                                  <th>Description</th>
-                                                  <th>Technical Name</th>
-                                                </thead>
-                                                <tbody>
-                                                  <?php foreach ($countries as $countries): ?>
-                                                   <tr>
-                                                     <td><?= h($countries->country_id) ?></td>
-                                                     <td><?= h($countries->country_desc) ?></td>
-                                                     <td><?= h($countries->country_data_name) ?></td>
-                                                   </tr>
-                                                 <?php endforeach;?>
-                                                </tbody>
-                                            </table>
-
-                                          </div>
-                                      </div>
-                                  </div>
+              <form method="post" action="deleteoccupancy" class="job-add-form">
+                <div class="row">
+                  <div class="col-lg-12 form-group">
+                    <label for="id">Occupancy ID:</label>
+                    <input id="id" type="text" name="id" class="form-control" required />
+                  </div>
                 </div>
-          </div>
-
-          <ul class="nav">
-            <li class="active">
-                <a href="/admin/maintain">
-                    <button class="btn btn-outline-white-primary"></i>Back</button>
-                </a>
-            </li>
-          </ul>
+                <div class="col-lg-12 text-center">
+                  <hr>
+                  <button type="submit" class="btn btn-outline-white-primary">Delete</button>
+                </div>
+              </form>
+              <ul>
+              <li>
+                  <a href="/admin/occupancylist">
+                      <button class="btn btn-outline-white-primary"></i>Back</button>
+                  </a>
+              </li>
+            </ul>
     </div>
   </div>
-</div>
-
-<footer class="footer">
-  <div class="footer__copyright">
+  
+<div class="col-md-12" align="center">
+<footer>
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-md-left text-center">
@@ -169,12 +136,12 @@
         </div>
       </div>
     </div>
-  </div>
 </footer>
+</div>
+</div>
 
 
 </body>
-<?= $this->Html->script('/./admin/assets/js/jquery.3.2.1.min.js') ?>
 <?= $this->Html->script('/./js/preloader.js') ?>
 <?= $this->Html->script('/./admin/assets/js/bootstrap.min.js') ?>
 <?= $this->Html->script('/./admin/assets/js/chartist.min.js') ?>

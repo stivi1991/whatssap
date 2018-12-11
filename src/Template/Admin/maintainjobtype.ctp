@@ -30,7 +30,7 @@
       <div class="colorlib-load"></div>
   </div>
 
-  <script src="../js/preloader.js"></script>
+  <script src="/./js/preloader.js"></script>
 
   <?= $this->Flash->render() ?>
 
@@ -40,7 +40,7 @@
     	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="/admin/" class="simple-text">
-                    <h7><img src="/img/logo.png" alt="logo" class="d-none d-lg-block"></h7><h8>ADMIN PANEL</h8>
+                    <h7><img src="/./img/logo.png" alt="logo" class="d-none d-lg-block"></h7><h8>ADMIN PANEL</h8>
                 </a>
             </div>
 
@@ -59,13 +59,13 @@
                 </li>
                 <li>
                     <a href="/admin/offers">
-                        <i class="pe-7s-user"></i>
+                        <i class="pe-7s-id"></i>
                         <p>Job offers</p>
                     </a>
                 </li>
                 <li class="active">
                     <a href="/admin/maintain">
-                        <i class="pe-7s-note2"></i>
+                        <i class="pe-7s-settings"></i>
                         <p>Selection data</p>
                     </a>
                 </li>
@@ -89,10 +89,9 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                              <?= $this->Html->link(__('Logout'), ['action' => 'logout']) ?>
+                      <li>
+                          <?= $this->Html->link(__('Logout'), ['action' => 'logout']) ?>
                         </li>
-						<li class="separator hidden-lg"></li>
                     </ul>
                 </div>
             </div>
@@ -102,17 +101,17 @@
         <div class="content">
             <div class="container-fluid">
 
-              <form method="post" action="maintainmodule" class="job-add-form">
+              <form method="post" action="maintainjobtype" class="job-add-form">
                 <div class="row">
                   <div class="col-lg-12 form-group">
-                    <label for="module_desc">Module Description:</label>
-                    <input id="module_desc" type="text" name="module_desc" class="form-control" required />
+                    <label for="type_desc">Job Type Description:</label>
+                    <input id="type_desc" type="text" name="type_desc" class="form-control" required />
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-12 form-group">
-                    <label for="module_data_name">Module Technical Name:</label>
-                    <input id="module_data_name" type="text" name="module_data_name" class="form-control" required />
+                    <label for="type_data_name">Job Type Technical Name:</label>
+                    <input id="type_data_name" type="text" name="type_data_name" class="form-control" required />
                   </div>
                 </div>
                 <div class="col-lg-12 text-center">
@@ -123,7 +122,7 @@
 
               <ul>
               <li>
-                  <a href="/admin/maintain">
+                  <a href="/admin/jobtypelist">
                       <button class="btn btn-outline-white-primary"></i>Back</button>
                   </a>
               </li>

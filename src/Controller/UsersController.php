@@ -560,15 +560,15 @@ public function jobsearch() {
         return $this->redirect($this->Auth->redirectUrl('/'));
         } else {
           $this->Flash->error(__("Something went wrong. Please try again."));
-          return $this->redirect($this->request->here);
+          return $this->redirect($this->request->getAttribute("here"));
         }
           } else {
             $this->Flash->error(__('Password need to be at least 8 characters long, contain one capital letter, number, and special character.'));
-            return $this->redirect($this->request->here);
+            return $this->redirect($this->request->getAttribute("here"));
           }
         } else {
         $this->Flash->error(__('Passwords need to be identical.'));
-        return $this->redirect($this->request->here);
+        return $this->redirect($this->request->getAttribute("here"));
           }
         }
       }

@@ -59,13 +59,13 @@
                 </li>
                 <li>
                     <a href="/admin/offers">
-                        <i class="pe-7s-user"></i>
+                        <i class="pe-7s-id"></i>
                         <p>Job offers</p>
                     </a>
                 </li>
                 <li class="active">
                     <a href="/admin/maintain">
-                        <i class="pe-7s-note2"></i>
+                        <i class="pe-7s-settings"></i>
                         <p>Selection data</p>
                     </a>
                 </li>
@@ -89,10 +89,9 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                              <?= $this->Html->link(__('Logout'), ['action' => 'logout']) ?>
+                      <li>
+                          <?= $this->Html->link(__('Logout'), ['action' => 'logout']) ?>
                         </li>
-						<li class="separator hidden-lg"></li>
                     </ul>
                 </div>
             </div>
@@ -123,7 +122,7 @@
 
               <ul>
               <li>
-                  <a href="/admin/maintain">
+                  <a href="/admin/modulelist">
                       <button class="btn btn-outline-white-primary"></i>Back</button>
                   </a>
               </li>

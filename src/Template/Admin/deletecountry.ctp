@@ -102,11 +102,11 @@
         <div class="content">
             <div class="container-fluid">
 
-              <form method="post" action="deletemodule" class="job-add-form">
+              <form method="post" action="deletecountry" class="job-add-form">
                 <div class="row">
                   <div class="col-lg-12 form-group">
-                    <label for="module_id">Module ID:</label>
-                    <input id="module_id" type="text" name="module_id" class="form-control" required />
+                    <label for="id">Country ID:</label>
+                    <input id="id" type="text" name="id" class="form-control" required />
                   </div>
                 </div>
                 <div class="col-lg-12 text-center">
@@ -116,7 +116,7 @@
               </form>
               <ul>
               <li>
-                  <a href="/admin/maintain">
+                  <a href="/admin/countrylist">
                       <button class="btn btn-outline-white-primary"></i>Back</button>
                   </a>
               </li>
