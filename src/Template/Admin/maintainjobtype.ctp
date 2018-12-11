@@ -1,20 +1,3 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
- * @var \App\Model\Entity\PersonalInfo[]|\Cake\Collection\CollectionInterface $personalInfo
- */
-
-
- use Cake\Cache\Cache;
- use Cake\Core\Configure;
- use Cake\Core\Plugin;
- use Cake\Datasource\ConnectionManager;
- use Cake\Error\Debugger;
- use Cake\Network\Exception\NotFoundException;
-
-?>
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -23,14 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="/./favicon.ico">
+    <title>Admin Panel</title>
 
     <!--preloader-->
-    <?= $this->Html->css('/css/preloader.css"') ?>
-    <?= $this->Html->css('/admin/assets/css/bootstrap.min.css') ?>
-    <?= $this->Html->css('/admin/assets/css/animate.min.css') ?>
-    <?= $this->Html->css('/admin/assets/css/light-bootstrap-dashboard.css?v=1.4.0') ?>
-    <?= $this->Html->css('/admin/assets/css/pe-icon-7-stroke.css') ?>
+    <?= $this->Html->script('/./admin/assets/js/jquery.3.2.1.min.js') ?>
+    <?= $this->Html->css('/./css/preloader.css') ?>
+    <?= $this->Html->css('/./admin/assets/css/bootstrap.min.css') ?>
+    <?= $this->Html->css('/./admin/assets/css/animate.min.css') ?>
+    <?= $this->Html->css('/./admin/assets/css/light-bootstrap-dashboard.css?v=1.4.0') ?>
+    <?= $this->Html->css('/./admin/assets/css/pe-icon-7-stroke.css') ?>
+    <?= $this->Html->css('/./admin/assets/css/messages.css') ?>
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
@@ -59,7 +45,7 @@
             </div>
 
             <ul class="nav">
-                <li class="active">
+                <li>
                     <a href="/admin/">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
@@ -77,7 +63,7 @@
                         <p>Job offers</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="/admin/maintain">
                         <i class="pe-7s-note2"></i>
                         <p>Selection data</p>
@@ -115,12 +101,38 @@
 
         <div class="content">
             <div class="container-fluid">
+
+              <form method="post" action="maintainmodule" class="job-add-form">
+                <div class="row">
+                  <div class="col-lg-12 form-group">
+                    <label for="module_desc">Module Description:</label>
+                    <input id="module_desc" type="text" name="module_desc" class="form-control" required />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 form-group">
+                    <label for="module_data_name">Module Technical Name:</label>
+                    <input id="module_data_name" type="text" name="module_data_name" class="form-control" required />
+                  </div>
+                </div>
+                <div class="col-lg-12 text-center">
+                  <hr>
+                  <button type="submit" class="btn btn-outline-white-primary">Add</button>
+                </div>
+              </form>
+
+              <ul>
+              <li>
+                  <a href="/admin/maintain">
+                      <button class="btn btn-outline-white-primary"></i>Back</button>
+                  </a>
+              </li>
+            </ul>
     </div>
   </div>
-</div>
-
-<footer class="footer">
-  <div class="footer__copyright">
+  
+<div class="col-md-12" align="center">
+<footer>
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-md-left text-center">
@@ -131,16 +143,16 @@
         </div>
       </div>
     </div>
-  </div>
 </footer>
+</div>
+</div>
 
 
 </body>
-<?= $this->Html->script('/admin/assets/js/jquery.3.2.1.min.js') ?>
-<?= $this->Html->script('/js/preloader.js') ?>
-<?= $this->Html->script('/admin/assets/js/bootstrap.min.js') ?>
-<?= $this->Html->script('/admin/assets/js/chartist.min.js') ?>
-<?= $this->Html->script('/admin/assets/js/bootstrap-notify.js') ?>
-<?= $this->Html->script('/admin/assets/js/light-bootstrap-dashboard.js?v=1.4.0') ?>
+<?= $this->Html->script('/./js/preloader.js') ?>
+<?= $this->Html->script('/./admin/assets/js/bootstrap.min.js') ?>
+<?= $this->Html->script('/./admin/assets/js/chartist.min.js') ?>
+<?= $this->Html->script('/./admin/assets/js/bootstrap-notify.js') ?>
+<?= $this->Html->script('/./admin/assets/js/light-bootstrap-dashboard.js?v=1.4.0') ?>
 
 </html>

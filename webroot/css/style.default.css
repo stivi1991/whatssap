@@ -3592,7 +3592,7 @@ border-left: solid 5px #5F0F4E;
 
 .thinfont {
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
-  font-size: 0.690rem;
+  font-size: 0.770rem;
   letter-spacing: 0.1em;
   padding: 0.75rem 0.45rem;
   font-weight: 100;
@@ -3730,7 +3730,7 @@ background-color: #67AECA;
 }
 
 .rowclose {
-  margin-bottom:-40px !important;"
+  margin-bottom:-30px !important;"
 }
 
 .labelclose {

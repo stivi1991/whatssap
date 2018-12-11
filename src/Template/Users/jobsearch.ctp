@@ -355,6 +355,63 @@
             <?php endforeach;?>
           </div>
         </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <hr>
+                        <div class="row">
+                          <label for="profession" class='main-center-text' style="color:black;">
+                            <b>Country
+                            </b>
+                          </label>
+                        </div>
+                        <?php foreach ($dist_countries as $offer_row): ?>
+                        <tr>
+                      <button type="button" class="btn btn-info btn-sm btn-space btn-filter btn-rounded" data-target-country=
+                              <?= strtolower($offer_row->country) ?>>
+                      <?= $offer_row->country ?>
+                      </button>
+                    </tr>
+                  <?php endforeach;?>
+                </div>
+                </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <hr>
+                        <div class="row">
+                          <label for="profession" class='main-center-text' style="color:black;">
+                            <b>Country
+                            </b>
+                          </label>
+                        </div>
+                        <?php foreach ($dist_countries as $offer_row): ?>
+                        <tr>
+                      <button type="button" class="btn btn-info btn-sm btn-space btn-filter btn-rounded" data-target-country=
+                              <?= strtolower($offer_row->country) ?>>
+                      <?= $offer_row->country ?>
+                      </button>
+                    </tr>
+                  <?php endforeach;?>
+                </div>
+                </div>
+                <div class="col-md-12">
+                      <div class="form-group">
+                        <hr>
+                        <div class="row">
+                          <label for="profession" class='main-center-text' style="color:black;">
+                            <b>Country
+                            </b>
+                          </label>
+                        </div>
+                        <?php foreach ($dist_countries as $offer_row): ?>
+                        <tr>
+                      <button type="button" class="btn btn-info btn-sm btn-space btn-filter btn-rounded" data-target-country=
+                              <?= strtolower($offer_row->country) ?>>
+                      <?= $offer_row->country ?>
+                      </button>
+                    </tr>
+                  <?php endforeach;?>
+                </div>
+                </div>
       </div>
       </div>
     </form>

@@ -465,7 +465,7 @@
             <!--  Description box !-->
                 <div class="box box_title effect9">
                   <div class="col-lg-12 form-group">
-                    <p class="lead thinfont" style="text-transform: uppercase; font-size: 13px"> 
+                    <p class="lead thinfont" style="text-transform: uppercase; font-size: 12px"> 
                       <?= $offer->description ?> 
                     </p>
                   </div>

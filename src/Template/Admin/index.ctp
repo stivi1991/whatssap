@@ -1,20 +1,3 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
- * @var \App\Model\Entity\PersonalInfo[]|\Cake\Collection\CollectionInterface $personalInfo
- */
-
-
- use Cake\Cache\Cache;
- use Cake\Core\Configure;
- use Cake\Core\Plugin;
- use Cake\Datasource\ConnectionManager;
- use Cake\Error\Debugger;
- use Cake\Network\Exception\NotFoundException;
-
-?>
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -23,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="/./favicon.ico">
+    <title>Admin Panel</title>
 
     <!--preloader-->
-    <?= $this->Html->css('/css/preloader.css"') ?>
-    <?= $this->Html->css('/admin/assets/css/bootstrap.min.css') ?>
-    <?= $this->Html->css('/admin/assets/css/animate.min.css') ?>
-    <?= $this->Html->css('/admin/assets/css/light-bootstrap-dashboard.css?v=1.4.0') ?>
-    <?= $this->Html->css('/admin/assets/css/pe-icon-7-stroke.css') ?>
+    <?= $this->Html->css('/./css/preloader.css') ?>
+    <?= $this->Html->css('/./admin/assets/css/bootstrap.min.css') ?>
+    <?= $this->Html->css('/./admin/assets/css/animate.min.css') ?>
+    <?= $this->Html->css('/./admin/assets/css/light-bootstrap-dashboard.css?v=1.4.0') ?>
+    <?= $this->Html->css('/./admin/assets/css/pe-icon-7-stroke.css') ?>
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
@@ -44,7 +28,7 @@
       <div class="colorlib-load"></div>
   </div>
 
-  <script src="../js/preloader.js"></script>
+  <script src="/./js/preloader.js"></script>
 
   <?= $this->Flash->render() ?>
 
@@ -54,7 +38,7 @@
     	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="/admin/" class="simple-text">
-                    <h7><img src="/img/logo.png" alt="logo" class="d-none d-lg-block"></h7><h8>ADMIN PANEL</h8>
+                    <h7><img src="/./img/logo.png" alt="logo" class="d-none d-lg-block"></h7><h8>ADMIN PANEL</h8>
                 </a>
             </div>
 
@@ -114,11 +98,10 @@
 
 
         <div class="content">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card">
-
                             <div class="header">
                                 <h4 class="title">Users</h4>
                             </div>
@@ -130,6 +113,9 @@
                             <p class="category">Candidates</p>
                             <p class="text-success"><?= $candidates->count(); ?></pl>
 
+                            <p class="category">Basic Employers</p>
+                            <p class="text-success"><?= $employers_basic->count(); ?></pl>
+
                             <p class="category">Standard Employers</p>
                             <p class="text-danger"><?= $employers_standard->count(); ?></pl>
 
@@ -140,7 +126,8 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+<div class="row">
+                      <div class="col-md-6">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Job offers</h4>
@@ -158,10 +145,14 @@
 
                               <p class="category">&nbsp;</p>
                               <p class="text-danger">&nbsp;</pl>
-
+                              
+                              <p class="category">&nbsp;</p>
+                              <p class="text-danger">&nbsp;</pl>
+  
                             </div>
                         </div>
                     </div>
+</div>
 
 <div class="row">
                     <div class="col-md-12">
@@ -178,8 +169,8 @@
                                         <th>Email</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
-                                        <th>Miasto</th>
-                                        <th>Adres</th>
+                                        <th>City</th>
+                                        <th>Address</th>
                                       </thead>
                                       <tbody>
                                         <?php foreach ($candidates10 as $user): ?>
@@ -199,8 +190,45 @@
                             </div>
                         </div>
                     </div>
+</div>
 
-                </div>
+<div class="row">
+                    <div class="col-md-12">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title">Employers</h4>
+                                <p class="category">Last 10 registered</p>
+                            </div>
+                            <div class="content">
+                              <div class="content table-responsive table-full-width">
+                                  <table class="table table-hover table-striped">
+                                      <thead>
+                                        <th>ID</th>
+                                        <th>Email</th>
+                                        <th>Company Name</th>
+                                        <th>Country</th>
+                                        <th>City</th>
+                                        <th>Address</th>
+                                      </thead>
+                                      <tbody>
+                                        <?php foreach ($candidates10 as $user): ?>
+                                         <tr>
+                                           <td><?= h($user->id) ?></td>
+                                           <td><?= h($user->email) ?></td>
+                                           <td><?= h($info->get($user->id)->name_first) ?></td>
+                                           <td><?= h($info->get($user->id)->name_last) ?></td>
+                                           <td><?= h($info->get($user->id)->city) ?></td>
+                                           <td><?= h($info->get($user->id)->address) ?></td>
+                                         </tr>
+                                       <?php endforeach;?>
+                                      </tbody>
+                                  </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+</div>
 
                 <div class="row">
                                     <div class="col-md-12">
@@ -214,13 +242,23 @@
                                                   <table class="table table-hover table-striped">
                                                       <thead>
                                                         <th>ID</th>
-                                                        <th>Email</th>
-                                                        <th>Imię</th>
-                                                        <th>Nazwisko</th>
-                                                        <th>Miasto</th>
-                                                        <th>Adres</th>
+                                                        <th>Job title</th>
+                                                        <th>Module</th>
+                                                        <th>Company Name</th>
+                                                        <th>Expertise Level</th>
+                                                        <th>Applying email</th>
                                                       </thead>
                                                       <tbody>
+                                       <?php foreach ($offers10 as $offer): ?>
+                                         <tr>
+                                           <td><?= h($offer->id) ?></td>
+                                           <td><?= h($offer->job_title) ?></td>
+                                           <td><?= h($offer->module) ?></td>
+                                           <td><?= h($offer->company_name) ?></td>
+                                           <td><?= h($offer->exp_type) ?></td>
+                                           <td><?= h($offer->apply_email) ?></td>
+                                         </tr>
+                                       <?php endforeach;?>
 
                                                       </tbody>
                                                   </table>
@@ -236,8 +274,6 @@
             </div>
         </div>
     </div>
-  </div>
-</div>
 
 <footer class="footer">
   <div class="footer__copyright">
@@ -256,11 +292,11 @@
 
 
 </body>
-<?= $this->Html->script('/admin/assets/js/jquery.3.2.1.min.js') ?>
-<?= $this->Html->script('/js/preloader.js') ?>
-<?= $this->Html->script('/admin/assets/js/bootstrap.min.js') ?>
-<?= $this->Html->script('/admin/assets/js/chartist.min.js') ?>
-<?= $this->Html->script('/admin/assets/js/bootstrap-notify.js') ?>
-<?= $this->Html->script('/admin/assets/js/light-bootstrap-dashboard.js?v=1.4.0') ?>
+<?= $this->Html->script('/./admin/assets/js/jquery.3.2.1.min.js') ?>
+<?= $this->Html->script('/./js/preloader.js') ?>
+<?= $this->Html->script('/./admin/assets/js/bootstrap.min.js') ?>
+<?= $this->Html->script('/./admin/assets/js/chartist.min.js') ?>
+<?= $this->Html->script('/./admin/assets/js/bootstrap-notify.js') ?>
+<?= $this->Html->script('/./admin/assets/js/light-bootstrap-dashboard.js?v=1.4.0') ?>
 
 </html>

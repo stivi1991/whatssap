@@ -328,17 +328,18 @@
                 <div class="col-xl-4 form-group">
                   <label for="function" class="thinfont labelclose smaller-font">Function:
                   </label>
-                  <select id="function" placeholder="FUNCTION" name="function" class="form-control select2" required>
+                  <select id="function" name="function" class="form-control select2" required>
                     <option disabled selected hidden>Function
                     </option>  
-                    <option>Team Lead
+                    <?php
+foreach ($func as $func):
+?>
+                    <option>
+                      <?= h($func->func_desc) ?>
                     </option>
-                    <option>Developer
-                    </option>
-                    <option>Consultant
-                    </option>
-                    <option>Project Manager
-                    </option>
+                    <?php
+endforeach;
+?>
                   </select>
                 </div>
                 <div class="col-lg-4 form-group">
@@ -348,7 +349,7 @@
                     <option disabled selected hidden>SAP Module
                     </option>
                     <?php
-foreach ($module as $module):
+foreach ($modules as $module):
 ?>
                     <option>
                       <?= h($module->module_desc) ?>
@@ -364,14 +365,15 @@ endforeach;
                   <select id="exp_type" placeholder="Level of expertise" name="exp_type" class="form-control select2 capitalfont" required>
                     <option disabled selected hidden>Level of expertise
                     </option>
-                    <option>Junior
+                    <?php
+foreach ($exp_levels as $exp_level):
+?>
+                    <option>
+                      <?= h($exp_level->level_desc) ?>
                     </option>
-                    <option>Regular
-                    </option>
-                    <option>Senior
-                    </option>
-                    <option>Expert
-                    </option>
+                    <?php
+endforeach;
+?>
                   </select>
                 </div>
               </div>
@@ -383,7 +385,7 @@ endforeach;
                     <option disabled selected hidden>Country
                     </option>
                     <?php
-foreach ($country as $country):
+foreach ($countries as $country):
 ?>
                     <option>
                       <?= h($country->country_desc) ?>
@@ -404,10 +406,15 @@ endforeach;
                   <select id="job_type" placeholder="type" name="job_type" class="form-control select2" required>
                     <option disabled selected hidden>Type of contract
                     </option>
-                    <option>Permanent
+                    <?php
+foreach ($job_types as $job_type):
+?>
+                    <option>
+                      <?= h($job_type->type_desc) ?>
                     </option>
-                    <option>Freelance
-                    </option>
+                    <?php
+endforeach;
+?>
                   </select>
                 </div>
               </div>
@@ -436,12 +443,15 @@ endforeach;
                   <select id="currency" type="text" placeholder="Currency:" name="currency" class="form-control select2" required>
                     <option disabled selected hidden>Currency
                     </option>
-                    <option>EUR
+                    <?php
+foreach ($salary_currs as $salary_curr):
+?>
+                    <option>
+                      <?= h($salary_curr->curr_desc) ?>
                     </option>
-                    <option>PLN
-                    </option>
-                    <option>GBP
-                    </option>
+                    <?php
+endforeach;
+?>
                   </select>
                 </div>
                 <div class="col-xl-2 form-group">
@@ -450,14 +460,15 @@ endforeach;
                   <select id="salary_type" placeholder="Salary per:" name="salary_type" class="form-control select2" required>
                     <option disabled selected hidden>Per
                     </option>
-                    <option>Hour
+                    <?php
+foreach ($salary_pers as $salary_per):
+?>
+                    <option>
+                      <?= h($salary_per->per_desc) ?>
                     </option>
-                    <option>Day
-                    </option>
-                    <option>Month
-                    </option>
-                    <option>Year
-                    </option>
+                    <?php
+endforeach;
+?>
                   </select>
                 </div>
                 <div class="col-xl-2 form-group">
@@ -466,10 +477,15 @@ endforeach;
                   <select id="salary_kind" placeholder="Kind" name="salary_kind" class="form-control select2" required>
                     <option disabled selected hidden>Kind
                     </option>
-                    <option>Net
+                    <?php
+foreach ($salary_kinds as $salary_kind):
+?>
+                    <option>
+                      <?= h($salary_kind->kind_desc) ?>
                     </option>
-                    <option>Gross
-                    </option>
+                    <?php
+endforeach;
+?>
                   </select>
                 </div>
               </div>
@@ -480,18 +496,15 @@ endforeach;
                   <select id="occupancy" data-placeholder="Mobility" name="occupancy" class="form-control select2" required>
                     <option disabled selected hidden>Occupancy
                     </option>
-                    <option>Onsite
+                    <?php
+foreach ($occupancies as $occupancy):
+?>
+                    <option>
+                      <?= h($occupancy->occu_desc) ?>
                     </option>
-                    <option>Remote 20%
-                    </option>
-                    <option>Remote 40%
-                    </option>
-                    <option>Remote 60%
-                    </option>
-                    <option>Remote 80%
-                    </option>
-                    <option>Remote
-                    </option>
+                    <?php
+endforeach;
+?>
                   </select>
                 </div>
                 <div class="col-xl-3 form-group">

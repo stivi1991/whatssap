@@ -3,28 +3,38 @@ var modules = [];
 var filters = [];
 lock = false;
 
+function update_text() { 
+    lock = false;
+    var numOfVisibleRows = $('.table tr:visible').length;
+        if (numOfVisibleRows == 1) {
+            $("#jobcounter").html('We have found <span class="accent">' + numOfVisibleRows + '</span> offer').fadeTo( 200, 100 );
+        } else {
+            $("#jobcounter").html('We have found <span class="accent">' + numOfVisibleRows + '</span> offers').fadeTo( 200, 100 );
+        }
+}  
 
 $(document).ready(function() {
 
 
 $('.btn-filter').on('click', function() {
 
-    
-if (lock = false){
+ $("#jobcounter").fadeTo( 200, 0 );
+  
+if (lock == false){
     lock = true;
 }
 
 
-if (lock = true) {
-
-    if($(this).data('target-location')!=undefined) {
+if (lock == true) {
+  
+    if($(this).data('target-location')!==undefined) {
     var $selected_location = jQuery.inArray($(this).data('target-location'), locations);
     }
-    if($(this).data('target-module')!=undefined) {
+    if($(this).data('target-module')!==undefined) {
     var $selected_module = jQuery.inArray($(this).data('target-module'), modules);
     }
 
-if($selected_location!=undefined){
+if($selected_location!==undefined){
     if ($selected_location != -1) {
             $(this).css('background-color', '#e52a6f');
             $(this).css('border-color', '#e52a6f');
@@ -36,8 +46,8 @@ if($selected_location!=undefined){
         }
 }
 
-if($selected_module!=undefined){
-    if ($selected_module != -1 && !$selected_module!=undefined) {
+if($selected_module!==undefined){
+    if ($selected_module != -1 && !$selected_module !== undefined) {
             $(this).css('background-color', '#e52a6f');
             $(this).css('border-color', '#e52a6f');
             modules.splice($selected_module, 1);
@@ -51,45 +61,54 @@ if($selected_module!=undefined){
 
 $('.table tr').css('display', 'none');
 
-if(locations.length==0 && modules.length==0){
-    $('.table tr').fadeIn('slow');
+if(locations.length===0 && modules.length===0){
+  $('.table tr').fadeIn('fast', function() { 
+    lock = false;
+    var numOfVisibleRows = $('.table tr:visible').length;
+        if (numOfVisibleRows == 1) {
+            $("#jobcounter").html('We have found <span class="accent">' + numOfVisibleRows + '</span> offer').fadeTo( 300, 100 );
+        } else {
+            $("#jobcounter").html('We have found <span class="accent">' + numOfVisibleRows + '</span> offers').fadeTo( 300, 100 );
+        }
+});
 }
 
 else {
 
+i=1;
 $('.table tr').each(function(tr) {
 
 if(modules.length>0 && locations.length>0){
     if(jQuery.inArray($(this).attr('data-module'),modules)!= -1 && jQuery.inArray($(this).attr('data-location'),locations)!= -1) {
-        $(this).fadeIn('slow');
-    };
+        $(this).fadeIn('fast');
+    }
 }
-else if(modules.length>0 && locations.length==0){
+else if(modules.length>0 && locations.length===0){
     if(jQuery.inArray($(this).attr('data-module'),modules)!= -1) {
-        $(this).fadeIn('slow');
-    };
+        $(this).fadeIn('fast');
+    }
 }
-else if(locations.length>0 && modules.length==0){
+else if(locations.length>0 && modules.length===0){
     if(jQuery.inArray($(this).attr('data-location'),locations)!= -1) {
-        $(this).fadeIn('slow');
-    };
+        $(this).fadeIn('fast');       
+    }
 }
+
+if(i == $('.table tr').length) { 
+  setTimeout(function() {
+    update_text()
+  }, 300);  
+}
+  
+i+=1;
 
 });
 
-
 }
 
-    lock = false;
-    var numOfVisibleRows = $('.table tr:visible').length;
-        if (numOfVisibleRows == 1) {
-            $("#jobcounter").html('We have found <span class="accent">' + numOfVisibleRows + '</span> offer');
-        } else {
-            $("#jobcounter").html('We have found <span class="accent">' + numOfVisibleRows + '</span> offers');
-        }
 
 }
 
 });
-
+  
 });

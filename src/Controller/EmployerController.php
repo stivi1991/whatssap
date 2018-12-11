@@ -27,12 +27,40 @@ class EmployerController extends AppController
     {
 
       $this->loadModel('Modules');
-      $module = $this->Modules->find('all');
-      $this->set('module', $module);
+      $modules = $this->Modules->find('all', ['order' => 'module_desc ASC']);
+      $this->set('modules', $modules);
 
       $this->loadModel('Countries');
-      $country = $this->Countries->find('all');
-      $this->set('country', $country);
+      $countries = $this->Countries->find('all', ['order' => 'country_desc ASC']);
+      $this->set('countries', $countries);
+      
+      $this->loadModel('Func');
+      $func = $this->Func->find('all', ['order' => 'func_desc ASC']);
+      $this->set('func', $func);
+      
+      $this->loadModel('ExpLevels');
+      $exp_levels = $this->ExpLevels->find('all', ['order' => 'level_desc ASC']);
+      $this->set('exp_levels', $exp_levels);
+      
+      $this->loadModel('Occupancies');
+      $occupancies = $this->Occupancies->find('all');
+      $this->set('occupancies', $occupancies);
+      
+      $this->loadModel('SalaryCurrs');
+      $salary_currs = $this->SalaryCurrs->find('all', ['order' => 'curr_desc ASC']);
+      $this->set('salary_currs', $salary_currs);
+            
+      $this->loadModel('SalaryPers');
+      $salary_pers = $this->SalaryPers->find('all');
+      $this->set('salary_pers', $salary_pers);
+            
+      $this->loadModel('SalaryKinds');
+      $salary_kinds = $this->SalaryKinds->find('all');
+      $this->set('salary_kinds', $salary_kinds);
+      
+      $this->loadModel('JobTypes');
+      $job_types = $this->JobTypes->find('all', ['order' => 'type_desc ASC']);
+      $this->set('job_types', $job_types);
 
       $this->loadModel('jobOffer');
       $offer = $this->jobOffer->newEntity();

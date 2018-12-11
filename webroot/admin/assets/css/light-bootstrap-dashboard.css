@@ -3203,6 +3203,10 @@ fieldset[disabled] .btn-neutral.active {
     left: 0;
 }
 
+li {
+    list-style-type: none;
+}
+
 @media (min-width: 992px) {
     .navbar-form {
         margin-top: 21px;
@@ -3867,3 +3871,4 @@ fieldset[disabled] .btn-neutral.active {
         -webkit-overflow-scrolling: touch;
     }
 }
+

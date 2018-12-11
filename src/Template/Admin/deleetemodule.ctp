@@ -10,11 +10,13 @@
     <title>Admin Panel</title>
 
     <!--preloader-->
+    <?= $this->Html->script('/./admin/assets/js/jquery.3.2.1.min.js') ?>
     <?= $this->Html->css('/./css/preloader.css') ?>
     <?= $this->Html->css('/./admin/assets/css/bootstrap.min.css') ?>
     <?= $this->Html->css('/./admin/assets/css/animate.min.css') ?>
     <?= $this->Html->css('/./admin/assets/css/light-bootstrap-dashboard.css?v=1.4.0') ?>
     <?= $this->Html->css('/./admin/assets/css/pe-icon-7-stroke.css') ?>
+    <?= $this->Html->css('/./admin/assets/css/messages.css') ?>
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
@@ -28,7 +30,7 @@
       <div class="colorlib-load"></div>
   </div>
 
-  <script src="/./js/preloader.js"></script>
+  <script src="../js/preloader.js"></script>
 
   <?= $this->Flash->render() ?>
 
@@ -97,61 +99,33 @@
         </nav>
 
 
- <div class="content">
-   <div class="container-fluid">
-              <ul class="nav">
+        <div class="content">
+            <div class="container-fluid">
+
+              <form method="post" action="deletemodule" class="job-add-form">
+                <div class="row">
+                  <div class="col-lg-12 form-group">
+                    <label for="module_id">Module ID:</label>
+                    <input id="module_id" type="text" name="module_id" class="form-control" required />
+                  </div>
+                </div>
+                <div class="col-lg-12 text-center">
+                  <hr>
+                  <button type="submit" class="btn btn-outline-white-primary">Delete</button>
+                </div>
+              </form>
+              <ul>
               <li>
-                  <a href="/admin/modulelist">
-                      <p>Modules</p>
+                  <a href="/admin/maintain">
+                      <button class="btn btn-outline-white-primary"></i>Back</button>
                   </a>
               </li>
-              <li>
-                  <a href="/admin/countrylist">
-                      <p>Countries</p>
-                  </a>
-              </li>
-              <li>
-                  <a href="/admin/functionlist">
-                      <p>Functions</p>
-                  </a>
-              </li>
-              <li>
-                  <a href="/admin/levellist">
-                      <p>Expertise Levels</p>
-                  </a>
-              </li>
-              <li>
-                  <a href="/admin/jobtypelist">
-                      <p>Job types</p>
-                  </a>
-              </li>
-              <li>
-                  <a href="/admin/occupancylist">
-                      <p>Occupancies</p>
-                  </a>
-              </li>
-              <li>
-                  <a href="/admin/salcurrlist">
-                      <p>Salary currencies</p>
-                  </a>
-              </li>
-              <li>
-                  <a href="/admin/salperlist">
-                      <p>Salary pers</p>
-                  </a>
-              </li>
-              <li>
-                  <a href="/admin/salkindlist">
-                      <p>Salary kinds</p>
-                  </a>
-              </li>
-              </ul>
+            </ul>
     </div>
   </div>
-</div>
-
-<footer class="footer">
-  <div class="footer__copyright">
+  
+<div class="col-md-12" align="center">
+<footer>
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-md-left text-center">
@@ -162,16 +136,16 @@
         </div>
       </div>
     </div>
-  </div>
 </footer>
+</div>
+</div>
 
 
 </body>
-<?= $this->Html->script('/./admin/assets/js/jquery.3.2.1.min.js') ?>
 <?= $this->Html->script('/./js/preloader.js') ?>
 <?= $this->Html->script('/./admin/assets/js/bootstrap.min.js') ?>
 <?= $this->Html->script('/./admin/assets/js/chartist.min.js') ?>
 <?= $this->Html->script('/./admin/assets/js/bootstrap-notify.js') ?>
-<?= $this->Html->script('/.s/admin/assets/js/light-bootstrap-dashboard.js?v=1.4.0') ?>
+<?= $this->Html->script('/./admin/assets/js/light-bootstrap-dashboard.js?v=1.4.0') ?>
 
 </html>

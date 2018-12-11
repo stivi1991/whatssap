@@ -50,31 +50,82 @@ public function beforeFilter(Event $event)
  */
 public function index()
 {
-    $users = $this->Users->find('all');
-    $this->set(compact('users'));
+  $this->loadModel('jobOffer');
+    
+  $users = $this->Users->find('all');
+  $this->set(compact('users'));
+
+  ///USERS
   $candidates = $this->Users->find('all', [
-      'conditions' => ['Users.role LIKE' => '%']
+      'conditions' => ['Users.role LIKE' => 'CANDIDATE']
   ]);
+  
+  $employers_basic = $this->Users->find('all', [
+    'conditions' => ['Users.role' => 'EMPL_BASIC']
+  ]);
+  
   $employers_standard = $this->Users->find('all', [
-    'conditions' => ['Users.role LIKE' => '%']
+    'conditions' => ['Users.role' => 'EMPL_STANDARD']
   ]);
+  
   $employers_premium = $this->Users->find('all', [
-  'conditions' => ['Users.role LIKE' => '%']
+  'conditions' => ['Users.role' => 'EMPL_PREMIUM']
   ]);
-  $candidates10 = $this->Users->find('all',array(
+  
+  $candidates10 = $this->Users->find('all',[
     'limit'=>10,
-    'conditions'=>array('Users.role LIKE' => '%'),
+    'conditions'=>array('Users.role LIKE' => 'CANDIDATE'),
     'order' => 'Users.created ASC', // <-- THIS
     'recursive' => -1,
-));
+  ]);
+  
+  ////////////////
+  
+  ///OFFERS
+  date_default_timezone_set('Europe/Warsaw');
+  
+  $offers_all = $this->jobOffer->find('all');
+    
+  $offers_active = $this->jobOffer->find('all'
+  , [
+  'conditions' => ['valid_to >=' => date("Y-m-d H:i:s",time())]   ///CHANGE  THEN VALID DATE WILL BE ON OFFER
+  ]
+  );
+  
+  $offers_expired = $this->jobOffer->find('all'
+  , [
+  'conditions' => ['valid_to <' => date("Y-m-d H:i:s",time())]   ///CHANGE  THEN VALID DATE WILL BE ON OFFER
+  ]
+  );
+  
+  $offers10 = $this->jobOffer->find('all',[
+    'limit'=>10,
+    'order' => 'post_date DESC', // <-- THIS
+    'recursive' => -1,
+  ]);
+  
+  ////////////////  
+  
+  
+  /////////USERS SETS
   $info = TableRegistry::get('PersonalInfo');
   $this->set('candidates', $candidates);
+  $this->set('employers_basic', $employers_basic);
   $this->set('employers_standard', $employers_standard);
   $this->set('employers_premium', $employers_premium);
   $this->set('users', $users);
   $this->set('info', $info);
   $this->set('candidates10', $candidates10);
-
+  /////////
+  
+  ////OFFERS SETS
+  $this->set('offers_all', $offers_all);
+  $this->set('offers_active', $offers_active);
+  $this->set('offers_expired', $offers_expired);
+  $this->set('offers10', $offers10);
+  /////////
+  
+  
 }
 
 /**
@@ -177,6 +228,9 @@ $this->set('info', $info);
 
 }
 
+  
+//////////EDIT SELECTION DATA
+  
 public function maintainmodule(){
   $this->loadModel('Modules');
   $module = $this->Modules->newEntity();
@@ -189,6 +243,11 @@ public function maintainmodule(){
         $this->Flash->error(__('The module could not be saved. Please, try again.'));
     }
 }
+   
+////////////////////////////////////////////////////////
+
+  
+////////////VIEW SELECTION DATA  
 
 public function modulelist(){
 
@@ -198,12 +257,75 @@ $this->set('module', $module);
 
 }
 
+public function countrylist(){
 
-public function offers(){
+$this->loadModel('Countries');
+$countries = $this->Countries->find('all');
+$this->set('countries', $countries);
 
+}
+  
+public function functionlist(){
+
+$this->loadModel('Func');
+$func = $this->Func->find('all');
+$this->set('func', $func);
 
 }
 
+public function levellist(){
+
+$this->loadModel('ExpLevels');
+$levels = $this->ExpLevels->find('all');
+$this->set('levels', $levels);
+
+}
+
+public function jobtypelist(){
+
+$this->loadModel('JobTypes');
+$job_types = $this->JobTypes->find('all');
+$this->set('job_types', $job_types);
+
+}
+  
+public function occupancylist(){
+
+$this->loadModel('Occupancies');
+$occupancies = $this->Occupancies->find('all');
+$this->set('occupancies', $occupancies);
+
+}
+  
+public function salcurrlist(){
+
+$this->loadModel('SalaryCurrs');
+$sal_currs = $this->SalaryCurrs->find('all');
+$this->set('sal_currs', $sal_currs);
+
+}
+
+public function salperlist(){
+
+$this->loadModel('SalaryPers');
+$sal_pers = $this->SalaryPers->find('all');
+$this->set('sal_pers', $sal_pers);
+
+}
+  
+public function salkindlist(){
+
+$this->loadModel('SalaryKinds');
+$sal_kinds = $this->SalaryKinds->find('all');
+$this->set('sal_kinds', $sal_kinds);
+
+}
+  
+///////////////////////////////////////////////////////////
+
+public function offers(){
+
+}
 
 public function logout(){
     $this->Auth->logout();

@@ -1,20 +1,3 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
- * @var \App\Model\Entity\PersonalInfo[]|\Cake\Collection\CollectionInterface $personalInfo
- */
-
-
- use Cake\Cache\Cache;
- use Cake\Core\Configure;
- use Cake\Core\Plugin;
- use Cake\Datasource\ConnectionManager;
- use Cake\Error\Debugger;
- use Cake\Network\Exception\NotFoundException;
-
-?>
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -23,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="/./favicon.ico">
+    <title>Admin Panel</title>
 
     <!--preloader-->
-    <?= $this->Html->css('/css/preloader.css"') ?>
-    <?= $this->Html->css('/admin/assets/css/bootstrap.min.css') ?>
-    <?= $this->Html->css('/admin/assets/css/animate.min.css') ?>
-    <?= $this->Html->css('/admin/assets/css/light-bootstrap-dashboard.css?v=1.4.0') ?>
-    <?= $this->Html->css('/admin/assets/css/pe-icon-7-stroke.css') ?>
+    <?= $this->Html->css('/./css/preloader.css') ?>
+    <?= $this->Html->css('/./admin/assets/css/bootstrap.min.css') ?>
+    <?= $this->Html->css('/./admin/assets/css/animate.min.css') ?>
+    <?= $this->Html->css('/./admin/assets/css/light-bootstrap-dashboard.css?v=1.4.0') ?>
+    <?= $this->Html->css('/./admin/assets/css/pe-icon-7-stroke.css') ?>
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
@@ -44,7 +28,7 @@
       <div class="colorlib-load"></div>
   </div>
 
-  <script src="../js/preloader.js"></script>
+  <script src="/./js/preloader.js"></script>
 
   <?= $this->Flash->render() ?>
   
@@ -136,11 +120,11 @@
 
 
 </body>
-<?= $this->Html->script('/admin/assets/js/jquery.3.2.1.min.js') ?>
-<?= $this->Html->script('/js/preloader.js') ?>
-<?= $this->Html->script('/admin/assets/js/bootstrap.min.js') ?>
-<?= $this->Html->script('/admin/assets/js/chartist.min.js') ?>
-<?= $this->Html->script('/admin/assets/js/bootstrap-notify.js') ?>
-<?= $this->Html->script('/admin/assets/js/light-bootstrap-dashboard.js?v=1.4.0') ?>
+<?= $this->Html->script('/./admin/assets/js/jquery.3.2.1.min.js') ?>
+<?= $this->Html->script('/./js/preloader.js') ?>
+<?= $this->Html->script('/./admin/assets/js/bootstrap.min.js') ?>
+<?= $this->Html->script('/./admin/assets/js/chartist.min.js') ?>
+<?= $this->Html->script('/./admin/assets/js/bootstrap-notify.js') ?>
+<?= $this->Html->script('/./admin/assets/js/light-bootstrap-dashboard.js?v=1.4.0') ?>
 
 </html>
