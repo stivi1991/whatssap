@@ -41,8 +41,15 @@ class PagesController extends AppController
      */
     public function display(...$path)
     {
-
+            
+      $this->set('User', $this->Auth->user());
+      
       $this->loadModel('jobOffer');
+      
+      $this->jobOffer->deleteAll(array(
+      'valid_to < now()'
+      )) ;
+      
       $offer = $this->jobOffer->find('all', array('order'=>'job_title'));
       $this->set('offer', $offer);
 
@@ -98,31 +105,8 @@ class PagesController extends AppController
         }
     }
 
-    //// loginAction
-
-    public function login()
-        {
-          var_dump($this->Auth->user());
-          $uid = $this->Auth->user()['id'];
-          if($uid) {
-          return $this->redirect(['action' => 'index']);
-          }
-
-            if ($this->request->is('post')) {
-              var_dump($user);
-                $user = $this->Auth->identify();
-                if ($user) {
-                    $this->Auth->setUser($user);
-                    if( $user['role'] === 'ADMIN') {
-                       //return $this->redirect($this->Auth->redirectUrl('/admin'));
-                    } else {
-                       return $this->redirect(['controller' => 'users', 'action' => 'index']);
-                    }
-                }
-                $this->Flash->error(__('Unvalid email or password. Please try again.'));
-            }
-        }
-    /// end of login action
+  
+  
     ///time elapsed function
   function time_elapsed_string($datetime, $full = false) {
     $tz = 'Europe/Warsaw';

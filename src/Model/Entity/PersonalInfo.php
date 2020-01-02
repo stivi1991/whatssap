@@ -7,12 +7,13 @@ use Cake\ORM\Entity;
  * PersonalInfo Entity
  *
  * @property int $id
- * @property string $name_first
- * @property string $name_last
- * @property int $phone_number
- * @property string $address
- * @property string $city
- * @property string $postal_code
+ * @property int|null $user_id
+ * @property string|null $name_first
+ * @property string|null $name_last
+ * @property string|null $country
+ * @property string|null $city
+ * @property string|null $cv_url
+ * @property string|null $preffered_location
  */
 class PersonalInfo extends Entity
 {
@@ -27,11 +28,12 @@ class PersonalInfo extends Entity
      * @var array
      */
     protected $_accessible = [
+        'user_id' => true,
         'name_first' => true,
         'name_last' => true,
-        'phone_number' => true,
-        'address' => true,
+        'country' => true,
         'city' => true,
-        'postal_code' => true
+        'cv_url' => true,
+        'preffered_location' => true
     ];
 }

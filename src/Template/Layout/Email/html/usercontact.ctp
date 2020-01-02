@@ -154,7 +154,7 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 									<table width="140" border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
 										<tr>
 											<td height="60" valign="middle" width="100%" style="text-align: left; padding-left: 20px;" class="fullCenter" id="logo">
-												<a href="http://35.204.146.234/"><img src="http://www.imagedost.com/images/dc9hbpy96c3fu98khjk.png" alt="" border="0"></a>
+												<a href="http://whatssap.it"><img src="http://www.imagedost.com/images/dc9hbpy96c3fu98khjk.png" alt="" border="0"></a>
 											</td>
 										</tr>
 										<tr>
@@ -273,7 +273,7 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 									<table width="150" border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
 										<tr>
 											<td width="100%" style="text-align: center;">
-												<a target="_blank" href="http://35.204.146.234/" class="rotator"><img src="http://www.imagedost.com/images/ypfbtc674x8pq54kjdbw.png" alt="" border="0" width="25" height="auto" class="hover"></a>
+												<a target="_blank" href="http://whatssap.it" class="rotator"><img src="http://www.imagedost.com/images/ypfbtc674x8pq54kjdbw.png" alt="" border="0" width="25" height="auto" class="hover"></a>
 											</td>
 										</tr>
 										<tr>
@@ -288,7 +288,7 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 									<table width="150" border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
 										<tr>
 											<td width="100%" style="text-align: center;">
-												<a href="http://35.204.146.234/" class="rotator"><img src="http://www.imagedost.com/images/2u1nkh9ho3qwl8jq42hb.png" alt="" border="0" width="25" height="auto" class="hover"></a>
+												<a href="http://whatssap.it" class="rotator"><img src="http://www.imagedost.com/images/2u1nkh9ho3qwl8jq42hb.png" alt="" border="0" width="25" height="auto" class="hover"></a>
 											</td>
 										</tr>
 										<tr>
@@ -303,7 +303,7 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 									<table width="150" border="0" cellpadding="0" cellspacing="0" align="right" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
 										<tr>
 											<td width="100%" style="text-align: center;">
-												<a href="http://35.204.146.234/" class="rotator"><img src="http://www.imagedost.com/images/3hdfb8av9dkti77nqei2.png" alt="" border="0" width="25" height="auto" class="hover"></a>
+												<a href="http://whatssap.it" class="rotator"><img src="http://www.imagedost.com/images/3hdfb8av9dkti77nqei2.png" alt="" border="0" width="25" height="auto" class="hover"></a>
 											</td>
 										</tr>
 										<tr>
@@ -344,7 +344,7 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 							<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="full">
 										<tr>
 											<td valign="middle" width="100%" style="text-align: right; padding-right: 20px; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; font-size: 14px; color: #fff; line-height: 21px; font-weight: 400;" class="fullCenter">
-												<a href="#" style="text-decoration: none; color: #fff;">&copy; WHAT'S SAP 2019</a>
+												<a href="#" style="text-decoration: none; color: #fff;">&copy; WHAT'S SAP 2020</a>
 											</td>
 										</tr>
 							</table>

@@ -9,6 +9,10 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
+ * @property |\Cake\ORM\Association\HasMany $CandSkills
+ * @property |\Cake\ORM\Association\HasMany $PersonalInfo
+ * @property |\Cake\ORM\Association\HasMany $ValidateTokens
+ *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\User[] newEntities(array $data, array $options = [])
@@ -36,10 +40,9 @@ class UsersTable extends Table
         $this->setTable('users');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
-        $this->hasOne('PersonalInfo', [
-          'foreignKey' => 'id'
-        ]);
+
         $this->addBehavior('Timestamp');
+
     }
 
     /**
@@ -68,6 +71,15 @@ class UsersTable extends Table
             ->scalar('role')
             ->maxLength('role', 20)
             ->allowEmpty('role');
+
+        $validator
+            ->scalar('valid')
+            ->maxLength('valid', 1)
+            ->allowEmpty('valid');
+
+        $validator
+            ->dateTime('valid_to')
+            ->allowEmpty('valid_to');
 
         return $validator;
     }

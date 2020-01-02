@@ -7,33 +7,35 @@ use Cake\ORM\Entity;
  * JobOffer Entity
  *
  * @property int $id
- * @property string $company_name
- * @property string $company_url
- * @property string $company_facebook
- * @property string $company_linkedin
- * @property string $apply_email
- * @property string $job_title
- * @property string $module
- * @property string $job_type
- * @property \Cake\I18n\FrozenDate $project_start
- * @property int $duration
- * @property string $occupancy
- * @property string $country
- * @property string $city
- * @property string $location_data_name
- * @property int $capacity
- * @property int $salary_from
- * @property int $salary_to
- * @property string $salary_type
- * @property string $salary_kind
- * @property string $currency
- * @property string $contract_type
- * @property string $exp_type
- * @property string $function
- * @property string $description
- * @property \Cake\I18n\FrozenTime $valid_to
- * @property \Cake\I18n\FrozenTime $post_date
- * @property \Cake\I18n\FrozenTime $change_date
+ * @property int|null $company_id
+ * @property string|null $company_name
+ * @property string|null $company_url
+ * @property string|null $company_facebook
+ * @property string|null $company_linkedin
+ * @property string|null $apply_email
+ * @property string|null $job_title
+ * @property string|null $module
+ * @property string|null $job_type
+ * @property \Cake\I18n\FrozenDate|null $project_start
+ * @property string|null $duration
+ * @property string|null $occupancy
+ * @property string|null $country
+ * @property string|null $city
+ * @property string|null $location_data_name
+ * @property int|null $capacity
+ * @property int|null $salary_from
+ * @property int|null $salary_to
+ * @property string|null $salary_type
+ * @property string|null $salary_kind
+ * @property string|null $currency
+ * @property string|null $contract_type
+ * @property string|null $exp_type
+ * @property string|null $function
+ * @property string|null $description
+ * @property string|null $post_type
+ * @property \Cake\I18n\FrozenTime|null $valid_to
+ * @property \Cake\I18n\FrozenTime|null $post_date
+ * @property \Cake\I18n\FrozenTime|null $change_date
  */
 class JobOffer extends Entity
 {
@@ -48,6 +50,7 @@ class JobOffer extends Entity
      * @var array
      */
     protected $_accessible = [
+        'company_id' => true,
         'company_name' => true,
         'company_url' => true,
         'company_facebook' => true,
@@ -72,6 +75,7 @@ class JobOffer extends Entity
         'exp_type' => true,
         'function' => true,
         'description' => true,
+        'post_type' => true,
         'valid_to' => true,
         'post_date' => true,
         'change_date' => true

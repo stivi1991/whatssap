@@ -154,7 +154,7 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 									<table width="140" border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
 										<tr>
 											<td height="60" valign="middle" width="100%" style="text-align: left; padding-left: 20px;" class="fullCenter" id="logo">
-												<a href="http://35.204.146.234/"><img src="http://www.imagedost.com/images/dc9hbpy96c3fu98khjk.png" alt="" border="0"></a>
+												<a href="https://whatssap.it"><img src="http://www.imagedost.com/images/dc9hbpy96c3fu98khjk.png" alt="" border="0"></a>
 											</td>
 										</tr>
 										<tr>
@@ -203,6 +203,12 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 											</table><!-- End Space -->	
 												<span style="font-size: 20px;"> is waiting in the attachment.</span>	
 											</td>
+												</tr>
+                      <tr>
+                      <span style="font-size: 20px;">Contact with the candidate at <span style="font-weight: 600; color:#5F0F4E;"><br><?= strtolower($candidate_email) ?></span></span>	
+                      </tr>
+											</table><!-- End Space -->		
+											</td>
 										</tr>
 									</table>
 									
@@ -212,12 +218,12 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 									
 						<table width="90%" border="0" cellpadding="0" cellspacing="0" align="center" class="full">
 							<tr>
-								<td width="100%" valign="middle" align="center">	
+								<td width="90%" valign="middle" align="center">	
 								
-									<table width="100%" style="background-color: #67AECA;" border="0" cellpadding="0" cellspacing="0" align="center" style="text-align: center; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
+									<table width="90%" style="background-color: #67AECA;" border="0" cellpadding="0" cellspacing="0" align="center" style="text-align: center; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
 										
 										<tr>
-											<td width="100%" height="5"></td>
+											<td width="90%" height="30"></td>
 										</tr>
 										<!-- Button Center -->
 										<tr>
@@ -226,12 +232,17 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 												<table border="0" cellpadding="0" cellspacing="0" align="center" class="buttonScale">
 													<tr>
 														<td width="auto" align="center" height="10" bgcolor="#E52A6F" style="border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-left: 40px; padding-right: 40px; font-weight: 650; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; color: #ffffff;">
-															<a href="http://35.204.146.234/users/jobdetails/<?= $offer_id ?>" style="color: #ffffff; font-size: 10px; text-decoration: none; line-height: 30px; width: 50%; letter-spacing: 0.25rem;">VIEW OFFER</a>
+															<a href="https://whatssap.it/users/jobdetails/<?= $offer_id ?>" style="color: #ffffff; font-size: 10px; text-decoration: none; line-height: 30px; width: 50%; letter-spacing: 0.25rem;">VIEW OFFER</a>
 														</td>
 														<td width="15">
 														</td>
 														<td width="auto" align="center" height="10" bgcolor="#E52A6F" style="border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-left: 40px; padding-right: 40px; font-weight: 650; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; color: #ffffff;">
-															<a href="#" style="color: #ffffff; font-size: 10px; text-decoration: none; line-height: 30px; width: 50%; letter-spacing: 0.25rem;">EDIT OFFER</a>
+															<a href="https://whatssap.it/employer/editoffer/<?= $edit_token ?>" style="color: #ffffff; font-size: 10px; text-decoration: none; line-height: 30px; width: 50%; letter-spacing: 0.25rem;">EDIT OFFER</a>
+														</td>
+                            <td width="15">
+														</td>
+                            <td width="auto" align="center" height="10" bgcolor="#E52A6F" style="border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-left: 40px; padding-right: 40px; font-weight: 650; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; color: #ffffff;">
+															<a href="https://whatssap.it/employer/deleteoffer/<?= $delete_token ?>" style="color: #ffffff; font-size: 10px; text-decoration: none; line-height: 30px; width: 50%; letter-spacing: 0.25rem;">DELETE OFFER</a>
 														</td>
 													</tr>
 												</table>
@@ -244,19 +255,27 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 								</td>
 							</tr>
 						</table>
-									
-						<table width="90%" border="0" cellpadding="0" cellspacing="0" align="center" class="full">
+      
+      
+            <table width="90%" border="0" cellpadding="0" cellspacing="0" align="center" class="full">
 							<tr>
-								<td width="100%" valign="middle" align="center">
-									<table width="100%" style="background-color: #67AECA;" border="0" cellpadding="0" cellspacing="0" align="center" style="text-align: center; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
+								<td width="90%" valign="middle" align="center">	
+								
+									<table width="90%" style="background-color: #67AECA;" border="0" cellpadding="0" cellspacing="0" align="center" style="text-align: center; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
 										
 										<tr>
-											<td width="100%" height="20"></td>
+											<td width="90%" height="30"></td>
 										</tr>
-									</table>								
+										<!-- Button Center -->
+										<tr>
+										</tr>
+										<!-- End Button Center -->
+									</table>
+									
 								</td>
 							</tr>
-						</table><!-- End Header Text -->
+						</table>
+
 						
 					</td>
 				</tr>
@@ -298,7 +317,7 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 									<table width="150" border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
 										<tr>
 											<td width="100%" style="text-align: center;">
-												<a target="_blank" href="http://35.204.146.234/" class="rotator"><img src="http://www.imagedost.com/images/ypfbtc674x8pq54kjdbw.png" alt="" border="0" width="25" height="auto" class="hover"></a>
+												<a target="_blank" href="https://whatssap.it" class="rotator"><img src="http://www.imagedost.com/images/ypfbtc674x8pq54kjdbw.png" alt="" border="0" width="25" height="auto" class="hover"></a>
 											</td>
 										</tr>
 										<tr>
@@ -313,7 +332,7 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 									<table width="150" border="0" cellpadding="0" cellspacing="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
 										<tr>
 											<td width="100%" style="text-align: center;">
-												<a href="http://35.204.146.234/" class="rotator"><img src="http://www.imagedost.com/images/2u1nkh9ho3qwl8jq42hb.png" alt="" border="0" width="25" height="auto" class="hover"></a>
+												<a href="https://whatssap.it" class="rotator"><img src="http://www.imagedost.com/images/2u1nkh9ho3qwl8jq42hb.png" alt="" border="0" width="25" height="auto" class="hover"></a>
 											</td>
 										</tr>
 										<tr>
@@ -328,7 +347,7 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 									<table width="150" border="0" cellpadding="0" cellspacing="0" align="right" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="fullCenter">
 										<tr>
 											<td width="100%" style="text-align: center;">
-												<a href="http://35.204.146.234/" class="rotator"><img src="http://www.imagedost.com/images/3hdfb8av9dkti77nqei2.png" alt="" border="0" width="25" height="auto" class="hover"></a>
+												<a href="https://whatssap.it" class="rotator"><img src="http://www.imagedost.com/images/3hdfb8av9dkti77nqei2.png" alt="" border="0" width="25" height="auto" class="hover"></a>
 											</td>
 										</tr>
 										<tr>
@@ -357,19 +376,12 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 	</tr>
 </table>
 
-<table width="80%" border="0" cellpadding="0" cellspacing="0" align="center" class="full">
-	<tr>
-		<td width="100%" bgcolor="#675682" align="center">
-		
-			
+
 			<!-- Wrapper -->
-			<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="mobile">
-				<tr>
-					<td class="icon54" align="center">
 							<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="full">
 										<tr>
 											<td valign="middle" width="100%" style="text-align: right; padding-right: 20px; font-family: Helvetica, Arial, sans-serif, 'Open Sans'; font-size: 14px; color: #fff; line-height: 21px; font-weight: 400;" class="fullCenter">
-												<a href="#" style="text-decoration: none; color: #fff;">&copy; WHAT'S SAP 2019</a>
+												<a href="#" style="text-decoration: none; color: #fff;">&copy; WHAT'S SAP 2020</a>
 											</td>
 										</tr>
 							</table>
@@ -379,12 +391,6 @@ a.rotator img:hover {-webkit-transform: rotate(360deg); -moz-transform: rotate(3
 								<td width="100%" height="10"></td>
 							</tr>
 						</table><!-- End Space -->
-				</td>
-			</tr>
-		</table>
-		</td>
-	</tr>
-</table>
 
 </table>
 

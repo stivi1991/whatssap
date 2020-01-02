@@ -9,6 +9,8 @@ use Cake\Validation\Validator;
 /**
  * PersonalInfo Model
  *
+ * @property |\Cake\ORM\Association\BelongsTo $Users
+ *
  * @method \App\Model\Entity\PersonalInfo get($primaryKey, $options = [])
  * @method \App\Model\Entity\PersonalInfo newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\PersonalInfo[] newEntities(array $data, array $options = [])
@@ -33,9 +35,6 @@ class PersonalInfoTable extends Table
 
         $this->setTable('personal_info');
         $this->setDisplayField('id');
-        $this->belongsTo('Users')
-            ->setForeignKey('id')
-            ->setJoinType('INNER');
         $this->setPrimaryKey('id');
     }
 
@@ -62,13 +61,9 @@ class PersonalInfoTable extends Table
             ->allowEmpty('name_last');
 
         $validator
-            ->integer('phone_number')
-            ->allowEmpty('phone_number');
-
-        $validator
-            ->scalar('address')
-            ->maxLength('address', 50)
-            ->allowEmpty('address');
+            ->scalar('country')
+            ->maxLength('country', 50)
+            ->allowEmpty('country');
 
         $validator
             ->scalar('city')
@@ -76,10 +71,26 @@ class PersonalInfoTable extends Table
             ->allowEmpty('city');
 
         $validator
-            ->scalar('postal_code')
-            ->maxLength('postal_code', 6)
-            ->allowEmpty('postal_code');
+            ->scalar('cv_url')
+            ->maxLength('cv_url', 255)
+            ->allowEmpty('cv_url');
+
+        $validator
+            ->scalar('preffered_location')
+            ->allowEmpty('preffered_location');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        return $rules;
     }
 }

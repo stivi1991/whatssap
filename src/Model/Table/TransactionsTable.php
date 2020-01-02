@@ -9,8 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Transactions Model
  *
- * @property \App\Model\Table\TransactionsTable|\Cake\ORM\Association\BelongsTo $Transactions
- * @property \App\Model\Table\TransactionsTable|\Cake\ORM\Association\HasMany $Transactions
+ * @property |\Cake\ORM\Association\BelongsTo $Transactions
+ * @property |\Cake\ORM\Association\HasMany $Transactions
  *
  * @method \App\Model\Entity\Transaction get($primaryKey, $options = [])
  * @method \App\Model\Entity\Transaction newEntity($data = null, array $options = [])
@@ -37,13 +37,6 @@ class TransactionsTable extends Table
         $this->setTable('transactions');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
-
-        $this->belongsTo('Transactions', [
-            'foreignKey' => 'transaction_id'
-        ]);
-        $this->hasMany('Transactions', [
-            'foreignKey' => 'transaction_id'
-        ]);
     }
 
     /**
@@ -61,6 +54,15 @@ class TransactionsTable extends Table
         $validator
             ->email('email')
             ->allowEmpty('email');
+
+        $validator
+            ->scalar('service')
+            ->maxLength('service', 20)
+            ->allowEmpty('service');
+
+        $validator
+            ->integer('amonut')
+            ->allowEmpty('amonut');
 
         $validator
             ->scalar('status')

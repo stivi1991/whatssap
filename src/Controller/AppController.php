@@ -64,26 +64,16 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event) {
           parent::beforeFilter($event);
-          $this->Auth->authError = __('You are not authorized to that location.');
-          $user = $this->Auth->user();
-          if (isset($user['_matchingData']['Users']['role']) && $user['_matchingData']['Users']['role'] === 'ADMIN') {
-              $this->Auth->allow('*');
-          } else {
-            $this->Auth->allow('login');
             $this->Auth->allow('display');
-            $this->Auth->allow('register');
             $this->Auth->allow('postjob');
             $this->Auth->allow('jobsearch');
             $this->Auth->allow('jobdetails');
             $this->Auth->allow('jobapply');
             $this->Auth->allow('about');
-            $this->Auth->allow('emailMarika');
-            $this->Auth->allow('emailPrzemek');  
-            $this->Auth->allow('passwordReset'); 
             $this->Auth->allow('contactEmail');
-            $this->Auth->allow('howto');             
-            $this->Auth->deny('admin');
-          }
+            $this->Auth->allow('deleteoffer');
+            $this->Auth->allow('editoffer');
+            $this->Auth->deny('admin');    
       }
 
 

@@ -8,8 +8,8 @@ DROP TABLE job_offer;
 DROP TABLE countries;
 DROP TABLE modules;
 DROP TABLE job_applies;
-DROP TABLE forget_tokens;
-DROP TABLE transactions;
+DROP TABLE delete_tokens;
+DROP TABLE edit_tokens;
 DROP TABLE func;
 DROP TABLE exp_levels;
 DROP TABLE job_types;
@@ -24,21 +24,26 @@ CREATE TABLE users (
     password VARCHAR(255),
     role VARCHAR(20),
     created DATETIME DEFAULT NULL,
-    modified DATETIME DEFAULT NULL
+    modified DATETIME DEFAULT NULL,
+    valid VARCHAR(1) DEFAULT '',
+    valid_to DATETIME DEFAULT now()
 );
 
 CREATE TABLE personal_info (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNIQUE,
     name_first VARCHAR(50) CHARACTER SET utf8,
     name_last VARCHAR(50) CHARACTER SET utf8,
-    phone_number INT,
-    address VARCHAR(50) CHARACTER SET utf8,
-    city    VARCHAR(50) CHARACTER SET utf8,
-    postal_code VARCHAR(6)
+    country VARCHAR(50) CHARACTER SET utf8,
+    city VARCHAR(50) CHARACTER SET utf8,
+    cv_url VARCHAR(255),
+    preffered_location TEXT
 );
+
 
 CREATE TABLE job_offer (
 id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+company_id INT DEFAULT NULL,
 company_name VARCHAR(50) CHARACTER SET utf8,
 company_url VARCHAR(255) CHARACTER SET utf8,
 company_facebook VARCHAR(255) CHARACTER SET utf8,
@@ -48,11 +53,11 @@ job_title VARCHAR(255) CHARACTER SET utf8,
 module VARCHAR(255) CHARACTER SET utf8,
 job_type VARCHAR(50) CHARACTER SET utf8,
 project_start DATE DEFAULT NULL,
-duration INT,
+duration VARCHAR(20) DEFAULT NULL,
 occupancy VARCHAR(50) CHARACTER SET utf8,
 country VARCHAR(50) CHARACTER SET utf8,
 city VARCHAR(50) CHARACTER SET utf8,
-location_data_name VARCHAR(10) CHARACTER SET utf8,
+location_data_name VARCHAR(50) CHARACTER SET utf8,
 capacity INT,
 salary_from INT,
 salary_to INT,
@@ -63,6 +68,7 @@ contract_type VARCHAR(40) CHARACTER SET utf8,
 exp_type VARCHAR(40) CHARACTER SET utf8,
 function VARCHAR(20) CHARACTER SET utf8,
 description TEXT CHARACTER SET utf8,
+post_type VARCHAR(20),
 valid_to DATETIME,
 post_date DATETIME,
 change_date DATETIME
@@ -89,19 +95,21 @@ cv_url VARCHAR(255) CHARACTER SET utf8,
 apply_timestamp DATETIME
 );
 
-CREATE TABLE forget_tokens(
+
+CREATE TABLE delete_tokens(
 token_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+offer_id INT UNSIGNED UNIQUE,
 email VARCHAR(255) CHARACTER SET utf8,
 token_hash VARCHAR(32),
 valid_to DATETIME
 );
 
-CREATE TABLE transactions(
-id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE edit_tokens(
+token_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+offer_id INT UNSIGNED UNIQUE,
 email VARCHAR(255) CHARACTER SET utf8,
-transaction_id VARCHAR(32),
-status VARCHAR(10),
-invoice_url VARCHAR(255)
+token_hash VARCHAR(32),
+valid_to DATETIME
 );
 
 CREATE TABLE func(
@@ -146,16 +154,14 @@ occu_desc VARCHAR(40) CHARACTER SET utf8,
 occu_data_name VARCHAR(40)
 );
 
-
-
-
 ALTER TABLE users CHARACTER SET utf8 COLLATE utf8_general_ci;
 ALTER TABLE personal_info CHARACTER SET utf8 COLLATE utf8_general_ci;
 ALTER TABLE job_offer CHARACTER SET utf8 COLLATE utf8_general_ci;
 ALTER TABLE countries CHARACTER SET utf8 COLLATE utf8_general_ci;
 ALTER TABLE modules CHARACTER SET utf8 COLLATE utf8_general_ci;
 ALTER TABLE job_applies CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE forget_tokens CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE delete_tokens CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE edit_tokens CHARACTER SET utf8 COLLATE utf8_general_ci;
 ALTER TABLE func CHARACTER SET utf8 COLLATE utf8_general_ci;
 ALTER TABLE exp_levels CHARACTER SET utf8 COLLATE utf8_general_ci;
 ALTER TABLE job_types CHARACTER SET utf8 COLLATE utf8_general_ci;
@@ -164,17 +170,18 @@ ALTER TABLE salary_pers CHARACTER SET utf8 COLLATE utf8_general_ci;
 ALTER TABLE salary_kinds CHARACTER SET utf8 COLLATE utf8_general_ci;
 ALTER TABLE occupancies CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-
-
-
 INSERT INTO countries VALUES (1,'Austria','austria');
 INSERT INTO countries VALUES (2,'Belgium','belgium');
 INSERT INTO countries VALUES (3,'Czech Republic','czechrepublic');
-INSERT INTO countries VALUES (4,'Germany','germany');
-INSERT INTO countries VALUES (5,'Poland','poland');
-INSERT INTO countries VALUES (6,'Switzerland','switzerland');
-INSERT INTO countries VALUES (7,'Ukraine','ukraine');
-INSERT INTO countries VALUES (8,'United Kingdom','unitedkingdom');
+INSERT INTO countries VALUES (4,'Denmark','denmark');
+INSERT INTO countries VALUES (5,'Finland','finland');
+INSERT INTO countries VALUES (6,'Germany','germany');
+INSERT INTO countries VALUES (7,'Norway','norway');
+INSERT INTO countries VALUES (8,'Poland','poland');
+INSERT INTO countries VALUES (9,'Sweden','sweden');
+INSERT INTO countries VALUES (10,'Switzerland','switzerland');
+INSERT INTO countries VALUES (11,'Ukraine','ukraine');
+INSERT INTO countries VALUES (12,'United Kingdom','unitedkingdom');
 
 
 INSERT INTO func VALUES(1, 'Team Lead', 'teamlead');
@@ -209,5 +216,48 @@ INSERT INTO occupancies VALUES(4, '60% remote', '60remote');
 INSERT INTO occupancies VALUES(5, '80% remote', '80remote');
 INSERT INTO occupancies VALUES(6, 'Remote', 'remote');
 
-INSERT INTO users VALUES(1, 'admin@whatssap.com', '$2y$10$MyMjjdxq1SS3orb1cjPcFuDf4TX/bNCkcZtNvLyCler4xPZwlqLCm', 'ADMIN', now(), now()); 
-INSERT INTO personal_info VALUES(1, 'Admin','Admin','123456789','Admin','Admin','00-000');
+INSERT INTO users VALUES(1, 'admin@whatssap.it', '$2y$10$MyMjjdxq1SS3orb1cjPcFuDf4TX/bNCkcZtNvLyCler4xPZwlqLCm', 'ADMIN', now(), now()); 
+INSERT INTO personal_info VALUES(1,1,'Admin','Admin','Admin','Admin','','');
+
+INSERT INTO modules VALUES('1','APO','apo');
+INSERT INTO modules VALUES('2','ABAP','abap');
+INSERT INTO modules VALUES('3','AFS','afs');
+INSERT INTO modules VALUES('4','Analytics','analytics');
+INSERT INTO modules VALUES('5','BI','bi');
+INSERT INTO modules VALUES('6','BO','bo');
+INSERT INTO modules VALUES('7','Business Explorer','businessexplorer');
+INSERT INTO modules VALUES('8','Business Workflow','businessworkflow');
+INSERT INTO modules VALUES('9','BW','bw');
+INSERT INTO modules VALUES('10','C4C','c4c');
+INSERT INTO modules VALUES('11','CC','cc');
+INSERT INTO modules VALUES('12','CCA','cca');
+INSERT INTO modules VALUES('13','Commerce','commerce');
+INSERT INTO modules VALUES('14','CRM','crm');
+INSERT INTO modules VALUES('15','Design Studio','designstudio');
+INSERT INTO modules VALUES('16','ECC','ecc');
+INSERT INTO modules VALUES('17','EHSM','ehsm');
+INSERT INTO modules VALUES('18','ERP','erp');
+INSERT INTO modules VALUES('19','FICO','fico');
+INSERT INTO modules VALUES('20','Gigya','gigya');
+INSERT INTO modules VALUES('21','GRC','grc');
+INSERT INTO modules VALUES('22','HANA','hana');
+INSERT INTO modules VALUES('23','HRMS','hrms');
+INSERT INTO modules VALUES('24','IDT','idt');
+INSERT INTO modules VALUES('25','Lumira','lumira');
+INSERT INTO modules VALUES('26','Marketing','marketing');
+INSERT INTO modules VALUES('27','MDG','mdg');
+INSERT INTO modules VALUES('28','MDM','mdm');
+INSERT INTO modules VALUES('29','MM','mm');
+INSERT INTO modules VALUES('30','PCM','pcm');
+INSERT INTO modules VALUES('31','PI','pi');
+INSERT INTO modules VALUES('32','PM','pm');
+INSERT INTO modules VALUES('33','PP','pp');
+INSERT INTO modules VALUES('34','PS','ps');
+INSERT INTO modules VALUES('35','RDS','rds');
+INSERT INTO modules VALUES('36','S/4 HANA','s4hana');
+INSERT INTO modules VALUES('37','S/4 HANA Cloud','s4hanacloud');
+INSERT INTO modules VALUES('38','SCM','scm');
+INSERT INTO modules VALUES('39','SCP','scp');
+INSERT INTO modules VALUES('40','SD','sd');
+INSERT INTO modules VALUES('41','SuccessFactors','successfactors');
+INSERT INTO modules VALUES('42','XS Advanced','xsadvanced');

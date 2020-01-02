@@ -2,9 +2,12 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 use Cake\Utility\Text;
 use Cake\Mailer\Email;
 use Cake\Filesystem\Folder;
+use Cake\Event\Event;
+use Cake\I18n\Time;
 $tcpdf = require_once ROOT . '/vendor/tecnickcom/tcpdf/tcpdf.php';
 
 /**
@@ -17,6 +20,12 @@ $tcpdf = require_once ROOT . '/vendor/tecnickcom/tcpdf/tcpdf.php';
 class EmployerController extends AppController
 {
 
+  
+   public function beforeFilter(Event $event) {
+          parent::beforeFilter($event);
+     
+     $this->set('User', $this->Auth->user());
+   }
 
     /**
      * Index method
@@ -39,7 +48,7 @@ class EmployerController extends AppController
       $this->set('func', $func);
       
       $this->loadModel('ExpLevels');
-      $exp_levels = $this->ExpLevels->find('all', ['order' => 'level_desc ASC']);
+      $exp_levels = $this->ExpLevels->find('all');
       $this->set('exp_levels', $exp_levels);
       
       $this->loadModel('Occupancies');
@@ -70,276 +79,186 @@ class EmployerController extends AppController
       date_default_timezone_set('Europe/Warsaw');
       $offer->post_date = date("Y-m-d H:i:s",time());
       $offer->change_date = date("Y-m-d H:i:s",time());
+      $currentTime = time();
+      $validTime = $currentTime+(60*43200);
+      $offer->valid_to = date("Y-m-d H:i:s",$validTime);
       $order   = array("\r\n", "\n", "\r");
       $replace = '<br />';
       $offer->description = str_replace($order, $replace, $offer->description);
-
-
+      
       $location_data_name = strtolower(str_replace('Ś','s',(str_replace('ś','s',(str_replace('Ą','a',(str_replace('Ó','o',(str_replace('Ć','c',(str_replace('Ę','e',(str_replace('Ł','l',(str_replace('Ź','z',(str_replace('Ż','z',(str_replace('Ń','n',(str_replace('-','',str_replace(';','',str_replace(',','',str_replace('.', '',str_replace(' ','',str_replace('ł','l',
       str_replace('ę','e',str_replace('ą','a',str_replace('ź','z',str_replace('ż','z',str_replace('ó','o',str_replace('ń','n', $offer->city)))))))))))))))))))))))))))))))));
 
       $offer->location_data_name = $location_data_name;
+      
         if ($this->jobOffer->save($offer)) {
-          $transaction_id  = str_replace('-','',Text::uuid());
-
-          $invo_url = $this->transaction($transaction_id, $offer->apply_email, $this->request->getData()['amount'], $this->request->getData()['service'], $offer->company_name, $this->request->getData()['company_tax'],
-          $this->request->getData()['company_street'], $this->request->getData()['company_city'], $this->request->getData()['postal_code'], $this->request->getData()['company_country'], 'Paid');
-
+          $offer_saved_id = $offer->id;
+          
+          $editToken = $this->editToken($offer_saved_id, date("Y-m-d H:i:s",$validTime), $offer->apply_email);
+          $deleteToken = $this->deleteToken($offer_saved_id, date("Y-m-d H:i:s",$validTime), $offer->apply_email);
+          
           $email = new Email('default');
             if($email->setTo($offer->apply_email)
             ->setSubject("New job offer for " . strtoupper($this->request->getData()['job_title']) . " posted!")
             ->setEmailFormat('html')
             ->setTemplate('default')
             ->setLayout('jobpost')
-            ->setViewVars(['offer_id' => $this->jobOffer->find('all',['fields'=>'id'])->last()['id'],'job_title' => $this->request->getData()['job_title']])
-            ->setAttachments(array($invo_url))
+            ->setViewVars(['offer_id' => $offer_saved_id,'job_title' => $this->request->getData()['job_title'],'edit_token' => $editToken,'delete_token' => $deleteToken])
             ->send())
 
           $this->Flash->success(__('Job offer has been saved. You will receive confirmation email.'));
+          return $this->redirect($this->Auth->redirectUrl('/users/jobdetails/' . $offer_saved_id));
+        } else {
+          $this->Flash->error(__('Job offer could not be saved. Please contact us, or try again.'));
+          return $this->redirect($this->Auth->redirectUrl('/'));          
         }
     }
     }
 
-//// loginAction
+  
+  
+// generate edit token
+  
+private function editToken($offer_id, $valid_to, $email){
 
-public function login()
-    {
-      $uid = $this->Auth->user()['id'];
-      if($uid) {
-      return $this->redirect(['action' => 'index']);
+  $this->loadModel('EditTokens');
+  $token = $this->EditTokens->newEntity();
+  
+  $token->token_hash = str_replace('-','',Text::uuid());
+  $token->valid_to = $valid_to;
+  $token->offer_id = $offer_id;
+  $token->email = $email;
+  
+  if($this->EditTokens->save($token)){
+    return $token->token_hash;
+  }  
+  else {
+    return false;
+  }
+
+}
+
+// end generate edit token aciton
+
+// generate delete token
+  
+private function deleteToken($offer_id, $valid_to, $email){
+
+  $this->loadModel('DeleteTokens');
+  $token = $this->DeleteTokens->newEntity();
+  
+  $token->token_hash = str_replace('-','',Text::uuid());
+  $token->valid_to = $valid_to;
+  $token->offer_id = $offer_id;
+  $token->email = $email;
+  
+  if($this->DeleteTokens->save($token)){
+    return $token->token_hash;
+  }  
+  else {
+    return false;
+  }
+
+}
+
+// end generate edit token aciton
+  
+
+public function editOffer($token_hash) { 
+  
+  
+      $this->loadModel('Modules');
+      $modules = $this->Modules->find('all', ['order' => 'module_desc ASC']);
+      $this->set('modules', $modules);
+
+      $this->loadModel('Countries');
+      $countries = $this->Countries->find('all', ['order' => 'country_desc ASC']);
+      $this->set('countries', $countries);
+      
+      $this->loadModel('Func');
+      $func = $this->Func->find('all', ['order' => 'func_desc ASC']);
+      $this->set('func', $func);
+      
+      $this->loadModel('ExpLevels');
+      $exp_levels = $this->ExpLevels->find('all');
+      $this->set('exp_levels', $exp_levels);
+      
+      $this->loadModel('Occupancies');
+      $occupancies = $this->Occupancies->find('all');
+      $this->set('occupancies', $occupancies);
+      
+      $this->loadModel('SalaryCurrs');
+      $salary_currs = $this->SalaryCurrs->find('all', ['order' => 'curr_desc ASC']);
+      $this->set('salary_currs', $salary_currs);
+            
+      $this->loadModel('SalaryPers');
+      $salary_pers = $this->SalaryPers->find('all');
+      $this->set('salary_pers', $salary_pers);
+            
+      $this->loadModel('SalaryKinds');
+      $salary_kinds = $this->SalaryKinds->find('all');
+      $this->set('salary_kinds', $salary_kinds);
+      
+      $this->loadModel('JobTypes');
+      $job_types = $this->JobTypes->find('all', ['order' => 'type_desc ASC']);
+      $this->set('job_types', $job_types);
+
+      $this->loadModel('EditTokens');
+      $this->loadModel('jobOffer');
+      
+      $check_token = $this->EditTokens->find('all', array('conditions' => array('token_hash' => $token_hash)))->first();
+       
+      if(!empty($check_token)) {
+        
+          $offer_data = $this->jobOffer->find('all', array('conditions' => array('id' => $check_token->offer_id)))->first();
+          $this->set('offer_data', $offer_data);
+        
+      } else {
+        $this->Flash->error(__('Your edition link is wrong, or not valid anymore.'));
+        return $this->redirect($this->Auth->redirectUrl('/'));
       }
 
-        if ($this->request->is('post')) {
-          var_dump($user);
-            $user = $this->Auth->identify();
-            if ($user) {
-                $this->Auth->setUser($user);
-                if( $user['role'] === 'ADMIN') {
-                   return $this->redirect($this->Auth->redirectUrl('/admin'));
-                } else {
-                   return $this->redirect(['controller' => 'users', 'action' => 'index']);
-                }
-            }
-            $this->Flash->error(__('Invalid credentials. Please try again.'));
-            return $this->redirect($this->Auth->redirectUrl('/'));
-        }
-    }
-/// end of login action
-
-////logout action
-    public function logout(){
-        $this->Auth->logout();
-        $this->redirect('/');
-    }
-///end of logout
-
-
-//invoice generator action
-
-private function invoiceGen($invo_id, $email, $amount, 
-  $service, $company_name, $company_tax, 
-  $company_street, $company_city, $company_postal, $company_country, $status){
+      if ($this->request->is('post')) {
         
-$pdf = new \tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $offer_data = $this->jobOffer->patchEntity($offer_data, $this->request->getData());
+        
+        if($this->jobOffer->save($offer_data)) {
+            $this->Flash->success(__('Job offer has been saved.'));
+            return $this->redirect($this->Auth->redirectUrl('/users/jobdetails/' . $offer_data->id));
+        }
+        
+      }
+    }
+    
+  
+  
+public function deleteOffer($token_hash) { 
+      
+      $this->loadModel('DeleteTokens');
+      $this->loadModel('jobOffer');
+      
+      $check_token = $this->DeleteTokens->find('all', array('conditions' => array('token_hash' => $token_hash)))->first();
+       
+      if(!empty($check_token)) {
+        
+          $offer_data = $this->jobOffer->find('all', array('conditions' => array('id' => $check_token->offer_id)))->first();
+          $this->set('offer_data', $offer_data);
+        
+      } else {
+        $this->Flash->error(__('Your deletion link is wrong, or not valid anymore.'));
+        return $this->redirect($this->Auth->redirectUrl('/'));
+      }
 
-// set document information
-$pdf->SetCreator("What's SAP");
-$pdf->SetAuthor("What's SAP");
-$pdf->SetTitle("What's SAP");
-$pdf->SetSubject("What's SAP");
-$pdf->SetKeywords("What's SAP");
+      if ($this->request->is('post')) {          
+        
+        $token_entry = $this->DeleteTokens->find('all', array('conditions' => array('token_hash' => $token_hash)))->first();
 
-// remove default header/footer
-$pdf->setPrintHeader(false);
-$pdf->setPrintFooter(false);
-
-// set default monospaced font
-$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-
-// set margins
-$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-
-// set auto page breaks
-$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
-// ---------------------------------------------------------
-
-// set font
-$pdf->SetFont('customlight', 'BI', 20);
-
-// add a page
-$pdf->AddPage();
-
-$test = 'test';
-$html = '<img src="' . ROOT . '/webroot/img/logo.png" />';
-
-$pdf->writeHTML($html, true, false, true, false, '');
-
-$html = 
-'
-<hr>
-<br>
-<br>
-<table>
-<tr>
-<td width="150">
-<p align="left" style="font-size:10px;">SELLER:<br>
-AMITY CONSULTING<br>
-WHAT\'S SAP<br>
-SIERADZKA 32/32<br>
-60-163, POZNAŃ<br>
-POLAND<br>
-TAX NUM: 99-999-99-99</p>
-</td>
-<td width="360">
-<p align="right" style="font-size:10px;">BUYER:<br>
-' . strtoupper($company_name) . '<br>
-' . strtoupper($company_street) . '<br>
-' . strtoupper($company_postal) . '<br>
-' . strtoupper($company_city) . '<br>
-' . strtoupper($company_country) . '<br>
-TAX NUM: ' . $company_tax . '</p>
-</td>
-</tr>
-</table>
-<br>
-<p align="center">INVOICE ' . $invo_id . '</p>
-<hr>
-<br>
-<table>
-<tr>
-<td width="300" style="font-size:12px;">
-<p align="left">
-SERVICE
-</p>
-</td>
-<td width="70" style="font-size:12px;">
-<p align="right">
-NET
-</p>
-</td>
-<td width="70" style="font-size:12px;">
-<p align="right">
-TAX
-</p>
-</td>
-<td width="70" style="font-size:12px;">
-<p align="right">
-GROSS
-</p>
-</td>
-</tr>
-</table>
-<hr>
-<table>
-<tr><td></td></tr>
-<tr>
-<td width="300" style="font-size:10px;">
-<p align="left">
-#1. ' . $service . '
-</p>
-</td>
-<td width="70" style="font-size:10px;">
-<p align="right">
-' . $amount . ' $
-</p>
-</td>
-<td width="70" style="font-size:10px;">
-<p align="right">
-23%
-</p>
-</td>
-<td width="70" style="font-size:10px;">
-<p align="right">
-' . round($amount * 1.23, 2 , PHP_ROUND_HALF_EVEN) . ' $
-</p>
-</td>
-</tr>
-</table>
-<br>
-<table>
-<tr><td></td></tr>
-<tr>
-<td width="510" style="font-size:13px;">
-<p align="right">
-TOTAL GROSS: ' . round($amount * 1.23, 2 ,PHP_ROUND_HALF_EVEN) . ' $
-</p>
-</td>
-</tr>
-</table>
-<br>
-<br>
-<br>
-<table>
-<tr><td></td></tr>
-<tr>
-<td width="510">
-<p align="left" style="font-size:13px;">
-PAYMENT DETAILS
-</p>
-<p align="left" style="font-size:10px;">
-Status: Paid<br>
-Payment method: Bank transfer<br>
-Payment date: 31.12.9999<br>
-Account number: 53 3345 2349 9898 23
-</p>
-</td>
-</tr>
-</table>
-';
-
-$pdf->writeHTML($html, true, false, true, false, '');
-
-// ---------------------------------------------------------
-
-//Close and output PDF document
-if (!file_exists(ROOT . '/Invoices')) {
-  $dir = new Folder(ROOT . '/Invoices', true);
-}
-
-$pdf->Output(ROOT . '/Invoices/' . $invo_id . '.pdf', 'F');
-
-//============================================================+
-// END OF FILE
-//============================================================+
-
-return ROOT . '/Invoices/' . $invo_id . '.pdf';
-
-}
-
-//end of invoice generator
-
-
-
-
-// transaction save
-
-private function transaction($transaction_id, $email, $amount, 
-  $service, $company_name, $company_tax, 
-  $company_street, $company_city, $company_postal, $company_country, $status){
-
-  $this->loadModel('Transactions');
-  $transaction = $this->Transactions->newEntity();
-
-  $transaction->transaction_id = strtolower($transaction_id);
-  $transaction->email = strtolower($email);
-  $transaction->status = strtolower($status);
-
-  $invo_id = ($this->Transactions->find('all',['fields'=>'id'])->last()['id'])+1;
-
-  $invo_url = $this->invoiceGen($invo_id, $email, $amount, 
-  $service, $company_name, $company_tax, 
-  $company_street, $company_city, $company_postal, $company_country, $status);
-
-  $transaction->invoice_url = $invo_url;
-
-  $this->Transactions->save($transaction);
-
-  return $transaction->invoice_url;
-
-}
-
-// transaction save
-
+        $this->jobOffer->deleteAll(['id' => $token_entry->offer_id]);
+        $this->Flash->success(__('Job offer deleted, thanks for using Whats SAP. Post a new one!'));
+        return $this->redirect($this->Auth->redirectUrl('/'));  
+          
+      }
+    }
+  
 //end of controller
 }

@@ -7,12 +7,12 @@ use Cake\ORM\Entity;
  * Transaction Entity
  *
  * @property int $id
- * @property string $email
- * @property string $transaction_id
- * @property string $status
- * @property string $invoice_url
- *
- * @property \App\Model\Entity\Transaction[] $transactions
+ * @property string|null $email
+ * @property string|null $transaction_id
+ * @property string|null $service
+ * @property int|null $amonut
+ * @property string|null $status
+ * @property string|null $invoice_url
  */
 class Transaction extends Entity
 {
@@ -29,8 +29,9 @@ class Transaction extends Entity
     protected $_accessible = [
         'email' => true,
         'transaction_id' => true,
+        'service' => true,
+        'amount' => true,
         'status' => true,
-        'invoice_url' => true,
-        'transactions' => true
+        'invoice_url' => true
     ];
 }

@@ -9,6 +9,8 @@ use Cake\Validation\Validator;
 /**
  * JobOffer Model
  *
+ * @property |\Cake\ORM\Association\BelongsTo $Companies
+ *
  * @method \App\Model\Entity\JobOffer get($primaryKey, $options = [])
  * @method \App\Model\Entity\JobOffer newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\JobOffer[] newEntities(array $data, array $options = [])
@@ -93,7 +95,8 @@ class JobOfferTable extends Table
             ->allowEmpty('project_start');
 
         $validator
-            ->integer('duration')
+            ->scalar('duration')
+            ->maxLength('duration', 20)
             ->allowEmpty('duration');
 
         $validator
@@ -113,7 +116,7 @@ class JobOfferTable extends Table
 
         $validator
             ->scalar('location_data_name')
-            ->maxLength('location_data_name', 10)
+            ->maxLength('location_data_name', 50)
             ->allowEmpty('location_data_name');
 
         $validator
@@ -163,6 +166,11 @@ class JobOfferTable extends Table
             ->allowEmpty('description');
 
         $validator
+            ->scalar('post_type')
+            ->maxLength('post_type', 20)
+            ->allowEmpty('post_type');
+
+        $validator
             ->dateTime('valid_to')
             ->allowEmpty('valid_to');
 
@@ -175,5 +183,17 @@ class JobOfferTable extends Table
             ->allowEmpty('change_date');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        return $rules;
     }
 }

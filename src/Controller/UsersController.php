@@ -7,6 +7,7 @@ use Cake\Filesystem\Folder;
 use Cake\Mailer\Email;
 use Cake\Utility\Text;
 use Cake\ORM\Query;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -22,6 +23,13 @@ var $name = 'Users';
 var $helpers = array('Html', 'Form');
 var $scaffold;
 
+  
+  
+  public function beforeFilter(Event $event) {
+          parent::beforeFilter($event);
+     
+     $this->set('User', $this->Auth->user());
+   }
     /**
      * Index method
      *
@@ -35,187 +43,41 @@ var $scaffold;
         $user = $this->Auth->user();
 
     }
-
-    /**
-     * View method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $user = $this->Users->get($id, [
-            'contain' => []
-        ]);
-
-        $this->set('user', $user);
-    }
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $user = $this->Users->newEntity();
-        if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
-        }
-        $this->set(compact('user'));
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $user = $this->Users->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
-        }
-        $this->set(compact('user'));
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $user = $this->Users->get($id);
-        if ($this->Users->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
-        } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
-    }
-
-//// loginAction
-
-public function login()
-    {
-      $uid = $this->Auth->user()['id'];
-      if($uid) {
-      return $this->redirect(['action' => 'index']);
-      }
-
-        if ($this->request->is('post')) {
-          var_dump($user);
-            $user = $this->Auth->identify();
-            if ($user) {
-                $this->Auth->setUser($user);
-                if( $user['role'] === 'ADMIN') {
-                   return $this->redirect($this->Auth->redirectUrl('/admin/'));
-                } else {
-                  $this->Flash->succes(__('You are logged in.'));
-                   return $this->redirect($this->Auth->redirectUrl('/'));
-                }
-            }
-            $this->Flash->error(__('Invalid credentials. Please try again.'));
-            return $this->redirect($this->Auth->redirectUrl('/'));
-        }
-    }
-/// end of login action
-
-////logout action
-    public function logout(){
-        $this->Auth->logout();
-        $this->redirect('/');
-    }
-///end of logout
-
-
-////// register action
-public function register() {
-
-  $uid = $this->Auth->user()['id'];
-  if($uid) {
-  $this->Flash->error(__('You are already logged in.'));
-  return $this->redirect($this->Auth->redirectUrl('/users/userpanel'));
-  }
-
-  $entity = $this->Users->newEntity();
-  if ($this->request->is('post')) {
-  $entity = $this->Users->patchEntity($entity, $this->request->getData());
-
-    if (!empty($this->request->getData('email')) &&
-      !empty($this->request->getData('password')) &&
-      !empty($this->request->getData('password_confirm')) &&
-      !empty($this->request->getData('name_first')) &&
-      !empty($this->request->getData('name_last')))
-      {
-        if($this->request->getData(['password']) == $this->request->getData(['password_confirm']))
-        {
-          if(!$entity->getErrors())
-          {
-
-
-      //check if save operations success
-      if($this->Users->save($entity)){
-
-        var_dump($this->request->getData());
-
-
-      $this->Flash->success(__('Registration complete. Please validate your account by opening a link in the email sent to provided address.'));
-      //return $this->redirect($this->Auth->redirectUrl('/users/login'));
-    } else {
-      $this->Flash->error(__('Account with given email address already exists. You can log in.'));
-      return $this->redirect($this->Auth->redirectUrl('/users/login'));
-    }
-  }
-    }
-    else {
-    return $this->Flash->error(__('Given passwords need to be identical.'));
-    }
-  }
-    else {
-    return $this->Flash->error(__('Fill all mandatory data.'));
-      }
-
-    }
-  }
-///end of signup action
-
-
+  
+  
 ///job search action
 public function jobsearch() {
+  
+   $this->loadModel('Func');
+      $func = $this->Func->find('all', ['order' => 'func_desc ASC']);
+      $this->set('func', $func);
+      
+   $this->loadModel('ExpLevels');
+      $exp_levels = $this->ExpLevels->find('all');
+      $this->set('exp_levels', $exp_levels);
+   
+   $this->loadModel('JobTypes');
+      $job_types = $this->JobTypes->find('all', ['order' => 'type_desc ASC']);
+      $this->set('job_types', $job_types);
+  
+  
   $this->loadModel('jobOffer');
   $offer = $this->jobOffer->find('all', array('order'=>'job_title'));
   $this->set('offer', $offer);
+  
+  foreach($offer as $offer_row){
+
+        $offer_row->{"elapsed"} = $this->time_elapsed_string($offer_row->post_date);
+
+      }
 
   $module = TableRegistry::get('Modules');
   $this->set('module', $module);
 
   $dist_locations = $this->jobOffer->find('all', array(
-        'fields'=>['city','location_data_name'],
-        'order'=>'city ASC',
-        'group' => ['city, location_data_name']));
+        'fields'=>[ 'city','location_data_name','country'],
+        'group' => ['city, location_data_name, country'],
+        'order'=> 'city ASC'));
 
   $this->set('dist_locations', $dist_locations);
 
@@ -395,7 +257,7 @@ public function jobsearch() {
             ->setEmailFormat('html')
             ->setTemplate('default')
             ->setLayout('default')
-            ->setViewVars(['offer_id' => $offer_id,'job_title' => $job_title])
+            ->setViewVars(['offer_id' => $offer_id,'job_title' => $job_title, 'candidate_email' => $this->request->getData()['candidate_email']])
             ->setAttachments(array($file_target))
             ->send()){
             if($this->JobApplies->save($apply)){
@@ -409,171 +271,6 @@ public function jobsearch() {
     }
 
 ///end of job apply action
-
-
-    ///email_przemek action
-
-        public function emailPrzemek()
-    {
-      if ($this->request->is('post')) {
-
-      $order   = array("\r\n", "\n", "\r");
-      $replace = '<br />';
-      $message = str_replace($order, $replace, $this->request->getData()['message']);
-
-      $email = new Email('default');
-            if($email->setTo("przemek@whatssap.it")
-            ->setSubject("New message from " . $this->request->getData()['name'])
-            ->setTemplate('default')
-            ->setSender('contact@whatssap.it','What\'s SAP')
-            ->setLayout('usercontact')
-            ->setEmailFormat('html')
-            ->setViewVars(['message' => $message, 'name' => $this->request->getData()['name'], 'email' => $this->request->getData()['email']])
-            ->send())
-      $this->Flash->success(__('Your email has been sent to Przemek. Thank you!'));
-      return $this->redirect($this->Auth->redirectUrl('/users/about/'));
-
-      }
-    }
-
-
-///end of action
-
-    ///email_marika action
-
-        public function emailMarika()
-    {
-      if ($this->request->is('post')) {
-
-      $order   = array("\r\n", "\n", "\r");
-      $replace = '<br />';
-      $message = str_replace($order, $replace, $this->request->getData()['message']);
-
-      $email = new Email('default');
-            if($email->setTo("marika@whatssap.it")
-            ->setSubject("New message from " . $this->request->getData()['name'])
-            ->setTemplate('default')
-            ->setSender('contact@whatssap.it','What\'s SAP')
-            ->setLayout('usercontact')
-            ->setEmailFormat('html')
-            ->setViewVars(['message' => $message, 'name' => $this->request->getData()['name'], 'email' => $this->request->getData()['email']])
-            ->send())
-      $this->Flash->success(__('Your email has been sent to Marika. Thank you!'));
-      return $this->redirect($this->Auth->redirectUrl('/users/about/'));
-
-      }
-    }
-
-
-///end of action
-
-    ///forget password action
-
-        public function forgetEmail()
-    { 
-      $this->loadModel('forgetTokens');
-      $this->loadModel('Users');
-      $token_entry = $this->forgetTokens->newEntity();
-      if ($this->request->is('post')) {
-      $token_entry = $this->forgetTokens->patchEntity($token_entry, $this->request->getData());
-      $email = $this->request->getData()['email'];
-
-      if(!empty($this->Users->find('all', array('conditions' => array('email' => $email)))->first())) {
-
-      $token  = str_replace('-','',Text::uuid());
-      $token_entry->token_hash = $token;
-      date_default_timezone_set('Europe/Warsaw');
-      $currentTime = time();
-      $validTime = $currentTime+(60*30);
-      $token_entry->valid_to = date("Y-m-d H:i:s",$validTime);
-
-      if($this->forgetTokens->save($token_entry)){
-      $email = new Email('default');
-            if($email->setTo($this->request->getData()['email'])
-            ->setSubject("Password Reset")
-            ->setTemplate('default')
-            ->setSender('contact@whatssap.it','What\'s SAP')
-            ->setLayout('forgetEmail')
-            ->setEmailFormat('html')
-            ->setViewVars(['token' => $token])
-            ->send()){
-      $this->Flash->success(__('Email was sent to your email address. Link is valid for 30 minutes.'));
-      return $this->redirect($this->Auth->redirectUrl('/'));
-        } else {
-        $this->Flash->error(__("Something went wrong, and we couldn't send the email. Please try again."));
-        return $this->redirect($this->Auth->redirectUrl('/'));
-        }
-      } else {
-        $this->Flash->error(__("Something went wrong, and we couldn't send the email. Please try again."));
-        return $this->redirect($this->Auth->redirectUrl('/'));
-        }
-
-      } else {
-        $this->Flash->error(__('User with this email address was not found.'));
-        return $this->redirect($this->Auth->redirectUrl('/'));
-      }
-    }
-  }
-
-
-///end of action
-
-///reset password action
-
-        public function passwordReset($token_hash)
-    { 
-      
-      $this->loadModel('forgetTokens');
-      $this->loadModel('Users');
-      $token_entry = $this->forgetTokens->newEntity();
-      date_default_timezone_set('Europe/Warsaw');
-      if(!empty($this->forgetTokens->find('all', array(
-        'conditions' => array('token_hash' => $token_hash, 
-          'valid_to >=' => date("Y-m-d H:i:s",time()))))->first())) {
-
-      } else {
-        $this->Flash->error(__('Your password reset link is wrong, or not valid anymore.'));
-        return $this->redirect($this->Auth->redirectUrl('/'));
-      }
-
-      if ($this->request->is('post')) {
-
-        if($this->request->getData()['password'] == $this->request->getData()['password_confirm']) {
-          if($this->checkPassword($this->request->getData()['password'])){
-
-        $entry = $this->Users->find('all')->join([
-        'tokens' => [
-            'table' => 'forget_tokens',
-            'type' => 'INNER',
-            'conditions' => array('tokens.email = Users.email', 'token_hash' => $token_hash,
-          'valid_to >=' => date("Y-m-d H:i:s",time()))
-        ]
-        ])->first();
-
-        $update_table = TableRegistry::get('Users');
-        $update_row = $update_table->get($entry->id);
-        $update_row->password = $this->request->getData()['password'];              
-
-        if($this->Users->save($update_row)) {
-        $this->forgetTokens->deleteAll(array('forgetTokens.email' => $update_row->email)); 
-        $this->Flash->success(__("Your password has been reset."));
-        return $this->redirect($this->Auth->redirectUrl('/'));
-        } else {
-          $this->Flash->error(__("Something went wrong. Please try again."));
-          return $this->redirect($this->request->getAttribute("here"));
-        }
-          } else {
-            $this->Flash->error(__('Password need to be at least 8 characters long, contain one capital letter, number, and special character.'));
-            return $this->redirect($this->request->getAttribute("here"));
-          }
-        } else {
-        $this->Flash->error(__('Passwords need to be identical.'));
-        return $this->redirect($this->request->getAttribute("here"));
-          }
-        }
-      }
-
-///end of reset password action
 
     ///contact email action
 
@@ -615,17 +312,39 @@ public function jobsearch() {
 
 ///end of action
 
+      ///time elapsed function
+  function time_elapsed_string($datetime, $full = false) {
+    $tz = 'Europe/Warsaw';
+    $tz_obj = new \DateTimeZone($tz);
+    $now = new \DateTime("now", $tz_obj);
+    $ago = new \DateTime($datetime, $tz_obj);
+    $diff = $now->diff($ago);
 
-///blog action
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
 
-        public function howto()
-    {
-      
+    $string = array(
+        'y' => 'year',
+        'm' => 'month',
+        'w' => 'week',
+        'd' => 'day',
+        'h' => 'hour',
+        'i' => 'minute',
+        's' => 'second',
+    );
+    foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+            unset($string[$k]);
+        }
     }
 
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? implode(', ', $string) . ' ago' : 'just now';
+}
 
-///end of action
-
+///end of time elapsed function
 
 
 

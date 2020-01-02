@@ -1,0 +1,259 @@
+ALTER DATABASE whats_sap CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+use whats_sap;
+
+DROP TABLE users;
+DROP TABLE personal_info;
+DROP TABLE job_offer;
+DROP TABLE countries;
+DROP TABLE modules;
+DROP TABLE job_applies;
+DROP TABLE forget_tokens;
+DROP TABLE transactions;
+DROP TABLE func;
+DROP TABLE exp_levels;
+DROP TABLE job_types;
+DROP TABLE salary_currs;
+DROP TABLE salary_pers;
+DROP TABLE salary_kinds;
+DROP TABLE occupancies;
+
+CREATE TABLE users (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) UNIQUE,
+    password VARCHAR(255),
+    role VARCHAR(20),
+    created DATETIME DEFAULT NULL,
+    modified DATETIME DEFAULT NULL,
+    valid VARCHAR(1) DEFAULT '',
+    valid_to DATETIME DEFAULT now()
+);
+
+CREATE TABLE personal_info (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNIQUE,
+    name_first VARCHAR(50) CHARACTER SET utf8,
+    name_last VARCHAR(50) CHARACTER SET utf8,
+    country VARCHAR(50) CHARACTER SET utf8,
+    city VARCHAR(50) CHARACTER SET utf8,
+    cv_url VARCHAR(255),
+    preffered_location TEXT
+);
+
+CREATE TABLE company_info (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    company_id INT UNIQUE,
+    company_name VARCHAR(255),
+    applying_email VARCHAR(80),
+    tax_num BIGINT,
+    country VARCHAR(50) CHARACTER SET utf8,
+    city VARCHAR(50) CHARACTER SET utf8,
+    address VARCHAR(50) CHARACTER SET utf8,
+    postal_code VARCHAR(6) CHARACTER SET utf8,
+    plan VARCHAR(20),
+    plan_valid_to DATETIME DEFAULT now(),
+    posts_left INT DEFAULT NULL
+);
+
+CREATE TABLE cand_skills (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    skill_name VARCHAR(80),
+    skill_level VARCHAR(20)
+);
+
+
+CREATE TABLE job_offer (
+id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+company_id INT DEFAULT NULL,
+company_name VARCHAR(50) CHARACTER SET utf8,
+company_url VARCHAR(255) CHARACTER SET utf8,
+company_facebook VARCHAR(255) CHARACTER SET utf8,
+company_linkedin VARCHAR(255) CHARACTER SET utf8,
+apply_email VARCHAR(255) CHARACTER SET utf8,
+job_title VARCHAR(255) CHARACTER SET utf8,
+module VARCHAR(255) CHARACTER SET utf8,
+job_type VARCHAR(50) CHARACTER SET utf8,
+project_start DATE DEFAULT NULL,
+duration VARCHAR(20) DEFAULT NULL,
+occupancy VARCHAR(50) CHARACTER SET utf8,
+country VARCHAR(50) CHARACTER SET utf8,
+city VARCHAR(50) CHARACTER SET utf8,
+location_data_name VARCHAR(50) CHARACTER SET utf8,
+capacity INT,
+salary_from INT,
+salary_to INT,
+salary_type VARCHAR(20) CHARACTER SET utf8,
+salary_kind VARCHAR(10) CHARACTER SET utf8,
+currency VARCHAR(3) CHARACTER SET utf8,
+contract_type VARCHAR(40) CHARACTER SET utf8,
+exp_type VARCHAR(40) CHARACTER SET utf8,
+function VARCHAR(20) CHARACTER SET utf8,
+description TEXT CHARACTER SET utf8,
+post_type VARCHAR(20),
+valid_to DATETIME,
+post_date DATETIME,
+change_date DATETIME
+);
+
+CREATE TABLE modules (
+module_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+module_desc VARCHAR(50) CHARACTER SET utf8,
+module_data_name VARCHAR(40) CHARACTER SET utf8
+);
+
+CREATE TABLE countries (
+country_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+country_desc VARCHAR(50) CHARACTER SET utf8,
+country_data_name VARCHAR(40) CHARACTER SET utf8
+);
+
+CREATE TABLE job_applies(
+apply_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+offer_id INT UNSIGNED,
+candidate_email VARCHAR(80) CHARACTER SET utf8,
+candidate_name VARCHAR(80) CHARACTER SET utf8,
+cv_url VARCHAR(255) CHARACTER SET utf8,
+apply_timestamp DATETIME
+);
+
+CREATE TABLE forget_tokens(
+token_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+email VARCHAR(255) CHARACTER SET utf8,
+token_hash VARCHAR(32),
+valid_to DATETIME
+);
+
+CREATE TABLE edit_tokens(
+token_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+offer_id INT UNSIGNED UNIQUE,
+email VARCHAR(255) CHARACTER SET utf8,
+token_hash VARCHAR(32),
+valid_to DATETIME
+);
+
+CREATE TABLE validate_tokens(
+token_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+user_id INT UNIQUE,
+email VARCHAR(255) CHARACTER SET utf8,
+token_hash VARCHAR(32),
+account_type VARCHAR(30)
+);
+
+CREATE TABLE transactions(
+id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+email VARCHAR(255) CHARACTER SET utf8,
+transaction_id VARCHAR(32),
+service VARCHAR(20),
+amount INT,
+status VARCHAR(10),
+invoice_url VARCHAR(255)
+);
+
+CREATE TABLE func(
+id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+func_desc VARCHAR(40) CHARACTER SET utf8,
+func_data_name VARCHAR(40)
+);
+
+CREATE TABLE exp_levels(
+id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+level_desc VARCHAR(40) CHARACTER SET utf8,
+level_data_name VARCHAR(40)
+);
+
+CREATE TABLE job_types(
+id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+type_desc VARCHAR(40) CHARACTER SET utf8,
+type_data_name VARCHAR(40)
+);
+
+CREATE TABLE salary_currs(
+id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+curr_desc VARCHAR(40) CHARACTER SET utf8,
+curr_data_name VARCHAR(40)
+);
+
+CREATE TABLE salary_pers(
+id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+per_desc VARCHAR(40) CHARACTER SET utf8,
+per_data_name VARCHAR(40)
+);
+
+CREATE TABLE salary_kinds(
+id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+kind_desc VARCHAR(40) CHARACTER SET utf8,
+kind_data_name VARCHAR(40)
+);
+
+CREATE TABLE occupancies(
+id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+occu_desc VARCHAR(40) CHARACTER SET utf8,
+occu_data_name VARCHAR(40)
+);
+
+
+
+
+ALTER TABLE users CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE personal_info CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE job_offer CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE countries CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE modules CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE job_applies CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE forget_tokens CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE func CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE exp_levels CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE job_types CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE salary_currs CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE salary_pers CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE salary_kinds CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE occupancies CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+
+
+
+INSERT INTO countries VALUES (1,'Austria','austria');
+INSERT INTO countries VALUES (2,'Belgium','belgium');
+INSERT INTO countries VALUES (3,'Czech Republic','czechrepublic');
+INSERT INTO countries VALUES (4,'Germany','germany');
+INSERT INTO countries VALUES (5,'Poland','poland');
+INSERT INTO countries VALUES (6,'Switzerland','switzerland');
+INSERT INTO countries VALUES (7,'Ukraine','ukraine');
+INSERT INTO countries VALUES (8,'United Kingdom','unitedkingdom');
+
+
+INSERT INTO func VALUES(1, 'Team Lead', 'teamlead');
+INSERT INTO func VALUES(2, 'Developer', 'developer');
+INSERT INTO func VALUES(3, 'Consultant', 'consultant');
+INSERT INTO func VALUES(4, 'Project Manager', 'projectmanager');
+
+INSERT INTO exp_levels VALUES(1, 'Junior', 'junior');
+INSERT INTO exp_levels VALUES(2, 'Regular', 'regular');
+INSERT INTO exp_levels VALUES(3, 'Senior', 'senior');
+INSERT INTO exp_levels VALUES(4, 'Expert', 'expert');
+
+INSERT INTO job_types VALUES(1, 'Freelance', 'freelance');
+INSERT INTO job_types VALUES(2, 'Permanent', 'permanent');
+
+INSERT INTO salary_currs VALUES(1, 'PLN', 'pln');
+INSERT INTO salary_currs VALUES(2, 'GBP', 'gbp');
+INSERT INTO salary_currs VALUES(3, 'EUR', 'eur');
+
+INSERT INTO salary_pers VALUES(1, 'Hour', 'hour');
+INSERT INTO salary_pers VALUES(2, 'Day', 'day');
+INSERT INTO salary_pers VALUES(3, 'Month', 'month');
+INSERT INTO salary_pers VALUES(4, 'Year', 'year');
+
+INSERT INTO salary_kinds VALUES(1, 'Net', 'net');
+INSERT INTO salary_kinds VALUES(2, 'Gross', 'gross');
+
+INSERT INTO occupancies VALUES(1, 'On Site', 'onsite');
+INSERT INTO occupancies VALUES(2, '20% remote', '20remote');
+INSERT INTO occupancies VALUES(3, '40% remote', '40remote');
+INSERT INTO occupancies VALUES(4, '60% remote', '60remote');
+INSERT INTO occupancies VALUES(5, '80% remote', '80remote');
+INSERT INTO occupancies VALUES(6, 'Remote', 'remote');
+
+INSERT INTO users VALUES(1, 'admin@whatssap.it', '$2y$10$MyMjjdxq1SS3orb1cjPcFuDf4TX/bNCkcZtNvLyCler4xPZwlqLCm', 'ADMIN', now(), now()); 
+INSERT INTO personal_info VALUES(1,1,'Admin','Admin','Admin','Admin','','');
